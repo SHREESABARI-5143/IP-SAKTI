@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: ipsakti-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./ipsakti.db
+      - SYNC_DATABASE_URL=sqlite:///./ipsakti.db
+      - SECRET_KEY=ipsakti-sahayak-super-secret-production-key-change-in-prod-2026
+      - LLM_PROVIDER=gemini
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    volumes:
+      - ./ipsakti.db:/app/ipsakti.db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    container_name: ipsakti-frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+    depends_on:
+      - backend
