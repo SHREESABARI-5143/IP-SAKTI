@@ -29,11 +29,11 @@ def create_access_token(subject: Union[str, Any], expires_delta: Optional[timede
 
 # Security & Prompt Injection Defense
 PROMPT_INJECTION_PATTERNS = [
-    r"ignore\s+(previous|all|the\s+above)\s+instructions",
+    r"ignore\s+(?:all\s+)?(?:previous|prior|above|the\s+above)\s+instructions",
     r"you\s+are\s+now\s+in\s+dan\s+mode",
-    r"system\s+prompt\s+override",
-    r"disregard\s+(all\s+rules|safety)",
-    r"reveal\s+(system\s+prompt|instructions|secret\s+key)",
+    r"system\s+(?:prompt\s+)?override",
+    r"disregard\s+(?:all\s+rules|safety)",
+    r"reveal\s+(?:system\s+prompt|instructions|secret\s+key)",
     r"drop\s+table\s+",
     r"<\s*script\s*>",
 ]

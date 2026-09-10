@@ -1,15 +1,16 @@
+import os
 import uuid
 import hashlib
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List, Optional, Dict, Any
-from fastapi import APIRouter, Depends, Query, HTTPException, Body
+from fastapi import APIRouter, Depends, Query, HTTPException, Body, UploadFile, File
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import selectinload
-from backend.app.core.database import get_db
+from backend.app.core.database import get_db, SyncSessionLocal
 from backend.app.models.source import SourceRegistry, SourceVersion, DocumentChunk
-from backend.app.schemas.sources import SourceRegistryOut, DocumentChunkOut
-from backend.app.ingestion.seed_corpus import AUTHORITATIVE_SOURCES
+from backend.app.schemas.sources import SourceRegistryOut, SourceVersionOut, DocumentChunkOut
+from backend.app.ingestion.live_ingest import live_ingestion
 from backend.app.rag.retriever import retriever
 
 router = APIRouter(prefix="/sources", tags=["Authoritative Source & Registry Explorer"])
@@ -20,6 +21,7 @@ async def list_sources(
     domain: Optional[str] = Query(None),
     db: AsyncSession = Depends(get_db)
 ):
+    """Lists all registered authoritative statutory/regulatory sources."""
     query = select(SourceRegistry).options(selectinload(SourceRegistry.versions))
     if jurisdiction:
         query = query.where(SourceRegistry.jurisdiction == jurisdiction)
@@ -29,89 +31,132 @@ async def list_sources(
     res = await db.execute(query)
     sources = res.scalars().all()
 
+    # If database is empty, run live ingestion from authoritative sources
     if not sources:
-        seed_out = []
-        for s in AUTHORITATIVE_SOURCES:
-            seed_out.append(
-                SourceRegistryOut(
-                    id=s["source_id"],
-                    source_id=s["source_id"],
-                    name=s["name"],
-                    authority=s["authority"],
-                    authority_rank=s.get("authority_rank", 1),
-                    jurisdiction=s["jurisdiction"],
-                    domain=s["domain"],
-                    source_type=s["source_type"],
-                    source_url=s.get("source_url"),
-                    update_frequency="monthly",
-                    last_checked="2026-09-08T00:00:00Z",
-                    last_success="2026-09-08T00:00:00Z",
-                    is_active=True,
-                    is_demo=False,
-                    versions=[]
-                )
-            )
-        return seed_out
+        live_ingestion.ingest_all_authoritative_sources()
+        res = await db.execute(query)
+        sources = res.scalars().all()
 
     return sources
 
-@router.post("", response_model=Dict[str, Any])
-async def add_source(
-    payload: Dict[str, Any] = Body(...),
-    db: AsyncSession = Depends(get_db)
-):
-    """Allows administrators to dynamically register new official statutory sources."""
-    src_id = payload.get("source_id") or f"SRC_{uuid.uuid4().hex[:8].upper()}"
-    name = payload.get("name")
-    if not name:
-        raise HTTPException(status_code=400, detail="Source name is required.")
+@router.get("/discover", response_model=List[Dict[str, Any]])
+@router.post("/discover", response_model=List[Dict[str, Any]])
+async def discover_official_sources():
+    """Discovers available authoritative official sources from the controlled source catalog."""
+    return live_ingestion.discover_sources()
 
-    new_source = SourceRegistry(
-        id=str(uuid.uuid4()),
-        source_id=src_id,
-        name=name,
-        authority=payload.get("authority", "Government of India"),
-        authority_rank=payload.get("authority_rank", 1),
-        jurisdiction=payload.get("jurisdiction", "India"),
-        domain=payload.get("domain", "General IP"),
-        source_type=payload.get("source_type", "Act"),
-        source_url=payload.get("source_url", ""),
-        update_frequency="monthly",
-        is_active=True,
-        is_demo=False
+@router.post("/{source_id}/download")
+async def download_source(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Downloads/loads the authoritative primary document into raw storage."""
+    catalog = live_ingestion.discover_sources()
+    item = next((c for c in catalog if c["source_id"] == source_id), None)
+    if not item:
+        raise HTTPException(status_code=404, detail=f"Source ID '{source_id}' not found in official catalog.")
+
+    res = await db.execute(select(SourceRegistry).where(SourceRegistry.source_id == source_id))
+    src = res.scalars().first()
+    if src:
+        src.ingestion_status = "DOWNLOADED"
+        await db.commit()
+
+    return {
+        "status": "success",
+        "source_id": source_id,
+        "filename": item["filename"],
+        "ingestion_status": "DOWNLOADED"
+    }
+
+@router.post("/{source_id}/validate")
+async def validate_source(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Validates raw source file integrity and calculates SHA-256."""
+    catalog = live_ingestion.discover_sources()
+    item = next((c for c in catalog if c["source_id"] == source_id), None)
+    if not item:
+        raise HTTPException(status_code=404, detail=f"Source ID '{source_id}' not found.")
+
+    orig_path = os.path.join(live_ingestion.BASE_RAW_DIR, item["folder"], "original", item["filename"])
+    if not os.path.exists(orig_path):
+        raise HTTPException(status_code=404, detail=f"Raw source file missing at {orig_path}")
+
+    with open(orig_path, "rb") as f:
+        content = f.read()
+
+    checksum = live_ingestion.compute_sha256(content)
+    is_valid = len(content) > 0
+
+    return {
+        "source_id": source_id,
+        "is_valid": is_valid,
+        "checksum_sha256": checksum,
+        "verification_status": "VERIFIED" if is_valid else "NOT_VERIFIED",
+        "file_size_bytes": len(content)
+    }
+
+@router.post("/{source_id}/ingest")
+@router.post("/{source_id}/reingest")
+async def ingest_single_source(source_id: str):
+    """Parses legal structure, validates checksum, and indexes chunks for the source."""
+    try:
+        result = live_ingestion.ingest_source_by_id(source_id)
+        retriever.reload_from_db()
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@router.post("/sync-check")
+async def sync_check():
+    """Performs controlled source verification check and updates checksums/versions."""
+    results = live_ingestion.ingest_all_authoritative_sources()
+    return {
+        "status": "synced",
+        "sources_checked": len(results),
+        "details": results
+    }
+
+@router.get("/{source_id}", response_model=SourceRegistryOut)
+async def get_source(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Gets details for a specific source."""
+    res = await db.execute(
+        select(SourceRegistry).options(selectinload(SourceRegistry.versions)).where(SourceRegistry.source_id == source_id)
     )
-    db.add(new_source)
-    await db.commit()
-    return {"status": "created", "source_id": src_id, "name": name}
+    src = res.scalars().first()
+    if not src:
+        raise HTTPException(status_code=404, detail="Source not found.")
+    return src
 
-@router.post("/{source_id}/refresh")
-async def refresh_source(
-    source_id: str,
-    db: AsyncSession = Depends(get_db)
-):
-    """Refreshes verification timestamp and computes freshness status."""
+@router.get("/{source_id}/chunks", response_model=List[DocumentChunkOut])
+async def get_source_chunks(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Gets all parsed structural chunks for a specific source."""
     res = await db.execute(select(SourceRegistry).where(SourceRegistry.source_id == source_id))
     src = res.scalars().first()
     if not src:
         raise HTTPException(status_code=404, detail="Source not found.")
 
-    src.last_checked = datetime.utcnow()
-    src.last_success = datetime.utcnow()
-    await db.commit()
-    return {
-        "status": "refreshed",
-        "source_id": source_id,
-        "last_checked": src.last_checked.isoformat(),
-        "freshness_verdict": "Verified Current"
-    }
+    res_chunks = await db.execute(
+        select(DocumentChunk).where(DocumentChunk.source_id == src.id).order_by(DocumentChunk.chunk_index)
+    )
+    return res_chunks.scalars().all()
 
-@router.get("/chunks", response_model=List[DocumentChunkOut])
-async def list_chunks(
+@router.get("/{source_id}/versions", response_model=List[SourceVersionOut])
+async def get_source_versions(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Gets historical and active versions for a source."""
+    res = await db.execute(select(SourceRegistry).where(SourceRegistry.source_id == source_id))
+    src = res.scalars().first()
+    if not src:
+        raise HTTPException(status_code=404, detail="Source not found.")
+
+    res_vers = await db.execute(
+        select(SourceVersion).where(SourceVersion.source_id == src.id).order_by(SourceVersion.created_at.desc())
+    )
+    return res_vers.scalars().all()
+
+@router.get("/chunks/all", response_model=List[DocumentChunkOut])
+async def list_all_chunks(
     source_id: Optional[str] = Query(None),
     db: AsyncSession = Depends(get_db)
 ):
     query = select(DocumentChunk)
     if source_id:
         query = query.where(DocumentChunk.source_id == source_id)
-    res = await db.execute(query.limit(50))
+    res = await db.execute(query.limit(200))
     return res.scalars().all()

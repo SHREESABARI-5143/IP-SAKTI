@@ -1,0 +1,240 @@
+[
+  {
+    "source_id": "IN_PATENTS_ACT_1970",
+    "name": "The Patents Act, 1970 (as amended)",
+    "authority": "Office of the Controller General of Patents, Designs and Trade Marks (CGPDTM), DPIIT",
+    "authority_rank": 1,
+    "jurisdiction": "India",
+    "domain": "Patent",
+    "source_type": "Act",
+    "source_url": "https://ipindia.gov.in/patents.htm",
+    "version_tag": "2005_amendment",
+    "effective_from": "1972-04-20",
+    "chunks": [
+      {
+        "section_title": "Section 3(p) - Inventions not patentable (Traditional Knowledge)",
+        "provision_ref": "Section 3(p)",
+        "authority": "CGPDTM, Ministry of Commerce and Industry",
+        "authority_score": 1.0,
+        "content": "Under Section 3(p) of the Patents Act, 1970: An invention which in effect is traditional knowledge or which is an aggregation or duplication of known properties of traditionally known component or components is not an invention within the meaning of this Act and cannot be patented in India. Merely combining known Ayurvedic herbs (such as Ashwagandha and Turmeric) without demonstrating an unexpected synergistic technical effect beyond the sum of their individual known properties will result in statutory refusal under Section 3(p)."
+      },
+      {
+        "section_title": "Section 3(d) - Incremental Innovations and Derivatives",
+        "provision_ref": "Section 3(d)",
+        "authority": "CGPDTM, Ministry of Commerce and Industry",
+        "authority_score": 1.0,
+        "content": "Section 3(d) of the Patents Act, 1970 provides that the mere discovery of a new form of a known substance which does not result in the enhancement of the known efficacy of that substance, or the mere discovery of any new property or new use for a known substance, or of the mere use of a known process, machine or apparatus unless such known process results in a new product or employs at least one new reactant, is not patentable. In herbal formulations, extraction methods or new dosage delivery forms must establish significantly enhanced therapeutic efficacy over the known herbal raw substance."
+      },
+      {
+        "section_title": "Section 3(j) - Plants, Animals and Biological Processes",
+        "provision_ref": "Section 3(j)",
+        "authority": "CGPDTM, Ministry of Commerce and Industry",
+        "authority_score": 1.0,
+        "content": "Section 3(j) of the Patents Act, 1970 excludes plants and animals in whole or any part thereof other than micro-organisms, but including seeds, varieties and species and essentially biological processes for production or propagation of plants and animals from patentability. Naturally occurring Ayurvedic medicinal plants or unisolated parts cannot be patented as products."
+      },
+      {
+        "section_title": "Section 10(4)(d)(ii) - Mandatory Disclosure of Biological Resource Origin",
+        "provision_ref": "Section 10(4)(d)(ii)",
+        "authority": "CGPDTM, Ministry of Commerce and Industry",
+        "authority_score": 1.0,
+        "content": "Under Section 10(4)(d)(ii) of the Patents Act, 1970, every complete specification must disclose the source and geographical origin of the biological material specified in the specification when used in an invention. If the biological resource is obtained from India, prior approval of the National Biodiversity Authority (NBA) under Section 6 of the Biological Diversity Act, 2002 must be obtained before the grant of the patent."
+      },
+      {
+        "section_title": "Section 25(1)(k) - Grounds for Opposition based on Anticipation by Traditional Knowledge",
+        "provision_ref": "Section 25(1)(k)",
+        "authority": "CGPDTM, Ministry of Commerce and Industry",
+        "authority_score": 1.0,
+        "content": "Section 25(1)(k) allows any person to oppose a patent application on the ground that the complete specification does not disclose or wrongly mentions the source or geographical origin of biological material used for the invention, or that the invention was anticipated having regard to knowledge, oral or otherwise, available within any local or indigenous community in India or elsewhere."
+      }
+    ]
+  },
+  {
+    "source_id": "IN_BD_ACT_2002_2023",
+    "name": "The Biological Diversity Act, 2002 & Amendment Act, 2023",
+    "authority": "National Biodiversity Authority (NBA) & Ministry of Environment, Forest and Climate Change (MoEFCC)",
+    "authority_rank": 1,
+    "jurisdiction": "India",
+    "domain": "ABS",
+    "source_type": "Act",
+    "source_url": "http://nbaindia.org/",
+    "version_tag": "2023_amendment",
+    "effective_from": "2023-08-01",
+    "chunks": [
+      {
+        "section_title": "Section 3 & Section 6 - Prior Approval for Non-Indian Entities & IPR Applications",
+        "provision_ref": "Section 3 & 6",
+        "authority": "National Biodiversity Authority (NBA)",
+        "authority_score": 1.0,
+        "content": "Under Section 6 of the Biological Diversity Act, 2002 (amended 2023), no person shall apply for any intellectual property right, by whatever name called, in or outside India for any invention based on any research or information on a biological resource obtained from India without obtaining the prior approval of the National Biodiversity Authority (NBA). Approval must be obtained before the grant of the patent or right. For foreigners, NRIs, and foreign-controlled entities, Section 3 requires prior NBA approval even before accessing biological resources."
+      },
+      {
+        "section_title": "Section 7 - Prior Intimation to State Biodiversity Board (SBB) by Indian Citizens",
+        "provision_ref": "Section 7",
+        "authority": "State Biodiversity Boards (SBB) / NBA",
+        "authority_score": 1.0,
+        "content": "Section 7 of the Biological Diversity Act mandates that no person who is a citizen of India or a body corporate, association or organization registered in India shall obtain any biological resource for commercial utilization or bio-survey and bio-utilization for commercial utilization except after giving prior intimation to the State Biodiversity Board (SBB) concerned. The 2023 amendment exempts registered AYUSH practitioners and cultivated medicinal plants growers from Section 7 intimation, but commercial formulation manufacturing entities remain subject to intimation and fair and equitable benefit sharing regulations."
+      },
+      {
+        "section_title": "Section 40 - Exemption for Normally Traded Commodities (NTC)",
+        "provision_ref": "Section 40",
+        "authority": "MoEFCC / NBA",
+        "authority_score": 0.95,
+        "content": "Under Section 40 of the Biological Diversity Act, the Central Government may, in consultation with the National Biodiversity Authority, by notification in the Official Gazette, exempt certain biological resources normally traded as commodities (NTC List) from the provisions of this Act when traded strictly as agricultural commodities for consumption. However, if such items are accessed for research, bio-survey, or intellectual property filing, the Section 40 exemption does not apply."
+      },
+      {
+        "section_title": "Section 21 - Determination of Equitable Benefit Sharing",
+        "provision_ref": "Section 21",
+        "authority": "National Biodiversity Authority (NBA)",
+        "authority_score": 0.95,
+        "content": "Section 21 empowers the National Biodiversity Authority to determine fair and equitable benefit sharing arising out of the use of accessed biological resources, their by-products, innovations, and commercialization. Benefit sharing options include direct monetary sharing (0.1% to 0.5% of ex-factory sale price), joint ownership of IPR, technology transfer, or community biodiversity management funds."
+      }
+    ]
+  },
+  {
+    "source_id": "IN_DRUGS_COSMETICS_ACT_1940",
+    "name": "Drugs and Cosmetics Act, 1940 & Rules, 1945 (Chapter IV-A: ASU Drugs)",
+    "authority": "Ministry of AYUSH & Central Drugs Standard Control Organization (CDSCO)",
+    "authority_rank": 1,
+    "jurisdiction": "India",
+    "domain": "Regulatory",
+    "source_type": "Act and Rules",
+    "source_url": "https://ayush.gov.in/",
+    "version_tag": "current",
+    "effective_from": "1940-04-10",
+    "chunks": [
+      {
+        "section_title": "Rule 158B - Regulatory Proof of Effectiveness for ASU Drugs",
+        "provision_ref": "Rule 158B",
+        "authority": "State Licensing Authority (AYUSH) / Ministry of AYUSH",
+        "authority_score": 1.0,
+        "content": "Rule 158B of the Drugs and Cosmetics Rules, 1945 establishes licensing requirements for Ayurveda, Siddha, and Unani (ASU) medicines: (1) Classical Ayurvedic Medicines: Manufactured strictly in accordance with authoritative texts listed in the First Schedule of the Act do not require safety and efficacy proof beyond textual citation. (2) Patent or Proprietary (P&P) ASU Medicines: Formulations containing ingredients listed in the First Schedule but in novel ratios or non-classical combinations require submission of safety data and published literature or pilot clinical trial data establishing therapeutic efficacy for grant of manufacturing license under Rule 158B."
+      },
+      {
+        "section_title": "Section 3(a) - Definition of Ayurvedic, Siddha or Unani Drug",
+        "provision_ref": "Section 3(a)",
+        "authority": "Ministry of AYUSH",
+        "authority_score": 1.0,
+        "content": "Section 3(a) defines an Ayurvedic, Siddha or Unani drug to include all medicines intended for internal or external use for or in the diagnosis, treatment, mitigation or prevention of disease or disorder in human beings or animals, manufactured exclusively in accordance with the formulae described in the authoritative books of Ayurvedic, Siddha and Unani systems specified in the First Schedule to the Act."
+      },
+      {
+        "section_title": "First Schedule - Authoritative Classical Texts of Ayurveda",
+        "provision_ref": "First Schedule",
+        "authority": "Ministry of AYUSH / Pharmacopoeia Commission for Indian Medicine & Homoeopathy (PCIM&H)",
+        "authority_score": 1.0,
+        "content": "The First Schedule to the Drugs and Cosmetics Act lists the 54 authoritative classical Ayurvedic texts (including Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya, Sharangadhara Samhita, Bhavaprakasha, Bhaishajya Ratnavali, and the Ayurvedic Pharmacopoeia of India). Formulations cited verbatim in these texts are considered Classical Traditional Knowledge and qualify for streamlined textual licensing but are excluded from patentability under Section 3(p) of the Patents Act."
+      },
+      {
+        "section_title": "Section 33EEA - Prohibition of Misbranded and Spurious ASU Drugs",
+        "provision_ref": "Section 33EEA",
+        "authority": "State Licensing Authority (AYUSH)",
+        "authority_score": 0.95,
+        "content": "Under Section 33EEA and 33EEB of the Drugs and Cosmetics Act, manufacturing, selling, or distributing misbranded, adulterated, or spurious Ayurvedic drugs is a cognizable criminal offense punishable with imprisonment and fines. Adding allopathic active pharmaceutical ingredients (APIs) or synthetic steroids to Ayurvedic preparations constitutes adulteration under Section 33EEB."
+      }
+    ]
+  },
+  {
+    "source_id": "IN_FSSAI_AYURVEDA_AAHAR_2022",
+    "name": "FSSAI (Ayurveda Aahar) Regulations, 2022",
+    "authority": "Food Safety and Standards Authority of India (FSSAI) & Ministry of AYUSH",
+    "authority_rank": 2,
+    "jurisdiction": "India",
+    "domain": "Regulatory",
+    "source_type": "Regulation",
+    "source_url": "https://www.fssai.gov.in/",
+    "version_tag": "2022_official",
+    "effective_from": "2022-05-05",
+    "chunks": [
+      {
+        "section_title": "Regulation 3 & 4 - Scope and Criteria for Ayurveda Aahar",
+        "provision_ref": "Regulation 3 & 4",
+        "authority": "FSSAI / Ministry of AYUSH",
+        "authority_score": 1.0,
+        "content": "The Food Safety and Standards (Ayurveda Aahar) Regulations, 2022 define Ayurveda Aahar as food prepared in accordance with the recipes or books specified in the First Schedule of the Drugs and Cosmetics Act, 1940. It excludes ASU drugs, parenteral administration, and synthetic vitamins/minerals. Ayurveda Aahar products may carry health and wellness claims rooted in traditional Ayurvedic principles (such as balancing Doshas or Rasayana promotion) but cannot make disease prevention, treatment, or cure claims."
+      },
+      {
+        "section_title": "Regulation 6 - Labeling, Packaging and Mandatory Logo",
+        "provision_ref": "Regulation 6",
+        "authority": "FSSAI",
+        "authority_score": 0.95,
+        "content": "All Ayurveda Aahar products must prominently display the official 'Ayurveda Aahar' logo on the principal display panel alongside the FSSAI license number. Labels must specify the target age group, recommended daily serving, nature of food, and advisory warning stating: 'Ayurveda Aahar is not a substitute for standard balanced diet or medicinal therapy'."
+      }
+    ]
+  },
+  {
+    "source_id": "INTL_WIPO_GRATK_2024",
+    "name": "WIPO Treaty on Intellectual Property, Genetic Resources and Associated Traditional Knowledge (2024)",
+    "authority": "World Intellectual Property Organization (WIPO)",
+    "authority_rank": 2,
+    "jurisdiction": "International",
+    "domain": "Patent",
+    "source_type": "International Treaty",
+    "source_url": "https://www.wipo.int/treaties/en/ip/gratk/",
+    "version_tag": "2024_diplomatic_conference",
+    "effective_from": "2024-05-24",
+    "chunks": [
+      {
+        "section_title": "Article 3 - Mandatory Patent Disclosure of Genetic Resources and Traditional Knowledge",
+        "provision_ref": "Article 3",
+        "authority": "WIPO Member States",
+        "authority_score": 1.0,
+        "content": "Under Article 3 of the historic 2024 WIPO Treaty on Intellectual Property, Genetic Resources and Associated Traditional Knowledge: Where an invention claimed in a patent application is materially based on genetic resources (such as medicinal plant species), patent applicants are legally obligated to disclose the country of origin of the genetic resources or the source. If based on traditional knowledge associated with genetic resources, applicants must disclose the indigenous peoples or local community providing the knowledge."
+      },
+      {
+        "section_title": "Article 4 - Sanctions and Remedies for Non-Disclosure",
+        "provision_ref": "Article 4",
+        "authority": "WIPO Contracting Parties",
+        "authority_score": 0.9,
+        "content": "Article 4 requires Contracting Parties to provide appropriate administrative or judicial measures to address patent applicants' failure to provide the mandatory disclosure. Although patents cannot be revoked solely on grounds of non-fraudulent disclosure omissions, fraudulent intent to deceive origin can lead to revocation, unenforceability, or severe post-grant penalties under national laws."
+      }
+    ]
+  },
+  {
+    "source_id": "INTL_US_FDA_DSHEA",
+    "name": "US FDA Dietary Supplement Health and Education Act (DSHEA 1994) & 21 CFR Part 111",
+    "authority": "United States Food and Drug Administration (US FDA)",
+    "authority_rank": 2,
+    "jurisdiction": "International",
+    "domain": "Export",
+    "source_type": "Federal Statute / cGMP Regulations",
+    "source_url": "https://www.fda.gov/food/dietary-supplements",
+    "version_tag": "21_CFR_111",
+    "effective_from": "1994-10-25",
+    "chunks": [
+      {
+        "section_title": "21 U.S.C. 343(r)(6) - Structure/Function Claims vs Disease Claims for Herbal Supplements",
+        "provision_ref": "21 U.S.C. 343(r)(6)",
+        "authority": "US FDA Center for Food Safety and Applied Nutrition (CFSAN)",
+        "authority_score": 1.0,
+        "content": "Under US FDA DSHEA, Ayurvedic herbal products are classified and marketed as Dietary Supplements. Manufacturers can make Structure/Function claims (e.g. 'supports joint flexibility', 'promotes stress resilience') accompanied by the mandatory FDA disclaimer: 'These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.' Any claim to treat, mitigate, or cure a disease (such as 'cures diabetes' or 'treats arthritis') instantly causes the product to be categorized as an unapproved new drug subject to FDA warning letters, border import seizure (Import Alert 66-41), or criminal injunction."
+      },
+      {
+        "section_title": "21 CFR Part 111 - Current Good Manufacturing Practice (cGMP) for Dietary Supplements",
+        "provision_ref": "21 CFR Part 111",
+        "authority": "US FDA",
+        "authority_score": 0.95,
+        "content": "21 CFR Part 111 mandates strict cGMP compliance for dietary supplements manufactured or exported to the United States: Complete batch production records, 100% identity testing on raw botanical ingredients (using HPTLC, HPLC, or DNA barcoding to verify plant species and exclude adulterants), and certified heavy metal limits (Lead < 0.5 ppm / daily dose, Arsenic, Cadmium, Mercury under USP <2232> standards)."
+      }
+    ]
+  },
+  {
+    "source_id": "INTL_EU_THMPD",
+    "name": "EU Traditional Herbal Medicinal Products Directive (Directive 2004/24/EC)",
+    "authority": "European Medicines Agency (EMA) - Committee on Herbal Medicinal Products (HMPC)",
+    "authority_rank": 2,
+    "jurisdiction": "International",
+    "domain": "Export",
+    "source_type": "EU Directive",
+    "source_url": "https://www.ema.europa.eu/en/human-regulatory-overview/herbal-medicinal-products",
+    "version_tag": "2004/24/EC",
+    "effective_from": "2004-04-30",
+    "chunks": [
+      {
+        "section_title": "Article 16a-16i - Simplified Registration for Traditional Herbal Medicinal Products",
+        "provision_ref": "Article 16a-16i",
+        "authority": "European Medicines Agency (EMA)",
+        "authority_score": 1.0,
+        "content": "Directive 2004/24/EC allows simplified registration of herbal medicinal products without full clinical trials if: (1) The product has been in traditional medicinal use for at least 30 years, including at least 15 years within the European Union. (2) It is an oral, external, or inhalation preparation intended for minor indications without medical supervision. For Ayurvedic formulations lacking 15-year EU commercial usage history, manufacturers must either pursue full marketing authorization under Directive 2001/83/EC or market as EU Food Supplements under Regulation (EC) 1924/2006 (EFSA nutrition and botanical claims regulations)."
+      }
+    ]
+  }
+]

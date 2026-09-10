@@ -1,0 +1,27 @@
+WIPO TREATY ON INTELLECTUAL PROPERTY, GENETIC RESOURCES AND ASSOCIATED TRADITIONAL KNOWLEDGE
+[Adopted by the Diplomatic Conference on May 24, 2024]
+
+Article 1. Objectives.
+The objectives of this Treaty are to:
+(a) enhance the efficacy, transparency and quality of the patent system in relation to genetic resources and traditional knowledge associated with genetic resources; and
+(b) prevent patents from being granted erroneously for inventions that are not novel or inventive with respect to genetic resources and traditional knowledge associated with genetic resources.
+
+Article 2. Use of Terms.
+For the purposes of this Treaty:
+(a) "Applicant" means the person in whose name a patent application is filed, or another person who is applying for the patent;
+(b) "Genetic Resources" are genetic material of actual or potential value;
+(c) "Traditional Knowledge Associated with Genetic Resources" means substantive knowledge of the properties and uses of genetic resources and their derivatives held by Indigenous Peoples and local communities.
+
+Article 3. Mandatory Disclosure Requirement.
+(1) Where the claimed invention in a patent application is materially based on genetic resources, each Contracting Party shall require applicants to disclose:
+(a) the country of origin of the genetic resources, or,
+(b) if the country of origin is not known, the source of the genetic resources.
+(2) Where the claimed invention in a patent application is materially based on traditional knowledge associated with genetic resources, each Contracting Party shall require applicants to disclose:
+(a) the Indigenous Peoples or local community that provided the traditional knowledge, or,
+(b) if the Indigenous Peoples or local community is not known, the source of the traditional knowledge.
+
+Article 4. Sanctions and Remedies.
+(1) Each Contracting Party shall put in place appropriate, effective and proportionate legal, administrative, and/or judicial measures to address an applicant's failure to provide the information required in Article 3.
+(2) Each Contracting Party shall provide the applicant an opportunity to rectify a failure to disclose the required information before applying sanctions or remedies.
+(3) Subject to paragraph (4), no Contracting Party shall revoke, invalidate or render unenforceable a patent solely on the basis of a failure to disclose the information specified in Article 3.
+(4) Each Contracting Party may provide for post-grant sanctions or remedies where there has been fraudulent intent to deceive in respect of the disclosure requirement in Article 3.

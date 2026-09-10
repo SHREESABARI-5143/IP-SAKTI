@@ -1,11 +1,13 @@
 from typing import List
 from backend.app.schemas.classification import ClassificationInput, ClassificationResult
+from backend.app.services.classification.clarifying_questions import get_clarifying_questions
 
 class FormulationClassificationAgent:
     """
     Expert system for classifying Ayurvedic and herbal products across Indian
     and International regulatory categories under the Drugs & Cosmetics Act 1940 (Rule 158B),
     FSSAI Ayurveda Aahar Regulations 2022, and Phytopharmaceutical Drug guidelines.
+    Generates multi-turn clarifying questions in EN/HI/TA for ambiguous edge cases.
     """
 
     @staticmethod
@@ -16,10 +18,14 @@ class FormulationClassificationAgent:
         has_text_ref = data.has_classical_text_reference
         is_modified = data.is_modified_or_extract
         novel_process = data.novel_processing_method
+        lang = getattr(data, "language", "en")
 
         is_therapeutic = any(term in claims_lower for term in ["cure", "treat", "manage disease", "therapeutic", "relieve", "remedy", "disorder", "fever", "arthritis", "diabetes", "asthma"])
         is_dietary = any(term in claims_lower for term in ["food", "dietary", "nutrition", "wellness", "rasayana", "daily health", "immunity boost", "digestive tonic"])
         is_cosmetic = any(term in claims_lower for term in ["skin glow", "hair growth", "complexion", "wrinkle", "external application", "soap", "shampoo", "oil for hair"])
+
+        # Contextual clarifying questions for the user
+        clarifying_qs = get_clarifying_questions(language=lang, max_questions=4)
 
         # Decision Tree Logic
         if is_cosmetic and not is_therapeutic:
@@ -94,7 +100,8 @@ class FormulationClassificationAgent:
             traditional_knowledge_concerns=tk_concerns,
             abs_considerations=abs_concerns,
             mandatory_labeling_rules=labels,
-            export_implications="Exporting to USA requires US FDA DSHEA dietary supplement compliance (21 CFR 111); EU requires Directive 2004/24/EC compliance."
+            export_implications="Exporting to USA requires US FDA DSHEA dietary supplement compliance (21 CFR 111); EU requires Directive 2004/24/EC compliance.",
+            clarifying_questions=clarifying_qs
         )
 
 classification_agent = FormulationClassificationAgent()

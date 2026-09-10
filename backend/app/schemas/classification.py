@@ -13,6 +13,8 @@ class ClassificationInput(BaseModel):
     dosage_form: str # Vati, Asava, Arishta, Capsule, Tablet, Powder, Oil, Cream
     biological_sources_origin: str = "India" # India, Imported, Mixed
     target_market: str = "India" # India, USA, EU, Global
+    language: str = "en" # en, hi, ta
+    clarification_answers: Optional[Dict[str, str]] = None
 
 class ClassificationResult(BaseModel):
     likely_category: str # Classical Ayurvedic Medicine, Patent/Proprietary Ayurvedic Medicine, Phytopharmaceutical Drug, Ayurveda-Aahar, Nutraceutical/Dietary Supplement, Cosmetic
@@ -27,4 +29,5 @@ class ClassificationResult(BaseModel):
     abs_considerations: str
     mandatory_labeling_rules: List[str]
     export_implications: Optional[str] = None
+    clarifying_questions: List[Dict[str, Any]] = []
     important_caveat: str = "This classification is for preliminary regulatory and IP assessment only and does not constitute a statutory approval from the State Licensing Authority (SLA) or CDSCO."

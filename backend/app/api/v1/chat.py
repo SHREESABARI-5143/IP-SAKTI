@@ -82,6 +82,7 @@ async def chat(request: ChatRequest, db: AsyncSession = Depends(get_db)):
         db_cit = Citation(
             id=str(uuid.uuid4()),
             message_id=response_msg_id,
+            chunk_id=cit.id,
             citation_number=cit.citation_number,
             source_title=cit.source_title,
             authority=cit.authority,
@@ -98,11 +99,11 @@ async def chat(request: ChatRequest, db: AsyncSession = Depends(get_db)):
     return ai_response
 
 @router.get("/conversations/{conv_id}/messages")
-async def get_conversation_messages(conv_id: str, db: AsyncSession = Depends(get_db)):
+async def get_conversation_history(conv_id: str, db: AsyncSession = Depends(get_db)):
     res = await db.execute(
         select(Message)
-        .where(Message.conversation_id == conv_id)
         .options(selectinload(Message.citations))
+        .where(Message.conversation_id == conv_id)
         .order_by(Message.created_at.asc())
     )
     messages = res.scalars().all()

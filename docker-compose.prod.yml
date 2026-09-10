@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: ipsakti_postgres_prod
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-ipsakti_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ipsakti_prod_secure_2026}
+      POSTGRES_DB: ${POSTGRES_DB:-ipsakti_prod}
+    volumes:
+      - pgdata_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ipsakti_admin} -d ${POSTGRES_DB:-ipsakti_prod}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+    networks:
+      - ipsakti_internal
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: ipsakti_backend_prod
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_URL: postgresql+asyncpg://${POSTGRES_USER:-ipsakti_admin}:${POSTGRES_PASSWORD:-ipsakti_prod_secure_2026}@postgres:5432/${POSTGRES_DB:-ipsakti_prod}
+      VECTOR_BACKEND: pgvector
+      LLM_PROVIDER: ollama
+      OLLAMA_BASE_URL: http://ollama:11434
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+    networks:
+      - ipsakti_internal
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    container_name: ipsakti_frontend_prod
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - ipsakti_internal
+
+  nginx:
+    image: nginx:alpine
+    container_name: ipsakti_nginx_prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ops/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ops/nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+    networks:
+      - ipsakti_internal
+
+networks:
+  ipsakti_internal:
+    driver: bridge
+
+volumes:
+  pgdata_prod:

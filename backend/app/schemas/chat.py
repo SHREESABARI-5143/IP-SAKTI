@@ -48,6 +48,17 @@ class ChatRequest(BaseModel):
     product_context: Optional[Dict[str, Any]] = None
     include_private_docs: bool = True
 
+class TimingDiagnostics(BaseModel):
+    query_parsing_ms: float = 0.0
+    retrieval_ms: float = 0.0
+    evidence_filtering_ms: float = 0.0
+    generation_ms: float = 0.0
+    verification_ms: float = 0.0
+    total_ms: float = 0.0
+    execution_path: str = "FAST_PATH"  # FAST_PATH, STANDARD_PATH, DEEP_PATH
+    llm_calls_count: int = 0
+    provider_used: str = "deterministic"
+
 class ChatResponse(BaseModel):
     conversation_id: str
     message_id: str
@@ -61,4 +72,5 @@ class ChatResponse(BaseModel):
     followup_suggestions: List[str] = []
     is_abstained: bool = False
     abstention_reason: Optional[str] = None
+    timing_diagnostics: Optional[TimingDiagnostics] = None
     disclaimer: str = "IP-SAKTI Sahayak provides general informational guidance and does not provide legal advice, regulatory approval, or a legal opinion. For decisions involving filing, prosecution, licensing, compliance, disputes, or commercialisation, consult a qualified IP/legal/regulatory professional."

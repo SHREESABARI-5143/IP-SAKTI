@@ -1,0 +1,32 @@
+THE PATENTS RULES, 2003
+[As amended by the Patents (Amendment) Rules, 2024]
+
+CHAPTER I - PRELIMINARY
+
+Rule 1. Short title and commencement.
+(1) These rules may be called the Patents Rules, 2003.
+(2) They shall come into force on the date of their publication in the Official Gazette.
+
+Rule 2. Definitions.
+In these rules, unless the context otherwise requires,—
+(c) "appropriate office" means the appropriate office of the Patent Office as specified in rule 4;
+(da) "eligible educational institution" means an institution established by a Central, Provincial or State Act;
+(f) "Form" means a Form specified in the Second Schedule;
+(fa) "startup" means an entity in India recognized as a startup by the competent authority.
+
+CHAPTER II - APPLICATION FOR PATENT
+
+Rule 13. Specifications.
+(1) Every specification, whether provisional or complete, shall be made in Form 2.
+(7) An abstract shall contain a concise summary of the matter contained in the specification.
+(8) The date and reference of permission from the National Biodiversity Authority under sub-section (1) of section 6 of the Biological Diversity Act, 2002 shall be incorporated in the specification where applicable.
+
+CHAPTER III - EXPEDITED EXAMINATION OF APPLICATIONS
+
+Rule 24C. Expedited examination of applications.
+(1) An applicant may file a request for expedited examination in Form 18A along with the fee specified in the First Schedule on any of the following grounds, namely:—
+(a) that India has been indicated as the competent International Searching Authority or International Preliminary Examining Authority; or
+(b) that the applicant is a startup; or
+(c) that the applicant is a small entity; or
+(d) that the applicant is a female applicant; or
+(e) that the applicant is a department of the Government.

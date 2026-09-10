@@ -28,7 +28,7 @@
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Tamil', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -47,6 +47,19 @@ body {
 .glass-card-hover:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px -10px rgba(15, 118, 110, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Jurisdiction specific badges */
+.badge-jurisdiction-india {
+  background: linear-gradient(135deg, #FEF3C7 0%, #DCFCE7 100%);
+  color: #92400E;
+  border: 1px solid #F59E0B;
+}
+
+.badge-jurisdiction-intl {
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0E7FF 100%);
+  color: #1E40AF;
+  border: 1px solid #3B82F6;
 }
 
 /* Statutory Citation Badge */
@@ -98,7 +111,7 @@ body {
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background: linear-gradient(90deg, rgba(241, 245, 249, 0.6) 25%, rgba(226, 232, 240, 0.9) 50%, rgba(241, 245, 249, 0.6) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.8s infinite;
+  animation: shimmer 1.5s infinite;
 }

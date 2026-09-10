@@ -12,16 +12,22 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
     
-    # Database (Default: SQLite for instant zero-dependency execution, compatible with Postgres)
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./ipsakti.db")
-    SYNC_DATABASE_URL: str = os.getenv("SYNC_DATABASE_URL", "sqlite:///./ipsakti.db")
+    # Database (PostgreSQL 16 with pgvector in Production/Docker; SQLite for zero-dependency local testing)
+    POSTGRES_URL: str = os.getenv("POSTGRES_URL", "")
+    DATABASE_URL: str = os.getenv("DATABASE_URL") or os.getenv("POSTGRES_URL") or "sqlite+aiosqlite:///./ipsakti.db"
+    SYNC_DATABASE_URL: str = os.getenv("SYNC_DATABASE_URL") or (
+        DATABASE_URL.replace("+asyncpg", "").replace("+aiosqlite", "") if "sqlite" not in DATABASE_URL else "sqlite:///./ipsakti.db"
+    )
+    VECTOR_BACKEND: str = os.getenv("VECTOR_BACKEND", "pgvector")
     
-    # LLM Settings
-    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "gemini")  # gemini, openai, local
-    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    DEFAULT_MODEL: str = os.getenv("DEFAULT_MODEL", "gemini-2.5-flash")
-    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-004")
+    # LLM Settings (Local Open Source & Offline Zero-API Fallback)
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "ollama")  # ollama, deterministic, vllm
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3.1:latest")
+    OLLAMA_TIMEOUT_SECONDS: float = float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "60.0"))
+    VLLM_BASE_URL: str = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
+    DEFAULT_MODEL: str = os.getenv("DEFAULT_MODEL", "llama3.1:latest")
+    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
     
     # CORS
     CORS_ORIGINS: List[str] = [

@@ -8,7 +8,8 @@ from backend.app.rag.retriever import retriever
 from backend.app.rag.llm_provider import llm_provider
 from backend.app.rag.citation_verifier import citation_verifier
 from backend.app.rag.confidence import confidence_calculator
-from backend.app.schemas.chat import ChatResponse, ConfidenceBreakdown, CitationOut
+from backend.app.rag.intent_classifier import query_intent_classifier
+from backend.app.schemas.chat import ChatResponse, ConfidenceBreakdown, CitationOut, TimingDiagnostics
 
 class AgentOrchestrator:
     """
@@ -18,10 +19,13 @@ class AgentOrchestrator:
     3. Language detection (EN/HI/TA) & concept normalization
     4. Domain & Jurisdiction routing
     5. Knowledge graph multi-hop context expansion
-    6. Hybrid retrieval (BM25 + Semantic + Metadata filter + Authority weight)
-    7. Grounded answer generation
-    8. Post-generation citation verification & mapping
-    9. Algorithmic confidence computation & abstention checks
+    6. Parallel hybrid retrieval (Exact map + BM25 + Authority weighting)
+    7. Evidence relevance filtering & Pre-generation sufficiency gate
+    8. Query-scoped execution (FAST_PATH, STANDARD_PATH, DEEP_PATH)
+    9. Grounded answer generation (0-1 LLM calls)
+    10. Post-generation 5-step claim-level citation verification & mapping
+    11. Algorithmic confidence computation & safe abstention
+    12. Microsecond latency diagnostics instrumentation
     """
 
     def is_greeting_or_meta(self, text: str) -> bool:
@@ -54,11 +58,13 @@ class AgentOrchestrator:
         conversation_id: str = "conv_default",
         message_id: str = "msg_default"
     ) -> ChatResponse:
-        start_time = time.time()
+        t_start = time.perf_counter()
 
         # 1. Safety & Injection Check
+        t_parse_start = time.perf_counter()
         cleaned_query, is_suspicious = sanitize_and_check_injection(query)
         if is_suspicious:
+            t_total = (time.perf_counter() - t_start) * 1000.0
             return ChatResponse(
                 conversation_id=conversation_id,
                 message_id=message_id,
@@ -78,7 +84,14 @@ class AgentOrchestrator:
                 ),
                 citations=[],
                 is_abstained=True,
-                abstention_reason="Prompt injection pattern detected."
+                abstention_reason="Prompt injection pattern detected.",
+                timing_diagnostics=TimingDiagnostics(
+                    query_parsing_ms=round(t_total, 2),
+                    total_ms=round(t_total, 2),
+                    execution_path="SAFETY_ABSTAIN",
+                    llm_calls_count=0,
+                    provider_used="safety_filter"
+                )
             )
 
         # 2. Language Detection
@@ -87,6 +100,7 @@ class AgentOrchestrator:
 
         # 3. Handle Greetings & Meta Questions
         if self.is_greeting_or_meta(cleaned_query):
+            t_total = (time.perf_counter() - t_start) * 1000.0
             if active_lang == "hi":
                 short_greet = "नमस्ते! मैं IP-SAKTI सहायक हूँ — आपका आयुर्वेदिक बौद्धिक संपदा और नियामक सलाहकार।"
                 full_greet = """### स्वागत है! मैं IP-SAKTI सहायक हूँ 🙏
@@ -163,7 +177,14 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
                     "What are US FDA DSHEA export labeling requirements for Ayurvedic supplements?"
                 ],
                 is_abstained=False,
-                abstention_reason=None
+                abstention_reason=None,
+                timing_diagnostics=TimingDiagnostics(
+                    query_parsing_ms=round(t_total, 2),
+                    total_ms=round(t_total, 2),
+                    execution_path="FAST_PATH",
+                    llm_calls_count=0,
+                    provider_used="meta_greeting"
+                )
             )
 
         # 4. Terminology Normalization for Legal Queries
@@ -171,41 +192,78 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
 
         # 5. Domain Routing
         query_lower = rewritten_query.lower()
-        if any(w in query_lower for w in ["patent", "invent", "novel", "3(p)", "3(d)", "monopoly"]):
-            detected_domain = "Patent"
-        elif any(w in query_lower for w in ["abs", "biodiversity", "nba", "sbb", "bmc", "benefit sharing"]):
+        if any(w in query_lower for w in ["biological diversity", "biodiversity", "nba", "sbb", "bmc", "benefit sharing", "abs"]):
             detected_domain = "ABS"
-        elif any(w in query_lower for w in ["rule 158b", "license", "classical", "proprietary", "aahar", "fssai", "cosmetic", "claim"]):
+        elif any(w in query_lower for w in ["rule 158b", "license", "classical", "proprietary", "aahar", "fssai", "cosmetic", "claim", "asu drug"]):
             detected_domain = "Regulatory"
-        elif any(w in query_lower for w in ["export", "us fda", "dshea", "eu", "prop 65", "thmpd"]):
+        elif any(w in query_lower for w in ["export", "us fda", "dshea", "eu", "prop 65", "thmpd", "21 cfr", "wipo", "gratk"]):
             detected_domain = "Export"
+        elif any(w in query_lower for w in ["patent", "invent", "novel", "3(p)", "3(d)", "monopoly"]):
+            detected_domain = "Patent"
         elif any(w in query_lower for w in ["trademark", "brand", "logo", "gi", "geographical indication"]):
             detected_domain = "Trademark / GI"
         else:
             detected_domain = "General IP & Regulatory"
 
-        # 6. Knowledge Graph Context Expansion
+        # 6. Intent & Scope Classification
+        intent_info = query_intent_classifier.classify(cleaned_query)
+        top_k_req = intent_info.get("max_chunks", 4)
+        exec_path = intent_info.get("execution_path", "STANDARD_PATH")
+        t_parse_ms = (time.perf_counter() - t_parse_start) * 1000.0
+
+        # 7. Knowledge Graph Context Expansion
         graph_context = knowledge_graph.get_multi_hop_subgraph([cleaned_query, detected_domain])
 
-        # 7. Hybrid Retrieval
-        retrieved_chunks = retriever.search(
+        # 8. Parallel Hybrid Retrieval
+        t_ret_start = time.perf_counter()
+        initial_chunks = await retriever.search_async(
             query=rewritten_query,
             jurisdiction=jurisdiction,
             domain_filter=detected_domain,
             selected_country=selected_country,
-            top_k=4
+            top_k=max(4, top_k_req)
+        )
+        t_ret_ms = (time.perf_counter() - t_ret_start) * 1000.0
+
+        # 9. Evidence Relevance & Scope Filtering
+        t_filter_start = time.perf_counter()
+        retrieved_chunks = query_intent_classifier.filter_evidence_by_scope(
+            query=cleaned_query,
+            intent_info=intent_info,
+            candidates=initial_chunks
         )
 
-        # Check retrieval relevance threshold (< 0.28 means query has virtually no match in legal corpus)
-        top_score = retrieved_chunks[0].get("retrieval_score", 0.0) if retrieved_chunks else 0.0
-        if not retrieved_chunks or top_score < 0.28:
+        # Pre-generation Evidence Availability Gate
+        is_sufficient, sufficiency_reason = query_intent_classifier.check_evidence_sufficiency(
+            intent_info=intent_info,
+            evidence=retrieved_chunks
+        )
+        t_filter_ms = (time.perf_counter() - t_filter_start) * 1000.0
+
+        if not is_sufficient:
+            t_total = (time.perf_counter() - t_start) * 1000.0
+            abstention_msg = (
+                "### Safe Abstention Notice\n\n"
+                "I cannot provide legal or regulatory guidance on this matter because the inquiry does not correspond to indexed Ayurvedic intellectual property statutes (Patents Act 1970, BD Act 2023, Drugs & Cosmetics Act, FSSAI Ayurveda Aahar, or WIPO treaties) in the verified knowledge registry.\n\n"
+                "**Recommended Action:**\n"
+                "- Please submit a valid inquiry regarding Ayurvedic patent eligibility, traditional knowledge prior art, ABS compliance, regulatory licensing, or export compliance."
+            )
+            if sufficiency_reason == "REQUESTED_PROVISION_NOT_IN_CORPUS":
+                abstention_msg = (
+                    "### Safe Abstention Notice — Unverified / Non-Existent Statutory Provision\n\n"
+                    "I could not locate the referenced provision in the authoritative legislation, so I cannot attribute a legal rule to it.\n\n"
+                    "**Verification Steps:**\n"
+                    "1. Confirm the provision number against official gazetted statutory texts.\n"
+                    "2. Browse the **Sources Registry** to inspect verified sections of the active Acts."
+                )
+
             return ChatResponse(
                 conversation_id=conversation_id,
                 message_id=message_id,
                 short_answer="I could not verify this inquiry against the verified statutory legal registry.",
-                full_answer="### Safe Abstention Notice\n\nI cannot provide legal or regulatory guidance on this matter because the inquiry does not correspond to indexed Ayurvedic intellectual property statutes (Patents Act 1970, BD Act 2023, Drugs & Cosmetics Act, FSSAI Ayurveda Aahar, or WIPO treaties) in the verified knowledge registry.\n\n**Recommended Action:**\n- Please submit a valid inquiry regarding Ayurvedic patent eligibility, traditional knowledge prior art, ABS compliance, regulatory licensing, or export compliance.",
+                full_answer=abstention_msg,
                 jurisdiction=jurisdiction,
-                detected_domain="Out of Domain",
+                detected_domain="Out of Domain" if sufficiency_reason != "REQUESTED_PROVISION_NOT_IN_CORPUS" else detected_domain,
                 confidence=ConfidenceBreakdown(
                     level="Abstain",
                     score=0.10,
@@ -214,24 +272,37 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
                     jurisdiction_match_score=0.0,
                     source_freshness_score=0.0,
                     citation_grounding_score=0.0,
-                    explanation="Abstained: Query is out-of-scope or lacks verified statutory evidence."
+                    explanation=f"Abstained: {sufficiency_reason or 'Insufficient evidence'}"
                 ),
                 citations=[],
                 is_abstained=True,
-                abstention_reason="Insufficient relevance in authoritative statutory knowledge base."
+                abstention_reason=sufficiency_reason,
+                timing_diagnostics=TimingDiagnostics(
+                    query_parsing_ms=round(t_parse_ms, 2),
+                    retrieval_ms=round(t_ret_ms, 2),
+                    evidence_filtering_ms=round(t_filter_ms, 2),
+                    total_ms=round(t_total, 2),
+                    execution_path=exec_path,
+                    llm_calls_count=0,
+                    provider_used="abstention_gate"
+                )
             )
 
-        # 8. Grounded Answer Synthesis
+        # 10. Grounded Answer Synthesis
+        t_gen_start = time.perf_counter()
         raw_answer = await llm_provider.generate_grounded_answer(
             query=cleaned_query,
             retrieved_sources=retrieved_chunks,
             jurisdiction=jurisdiction,
             detected_domain=detected_domain,
             language=active_lang,
-            product_context=product_context
+            product_context=product_context,
+            execution_path=exec_path
         )
+        t_gen_ms = (time.perf_counter() - t_gen_start) * 1000.0
 
         if raw_answer.get("is_abstained", False):
+            t_total = (time.perf_counter() - t_start) * 1000.0
             return ChatResponse(
                 conversation_id=conversation_id,
                 message_id=message_id,
@@ -251,37 +322,74 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
                 ),
                 citations=[],
                 is_abstained=True,
-                abstention_reason=raw_answer.get("abstention_reason")
+                abstention_reason=raw_answer.get("abstention_reason"),
+                timing_diagnostics=TimingDiagnostics(
+                    query_parsing_ms=round(t_parse_ms, 2),
+                    retrieval_ms=round(t_ret_ms, 2),
+                    evidence_filtering_ms=round(t_filter_ms, 2),
+                    generation_ms=round(t_gen_ms, 2),
+                    total_ms=round(t_total, 2),
+                    execution_path=exec_path,
+                    llm_calls_count=raw_answer.get("llm_calls_count", 0),
+                    provider_used=raw_answer.get("provider_used", "deterministic")
+                )
             )
 
-        # 9. Post-generation Citation Verification & Claim Grounding
+        # 11. Post-generation 5-Step Citation Verification & Claim Grounding
+        t_ver_start = time.perf_counter()
         sanitized_text, verified_citations, unsupported_count, grounding_rate = citation_verifier.verify_and_format_citations(
             raw_text=raw_answer["full_answer"],
             retrieved_sources=retrieved_chunks
         )
 
-        # 10. Algorithmic Confidence Computation
+        # 12. Algorithmic Confidence Computation
         confidence_meta = confidence_calculator.calculate(
             retrieved_sources=retrieved_chunks,
             jurisdiction=jurisdiction,
             unsupported_claim_count=unsupported_count
         )
+        t_ver_ms = (time.perf_counter() - t_ver_start) * 1000.0
 
-        # Follow-up Suggestions
-        followups = [
-            "Does my product qualify for the Section 40 Normally Traded Commodities list?",
-            "What is the difference between Classical Ayurvedic Medicine and Rule 158B P&P medicine?",
-            "How do I file Form III with the National Biodiversity Authority before patent grant?",
-            "What are the US FDA DSHEA labeling guidelines for herbal dietary supplements?"
-        ]
+        # 13. Intent-Scoped Dynamic Follow-up Suggestions & Next Steps
+        intent = intent_info.get("intent", "GENERAL_EXPLANATION")
+        if intent in ["PROVISION_LOOKUP", "PROVISION_COMPARISON", "DEFINITION"]:
+            next_steps = [
+                "Inspect the official gazetted provision in the Sources Registry.",
+                "Cross-reference related procedural rules in the Patents Rules, 2003."
+            ]
+            followups = [
+                "What related provisions apply under this chapter?",
+                "How does this provision interact with patent examination guidelines?"
+            ]
+        elif intent == "PATENTABILITY":
+            next_steps = [
+                "Verify non-obviousness and novel technical contribution beyond known classical texts.",
+                "Check whether biological material source disclosure under Section 10(4)(d)(ii) is applicable."
+            ]
+            followups = [
+                "What evidence is required to overcome Section 3(p) objections?",
+                "Do foreign applicants have different patent eligibility rules in India?"
+            ]
+        elif detected_domain == "ABS":
+            next_steps = [
+                "Check if biological ingredients are listed under the Section 40 NTC list.",
+                "Determine if National Biodiversity Authority Form III approval is required."
+            ]
+            followups = [
+                "What are the ABS compliance exemptions for Indian AYUSH entities?",
+                "How does the BDA 2023 Amendment impact AYUSH practitioners?"
+            ]
+        else:
+            next_steps = [
+                "Review verified statutory excerpts in the Sources Registry.",
+                "Assess applicable compliance conditions for your target jurisdiction."
+            ]
+            followups = [
+                "What are the regulatory differences between ASU Drugs and Ayurveda Aahar?",
+                "What export compliance standards apply for US FDA or EU markets?"
+            ]
 
-        # Recommended Next Steps
-        next_steps = [
-            "Verify all botanical ingredients against the First Schedule Ayurvedic Samhitas and NTC list.",
-            "If seeking a patent, prepare comparative synergistic efficacy trial data to overcome Section 3(p) and 3(d).",
-            "Submit prior intimation Form A to your State Biodiversity Board (SBB).",
-            "Register distinct coined brand names under Trademark Class 5 or Class 30."
-        ]
+        t_total_ms = (time.perf_counter() - t_start) * 1000.0
 
         return ChatResponse(
             conversation_id=conversation_id,
@@ -295,7 +403,18 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
             recommended_next_steps=next_steps,
             followup_suggestions=followups,
             is_abstained=False,
-            abstention_reason=None
+            abstention_reason=None,
+            timing_diagnostics=TimingDiagnostics(
+                query_parsing_ms=round(t_parse_ms, 2),
+                retrieval_ms=round(t_ret_ms, 2),
+                evidence_filtering_ms=round(t_filter_ms, 2),
+                generation_ms=round(t_gen_ms, 2),
+                verification_ms=round(t_ver_ms, 2),
+                total_ms=round(t_total_ms, 2),
+                execution_path=exec_path,
+                llm_calls_count=raw_answer.get("llm_calls_count", 0),
+                provider_used=raw_answer.get("provider_used", "deterministic")
+            )
         )
 
 orchestrator = AgentOrchestrator()

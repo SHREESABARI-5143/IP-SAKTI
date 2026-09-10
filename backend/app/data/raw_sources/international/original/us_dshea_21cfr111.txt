@@ -1,0 +1,18 @@
+UNITED STATES CODE TITLE 21 - FOOD AND DRUGS
+DIETARY SUPPLEMENT HEALTH AND EDUCATION ACT OF 1994 (DSHEA) & 21 CFR PART 111
+
+Section 343. Misbranded food - Dietary supplements.
+21 U.S.C. 343(r)(6) - Structure/Function Claims:
+A dietary supplement is not misbranded under section 343(r)(6) if the claim:
+(A) claims a benefit related to a classical nutrient deficiency disease and discloses the prevalence of such disease in the United States, describes the role of a nutrient or dietary ingredient intended to affect the structure or function in humans, characterizes the documented mechanism by which a nutrient or dietary ingredient acts to maintain such structure or function, or describes general well-being from consumption of a nutrient or dietary ingredient;
+(B) the manufacturer of the dietary supplement has substantiation that such statement is truthful and not misleading; and
+(C) the label contains, prominently displayed and in boldface type, the following statement: "This statement has not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+A dietary supplement may not bear a claim to diagnose, mitigate, treat, cure, or prevent a specific disease or class of diseases.
+
+21 CFR Part 111 - Current Good Manufacturing Practice in Manufacturing, Packaging, Labeling, or Holding Operations for Dietary Supplements
+
+21 CFR 111.75 - Identity Testing of Dietary Ingredients:
+(a) For each component that you use in the manufacture of a dietary supplement:
+(1) You must conduct at least one appropriate test or examination to verify the identity of any component that is a dietary ingredient, prior to its use.
+(2) You must establish specifications for the identity, purity, strength, and composition of the finished batch of the dietary supplement.
+(b) Heavy metal contaminant testing must satisfy maximum permissible limits for lead, arsenic, cadmium, and mercury.

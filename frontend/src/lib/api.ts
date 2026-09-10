@@ -69,9 +69,44 @@ export const api = {
     return res.data;
   },
 
-  // Sources
+  // Sources & Authoritative Registry
   getSources: async (params?: { jurisdiction?: string; domain?: string }) => {
     const res = await apiClient.get('/sources', { params });
+    return res.data;
+  },
+
+  discoverSources: async () => {
+    const res = await apiClient.get('/sources/discover');
+    return res.data;
+  },
+
+  downloadSource: async (sourceId: string) => {
+    const res = await apiClient.post(`/sources/${sourceId}/download`);
+    return res.data;
+  },
+
+  validateSource: async (sourceId: string) => {
+    const res = await apiClient.post(`/sources/${sourceId}/validate`);
+    return res.data;
+  },
+
+  ingestSource: async (sourceId: string) => {
+    const res = await apiClient.post(`/sources/${sourceId}/ingest`);
+    return res.data;
+  },
+
+  syncCheckSources: async () => {
+    const res = await apiClient.post('/sources/sync-check');
+    return res.data;
+  },
+
+  getSourceChunks: async (sourceId: string) => {
+    const res = await apiClient.get(`/sources/${sourceId}/chunks`);
+    return res.data;
+  },
+
+  getSourceVersions: async (sourceId: string) => {
+    const res = await apiClient.get(`/sources/${sourceId}/versions`);
     return res.data;
   },
 

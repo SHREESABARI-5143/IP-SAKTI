@@ -146,14 +146,16 @@ class MultilingualNormalizer:
                 supplemental_keywords.append(canonical_botanical)
                 extracted_concepts.append(canonical_botanical)
 
-        # 4. Canonical Provision Mapping
+        # 4. Canonical Provision & Keyword Mapping (Multilingual)
+        if any(w in query_lower or w in query for w in ["patent", "turmeric", "ashwagandha", "herbal", "formulation", "traditional", "3(p)", "3p", "पेटेंट", "காப்புரிமை", "हल्दी", "அஸ்வகந்தா", "மஞ்சள்", "अश्वगंधा", "आयुर्वेदिक"]):
+            supplemental_keywords.append("traditional knowledge aggregation duplication Section 3(p) Patents Act 1970")
         if any(p in query_lower for p in ["3(p)", "3p", "section 3(p)", "dhara 3(p)", "pirivu 3(p)"]):
             supplemental_keywords.append("Section 3(p) Patents Act 1970 Traditional Knowledge non-patentable")
         if any(p in query_lower for p in ["3(d)", "3d", "section 3(d)", "efficacy", "synergy"]):
             supplemental_keywords.append("Section 3(d) Patents Act 1970 Enhanced Efficacy Synergistic Formulation")
-        if any(p in query_lower for p in ["158b", "rule 158b", "p&p", "proprietary"]):
+        if any(w in query_lower or w in query for w in ["158b", "rule 158b", "p&p", "proprietary", "लाइसेंस", "உரிமம்"]):
             supplemental_keywords.append("Rule 158B Drugs and Cosmetics Rules 1945 Patent or Proprietary ASU Medicine")
-        if any(p in query_lower for p in ["bda", "bda 2023", "nba", "sbb", "form 3", "form iii"]):
+        if any(w in query_lower or w in query for w in ["bda", "bda 2023", "nba", "sbb", "form 3", "form iii", "biological resource", "जैव विविधता", "உயிரியல் பன்முகத்தன்மை"]):
             supplemental_keywords.append("Biological Diversity Act 2023 Section 6 NBA Form III Prior Approval")
 
         # Build final search query
