@@ -19,6 +19,8 @@ AsyncSessionLocal = async_sessionmaker(
     autocommit=False,
     autoflush=False,
 )
+async_session_factory = AsyncSessionLocal
+
 
 # Synchronous Engine for Ingestion scripts & Seeders
 sync_engine = create_engine(

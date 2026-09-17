@@ -4,6 +4,9 @@ from backend.app.models.conversation import Conversation, Message, Citation, Ret
 from backend.app.models.product import Product, Ingredient, IPAssessment, ABSAssessment
 from backend.app.models.knowledge_graph import KnowledgeEntity, KnowledgeRelationship
 from backend.app.models.escalation import EscalationRequest
+from backend.app.models.ingestion import IngestionRun, CorpusVersion
+from backend.app.models.play import PlayScenario
+from backend.app.models.reference import Jurisdiction, LegalInstrument
 
 __all__ = [
     "User",
@@ -23,5 +26,10 @@ __all__ = [
     "ABSAssessment",
     "KnowledgeEntity",
     "KnowledgeRelationship",
-    "EscalationRequest"
+    "EscalationRequest",
+    "IngestionRun",
+    "CorpusVersion",
+    "PlayScenario",
+    "Jurisdiction",
+    "LegalInstrument"
 ]

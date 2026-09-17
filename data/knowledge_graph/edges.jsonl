@@ -1,0 +1,15 @@
+{"source_entity_id": "ENT_LAW_PATENTS_1970", "target_entity_id": "ENT_SEC_3P", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_PATENTS_1970", "target_entity_id": "ENT_SEC_3D", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_PATENTS_1970", "target_entity_id": "ENT_SEC_3E", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_PATENTS_1970", "target_entity_id": "ENT_SEC_10_4", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_PATENTS_1970", "target_entity_id": "ENT_SEC_25_1_K", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_BD_2002", "target_entity_id": "ENT_SEC_3_BDA", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_BD_2002", "target_entity_id": "ENT_SEC_6_BDA", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_BD_2002", "target_entity_id": "ENT_SEC_40_BDA", "relationship_type": "LAW_HAS_SECTION", "weight": 1.0}
+{"source_entity_id": "ENT_SEC_10_4", "target_entity_id": "ENT_SEC_6_BDA", "relationship_type": "REQUIRES_NBA_APPROVAL", "weight": 1.0}
+{"source_entity_id": "ENT_HERB_ASHWAGANDHA", "target_entity_id": "ENT_SEC_3P", "relationship_type": "EXCLUDED_UNDER_3P", "weight": 0.9}
+{"source_entity_id": "ENT_HERB_TURMERIC", "target_entity_id": "ENT_SEC_3P", "relationship_type": "EXCLUDED_UNDER_3P", "weight": 0.9}
+{"source_entity_id": "ENT_HERB_TURMERIC", "target_entity_id": "ENT_SEC_40_BDA", "relationship_type": "EXEMPT_UNDER_NTC", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_DC_1940", "target_entity_id": "ENT_RULE_158B", "relationship_type": "LAW_HAS_RULE", "weight": 1.0}
+{"source_entity_id": "ENT_LAW_DC_1940", "target_entity_id": "ENT_SCHED_T", "relationship_type": "LAW_HAS_REGULATION", "weight": 1.0}
+{"source_entity_id": "ENT_TREATY_WIPO_GRATK_2024", "target_entity_id": "ENT_SEC_10_4", "relationship_type": "HARMONIZED_WITH", "weight": 1.0}

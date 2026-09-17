@@ -43,8 +43,9 @@ def seed_database():
 
         session.commit()
 
-        # 3. Live Ingest Statutory Corpora from structured dataset
-        live_ingestion.ingest_corpus_file(session=session)
+        # 3. Live Ingest 2,000+ Authoritative Knowledge Records
+        from backend.app.ingestion.seed_corpus import ingest_large_scale_corpus
+        ingest_large_scale_corpus(session=session)
 
     except Exception as e:
         session.rollback()

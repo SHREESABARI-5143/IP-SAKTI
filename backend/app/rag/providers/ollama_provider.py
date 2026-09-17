@@ -32,8 +32,8 @@ class OllamaProvider(BaseLLMProvider):
 
     def _get_client(self) -> httpx.AsyncClient:
         if self._client is None or self._client.is_closed:
-            limits = httpx.Limits(max_keepalive_connections=10, max_connections=20, keepalive_expiry=300.0)
-            timeout_cfg = httpx.Timeout(self.timeout, connect=1.5)
+            limits = httpx.Limits(max_keepalive_connections=20, max_connections=50, keepalive_expiry=600.0)
+            timeout_cfg = httpx.Timeout(self.timeout, connect=2.0)
             self._client = httpx.AsyncClient(limits=limits, timeout=timeout_cfg)
         return self._client
 
@@ -113,24 +113,38 @@ class OllamaProvider(BaseLLMProvider):
             "   <Grounded statutory explanation>\n"
         )
 
+        lang_instruction = ""
+        lang_directive = ""
+        if language == "hi":
+            lang_instruction = "CRITICAL LANGUAGE MANDATE: You MUST write your ENTIRE response in Hindi (हिन्दी) using Devanagari script. Do NOT write in English except for inline citation tags like [1]. All headings, explanations, and advice must be in शुद्ध हिन्दी.\n"
+            lang_directive = "\nउत्तर केवल हिन्दी (Devanagari) में दें:"
+        elif language == "ta":
+            lang_instruction = "CRITICAL LANGUAGE MANDATE: You MUST write your ENTIRE response in Tamil (தமிழ்) using Tamil script. Do NOT write in English except for inline citation tags like [1]. All headings, explanations, and advice must be in தமிழ்.\n"
+            lang_directive = "\nவிளக்கங்கள் மற்றும் பதிலை தமிழில் மட்டுமே எழுதவும்:"
+        else:
+            lang_instruction = "LANGUAGE: English (en)\n"
+
         user_prompt = (
             f"JURISDICTION: {jurisdiction}\n"
             f"DOMAIN: {detected_domain}\n"
+            f"{lang_instruction}"
             f"USER QUERY: {query}\n\n"
             f"AUTHORITATIVE SOURCES:\n{sources_context}\n\n"
-            f"GROUNDED ANSWER:"
+            f"{lang_instruction}"
+            f"GROUNDED ANSWER:{lang_directive}"
         )
 
+        active_model = settings.LLM_MODEL_BY_LOCALE.get(language, self.model)
         url = f"{self.base_url}/api/generate"
         payload = {
-            "model": self.model,
+            "model": active_model,
             "prompt": f"{system_prompt}\n\n{user_prompt}",
             "stream": False,
-            "keep_alive": "5m",
+            "keep_alive": "15m",
             "options": {
-                "temperature": 0.1,
-                "top_p": 0.9,
-                "num_predict": 1024
+                "temperature": settings.LLM_TEMPERATURE,
+                "top_p": settings.LLM_TOP_P,
+                "num_predict": settings.LLM_NUM_PREDICT
             }
         }
 

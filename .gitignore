@@ -42,3 +42,9 @@ Thumbs.db
 *.coverage
 .pytest_cache/
 htmlcov/
+
+# Presentations
+*.ppt
+*.pptx
+*.key
+

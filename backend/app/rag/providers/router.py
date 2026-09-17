@@ -54,9 +54,9 @@ class LLMRouter:
         """
         provider_name = settings.LLM_PROVIDER.lower()
 
-        # Check for FAST_PATH: use high-confidence deterministic synthesis directly (0 LLM calls)
+        # Check for FAST_PATH: use high-confidence deterministic synthesis directly (0 LLM calls) for English
         has_direct_evidence = any(s.get("evidence_type") == "DIRECT" or s.get("exact_provision_match") for s in retrieved_sources)
-        if execution_path == "FAST_PATH" and (has_direct_evidence or provider_name == "deterministic"):
+        if execution_path == "FAST_PATH" and (provider_name == "deterministic" or (language == "en" and has_direct_evidence)):
             logger.info("LLMRouter: FAST_PATH triggered — generating direct deterministic answer (0 LLM calls)")
             res = await self.deterministic_provider.generate_answer(
                 query=query,

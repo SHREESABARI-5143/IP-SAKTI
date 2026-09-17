@@ -105,7 +105,7 @@ export default function AdminPage() {
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
           </div>
           <p className="text-2xl font-extrabold text-slate-900">
-            {stats ? `${Math.round(stats.avg_confidence_score * 100)}%` : '92%'}
+            {stats ? `${Math.round(stats.avg_confidence_score * 100)}%` : '--'}
           </p>
           <p className="text-[11px] text-emerald-700 font-medium">100% Primary Source Grounded</p>
         </div>
@@ -116,20 +116,20 @@ export default function AdminPage() {
             <ShieldAlert className="w-4 h-4 text-teal-600" />
           </div>
           <p className="text-2xl font-extrabold text-slate-900">
-            {stats ? `${(stats.abstention_rate * 100).toFixed(1)}%` : '4.0%'}
+            {stats ? `${(stats.abstention_rate * 100).toFixed(1)}%` : '--'}
           </p>
           <p className="text-[11px] text-slate-500 font-medium">Safe Graceful Abstentions</p>
         </div>
 
         <div className="p-4 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-1">
           <div className="flex items-center justify-between text-slate-500 text-xs font-semibold">
-            <span>Authoritative Chunks</span>
+            <span>Authoritative Records</span>
             <Database className="w-4 h-4 text-blue-600" />
           </div>
           <p className="text-2xl font-extrabold text-slate-900">
-            {stats ? stats.total_chunks : '24'}
+            {stats ? (stats.total_records ?? stats.total_chunks) : '--'}
           </p>
-          <p className="text-[11px] text-slate-500 font-medium">Indexed Legal Provisions</p>
+          <p className="text-[11px] text-slate-500 font-medium">Indexed Legal & Botanical Records</p>
         </div>
 
         <div className="p-4 bg-white border border-slate-200 rounded-2xl shadow-xs space-y-1">
@@ -138,7 +138,7 @@ export default function AdminPage() {
             <UserCheck className="w-4 h-4 text-amber-600" />
           </div>
           <p className="text-2xl font-extrabold text-slate-900">
-            {stats ? stats.pending_escalations : '0'}
+            {stats ? stats.pending_escalations : '--'}
           </p>
           <p className="text-[11px] text-amber-700 font-medium">Pending Facilitator Review</p>
         </div>

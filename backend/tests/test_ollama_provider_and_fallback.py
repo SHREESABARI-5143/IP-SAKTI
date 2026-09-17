@@ -30,7 +30,7 @@ async def test_ollama_provider_configuration():
     """Verify Ollama provider initializes with configured model and URL."""
     provider = OllamaProvider()
     assert "11434" in provider.base_url
-    assert provider.model in ["llama3.1:latest", "llama3.1"]
+    assert provider.model in ["qwen2.5:3b", "llama3.1:latest", "llama3.1", settings.OLLAMA_MODEL]
     assert provider.timeout >= 15.0
 
 @pytest.mark.asyncio

@@ -64,10 +64,20 @@ class Document(Base):
     user_id = Column(String(36), ForeignKey("users.id"), nullable=True) # Null for system public documents
     title = Column(String(255), nullable=False)
     filename = Column(String(255), nullable=False)
-    file_type = Column(String(50), nullable=False) # pdf, docx, txt
+    file_type = Column(String(50), nullable=False) # pdf, docx, txt, jsonl, statute
     namespace = Column(String(50), default="PUBLIC_KNOWLEDGE") # PUBLIC_KNOWLEDGE, PRIVATE_USER_DOCUMENTS, ORGANIZATION_DOCUMENTS
-    jurisdiction = Column(String(50), default="India")
+    jurisdiction = Column(String(50), default="India", nullable=False)
+    language = Column(String(10), default="en", nullable=False)
+    instrument_type = Column(String(50), default="STATUTE", nullable=False)
     domain = Column(String(100), default="General")
+    source_uri = Column(Text, nullable=True) # Stable official URL or legal URI
+    publisher = Column(Text, nullable=True) # Official government/treaty publisher
+    published_date = Column(String(50), nullable=True)
+    retrieved_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
+    sha256 = Column(String(64), nullable=True, unique=True, index=True)
+    ingest_status = Column(String(50), default="indexed", nullable=False) # pending, indexed, failed
+    chunk_count = Column(Integer, default=0, nullable=False)
+    corpus_version = Column(String(50), default="v1.0", nullable=False)
     file_size_bytes = Column(Integer, default=0)
     status = Column(String(50), default="indexed") # uploaded, processing, indexed, error
     checksum = Column(String(64), nullable=True)
@@ -84,6 +94,7 @@ class DocumentChunk(Base):
     document_id = Column(String(36), ForeignKey("documents.id"), nullable=True)
     version_id = Column(String(36), nullable=True)
     chunk_index = Column(Integer, default=0)
+    record_index = Column(Integer, default=0) # Standardized knowledge record index
     section_title = Column(String(255), nullable=True) # e.g. "Section 3(p) - Traditional Knowledge"
     provision_ref = Column(String(100), nullable=True) # "Sec 3(p)", "Rule 158B"
     content = Column(Text, nullable=False)

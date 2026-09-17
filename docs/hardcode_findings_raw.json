@@ -1,0 +1,1630 @@
+{
+  "backend": [
+    {
+      "file": "backend/app/main.py",
+      "line": 42,
+      "type": "inline_list_strings",
+      "content": "allow_methods=[\"*\"],",
+      "match": "=[\"*\"]"
+    },
+    {
+      "file": "backend/app/main.py",
+      "line": 43,
+      "type": "inline_list_strings",
+      "content": "allow_headers=[\"*\"],",
+      "match": "=[\"*\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 34,
+      "type": "magic_floats",
+      "content": "conf_score = 0.92",
+      "match": "= 0.92"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 37,
+      "type": "inline_list_strings",
+      "content": "licensing = [\"Form 32 (State Licensing Authority)\", \"Schedule T GMP compliance\", \"Heavy metal and microbiological safety test reports\"]",
+      "match": "= [\"Form 32 (State Licensing Authority)\", \"Schedule T GMP compliance\", \"Heavy metal and microbiological safety test reports\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 38,
+      "type": "inline_list_strings",
+      "content": "routes = [\"Trademark (Class 3 - Cosmetics)\", \"Design Patent for packaging bottle/container\", \"Trade Secret for manufacturing formulation\"]",
+      "match": "= [\"Trademark (Class 3 - Cosmetics)\", \"Design Patent for packaging bottle/container\", \"Trade Secret for manufacturing formulation\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 46,
+      "type": "magic_floats",
+      "content": "conf_score = 0.94",
+      "match": "= 0.94"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 49,
+      "type": "inline_list_strings",
+      "content": "licensing = [\"FSSAI Central / State License under Ayurveda Aahar category\", \"Schedule A herb compliance certificate\", \"Purity and heavy metal analysis\"]",
+      "match": "= [\"FSSAI Central / State License under Ayurveda Aahar category\", \"Schedule A herb compliance certificate\", \"Purity and heavy metal analysis\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 50,
+      "type": "inline_list_strings",
+      "content": "routes = [\"Trademark (Class 30 - Foods / Class 32 - Beverages)\", \"Trade Secret for extraction recipe\", \"GI tagging if regional variety is utilized\"]",
+      "match": "= [\"Trademark (Class 30 - Foods / Class 32 - Beverages)\", \"Trade Secret for extraction recipe\", \"GI tagging if regional variety is utilized\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 58,
+      "type": "magic_floats",
+      "content": "conf_score = 0.88",
+      "match": "= 0.88"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 61,
+      "type": "inline_list_strings",
+      "content": "licensing = [\"CDSCO Form 44 / New Drug Approval\", \"Phase I-III Clinical Trials\", \"Pre-clinical safety and toxicology documentation\", \"cGMP manufacturing license\"]",
+      "match": "= [\"CDSCO Form 44 / New Drug Approval\", \"Phase I-III Clinical Trials\", \"Pre-clinical safety and toxicology documentation\", \"cGMP manufacturing license\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 62,
+      "type": "inline_list_strings",
+      "content": "routes = [\"Process Patent (Extraction/Purification method)\", \"Composition Patent (demonstrating non-obvious synergistic efficacy under Sec 3(d))\", \"Trademark (Class 5)\"]",
+      "match": "= [\"Process Patent (Extraction/Purification method)\", \"Composition Patent (demonstrating non-obvious synergistic efficacy under Sec 3(d))\", \"Trademark (Class 5)\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 65,
+      "type": "inline_list_strings",
+      "content": "labels = [\"Schedule H / Prescription warnings\", \"Standardized active marker percentage\", \"Precise dosage instructions\"]",
+      "match": "= [\"Schedule H / Prescription warnings\", \"Standardized active marker percentage\", \"Precise dosage instructions\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 70,
+      "type": "magic_floats",
+      "content": "conf_score = 0.96",
+      "match": "= 0.96"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 73,
+      "type": "inline_list_strings",
+      "content": "licensing = [\"Manufacturing License on Form 25-D from State Licensing Authority (SLA)\", \"Proof of textual citation from First Schedule book\", \"GMP Certificate (Schedule T)\"]",
+      "match": "= [\"Manufacturing License on Form 25-D from State Licensing Authority (SLA)\", \"Proof of textual citation from First Schedule book\", \"GMP Certificate (Schedule T)\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 74,
+      "type": "inline_list_strings",
+      "content": "routes = [\"Trademark for proprietary brand name (Class 5 - Pharmaceuticals)\", \"Not eligible for product patent under Section 3(p) as it is public traditional knowledge\", \"GI Tag if region-specific heritage applies\"]",
+      "match": "= [\"Trademark for proprietary brand name (Class 5 - Pharmaceuticals)\", \"Not eligible for product patent under Section 3(p) as it is public traditional knowledge\", \"GI Tag if region-specific heritage applies\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 77,
+      "type": "inline_list_strings",
+      "content": "labels = [\"Ayurvedic Proprietary / Classical Medicine statement\", \"First Schedule textual reference\", \"Batch, Manufacturing date, and Expiry\"]",
+      "match": "= [\"Ayurvedic Proprietary / Classical Medicine statement\", \"First Schedule textual reference\", \"Batch, Manufacturing date, and Expiry\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 82,
+      "type": "magic_floats",
+      "content": "conf_score = 0.90",
+      "match": "= 0.90"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 85,
+      "type": "inline_list_strings",
+      "content": "licensing = [\"Manufacturing License (Form 25-D) with Rule 158B proof of safety/effectiveness\", \"Pilot clinical trial data or published literary evidence\", \"Schedule T GMP compliance\"]",
+      "match": "= [\"Manufacturing License (Form 25-D) with Rule 158B proof of safety/effectiveness\", \"Pilot clinical trial data or published literary evidence\", \"Schedule T GMP compliance\"]"
+    },
+    {
+      "file": "backend/app/agents/classification_agent.py",
+      "line": 86,
+      "type": "inline_list_strings",
+      "content": "routes = [\"Trademark (Class 5 - Pharmaceuticals)\", \"Process/Formulation Patent if unexpected synergy and enhanced efficacy are established (overcoming Sec 3(p)/3(d))\", \"Trade Secret\"]",
+      "match": "= [\"Trademark (Class 5 - Pharmaceuticals)\", \"Process/Formulation Patent if unexpected synergy and enhanced efficacy are established (overcoming Sec 3(p)/3(d))\", \"Trade Secret\"]"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 77,
+      "type": "magic_floats",
+      "content": "score=0.1,",
+      "match": "=0.1"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 78,
+      "type": "magic_floats",
+      "content": "source_authority_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 79,
+      "type": "magic_floats",
+      "content": "retrieval_relevance_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 80,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 81,
+      "type": "magic_floats",
+      "content": "source_freshness_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 82,
+      "type": "magic_floats",
+      "content": "citation_grounding_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 269,
+      "type": "magic_floats",
+      "content": "score=0.10,",
+      "match": "=0.10"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 270,
+      "type": "magic_floats",
+      "content": "source_authority_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 271,
+      "type": "magic_floats",
+      "content": "retrieval_relevance_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 272,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 273,
+      "type": "magic_floats",
+      "content": "source_freshness_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 274,
+      "type": "magic_floats",
+      "content": "citation_grounding_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 315,
+      "type": "magic_floats",
+      "content": "score=0.15,",
+      "match": "=0.15"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 316,
+      "type": "magic_floats",
+      "content": "source_authority_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 317,
+      "type": "magic_floats",
+      "content": "retrieval_relevance_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 318,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 319,
+      "type": "magic_floats",
+      "content": "source_freshness_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/agents/orchestrator.py",
+      "line": 320,
+      "type": "magic_floats",
+      "content": "citation_grounding_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/api/v1/abs.py",
+      "line": 5,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/abs\", tags=[\"Access and Benefit Sharing (ABS) Engine\"])",
+      "match": "=[\"Access and Benefit Sharing (ABS) Engine\"]"
+    },
+    {
+      "file": "backend/app/api/v1/admin.py",
+      "line": 13,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/admin\", tags=[\"Admin Console & Telemetry\"])",
+      "match": "=[\"Admin Console & Telemetry\"]"
+    },
+    {
+      "file": "backend/app/api/v1/auth.py",
+      "line": 9,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/auth\", tags=[\"Authentication\"])",
+      "match": "=[\"Authentication\"]"
+    },
+    {
+      "file": "backend/app/api/v1/chat.py",
+      "line": 12,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/chat\", tags=[\"Conversational Intelligence Copilot\"])",
+      "match": "=[\"Conversational Intelligence Copilot\"]"
+    },
+    {
+      "file": "backend/app/api/v1/classify.py",
+      "line": 5,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/classify\", tags=[\"Formulation Classification Engine\"])",
+      "match": "=[\"Formulation Classification Engine\"]"
+    },
+    {
+      "file": "backend/app/api/v1/documents.py",
+      "line": 12,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/documents\", tags=[\"Private Document Vault & Multi-Tenant RAG\"])",
+      "match": "=[\"Private Document Vault & Multi-Tenant RAG\"]"
+    },
+    {
+      "file": "backend/app/api/v1/documents.py",
+      "line": 14,
+      "type": "module_dict",
+      "content": "ALLOWED_EXTENSIONS = {\".pdf\", \".docx\", \".txt\", \".csv\", \".tsv\", \".png\", \".jpg\", \".jpeg\"}",
+      "match": "ALLOWED_EXTENSIONS = {"
+    },
+    {
+      "file": "backend/app/api/v1/documents.py",
+      "line": 93,
+      "type": "return_dict",
+      "content": "return {\"status\": \"deleted\", \"document_id\": doc_id}",
+      "match": "return {\"status\": \"deleted\", \"document_id\""
+    },
+    {
+      "file": "backend/app/api/v1/escalations.py",
+      "line": 10,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/escalations\", tags=[\"Human IP Facilitator Escalation\"])",
+      "match": "=[\"Human IP Facilitator Escalation\"]"
+    },
+    {
+      "file": "backend/app/api/v1/evaluation.py",
+      "line": 7,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/evaluation\", tags=[\"AI Quality Evaluation & Benchmark Suite\"])",
+      "match": "=[\"AI Quality Evaluation & Benchmark Suite\"]"
+    },
+    {
+      "file": "backend/app/api/v1/ip_strategy.py",
+      "line": 5,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/ip\", tags=[\"IP Protection Strategy Matrix\"])",
+      "match": "=[\"IP Protection Strategy Matrix\"]"
+    },
+    {
+      "file": "backend/app/api/v1/products.py",
+      "line": 11,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/products\", tags=[\"Product Workspace\"])",
+      "match": "=[\"Product Workspace\"]"
+    },
+    {
+      "file": "backend/app/api/v1/products.py",
+      "line": 78,
+      "type": "return_dict",
+      "content": "return {\"message\": \"Product deleted successfully.\"}",
+      "match": "return {\"message\": \"Product deleted successfully.\""
+    },
+    {
+      "file": "backend/app/api/v1/sources.py",
+      "line": 16,
+      "type": "inline_list_strings",
+      "content": "router = APIRouter(prefix=\"/sources\", tags=[\"Authoritative Source & Registry Explorer\"])",
+      "match": "=[\"Authoritative Source & Registry Explorer\"]"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 25,
+      "type": "hardcoded_hosts",
+      "content": "OLLAMA_BASE_URL: str = os.getenv(\"OLLAMA_BASE_URL\", \"http://localhost:11434\")",
+      "match": "localhost"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 28,
+      "type": "hardcoded_hosts",
+      "content": "VLLM_BASE_URL: str = os.getenv(\"VLLM_BASE_URL\", \"http://localhost:8000/v1\")",
+      "match": "localhost"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 34,
+      "type": "hardcoded_hosts",
+      "content": "\"http://localhost:3000\",",
+      "match": "localhost"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 35,
+      "type": "hardcoded_hosts",
+      "content": "\"http://localhost:3001\",",
+      "match": "localhost"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 36,
+      "type": "hardcoded_hosts",
+      "content": "\"http://127.0.0.1:3000\",",
+      "match": "127.0.0.1"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 37,
+      "type": "hardcoded_hosts",
+      "content": "\"http://127.0.0.1:3001\",",
+      "match": "127.0.0.1"
+    },
+    {
+      "file": "backend/app/core/config.py",
+      "line": 43,
+      "type": "inline_list_strings",
+      "content": "ALLOWED_EXTENSIONS: List[str] = [\".pdf\", \".docx\", \".txt\", \".csv\"]",
+      "match": "= [\".pdf\", \".docx\", \".txt\", \".csv\"]"
+    },
+    {
+      "file": "backend/app/evaluation/run_eval.py",
+      "line": 35,
+      "type": "magic_floats",
+      "content": "citation_precision_sum = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/evaluation/run_eval.py",
+      "line": 36,
+      "type": "magic_floats",
+      "content": "total_confidence_sum = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/ingestion/live_ingest.py",
+      "line": 525,
+      "type": "magic_floats",
+      "content": "authority_score=0.85",
+      "match": "=0.85"
+    },
+    {
+      "file": "backend/app/ingestion/seed_corpus.py",
+      "line": 362,
+      "type": "magic_floats",
+      "content": "f\"acid-insoluble ash (NMT 1.5%), alcohol-soluble extractive (NLT 10%), heavy metal safety thresholds (Lead <= 10ppm, Arsenic <= 3ppm, Cadmium <= 0.3ppm, Mercury <= 1ppm), \"",
+      "match": "= 0.3"
+    },
+    {
+      "file": "backend/app/ingestion/seed_corpus.py",
+      "line": 500,
+      "type": "magic_floats",
+      "content": "\"content\": \"All Ayurveda Aahar products must comply with microbiological criteria, heavy metal tolerances (Lead <= 5ppm, Arsenic <= 1.1ppm, Mercury <= 0.25ppm, Cadmium <= 0.3ppm), pesticide residues, and aflatoxin limits specified in Food Safety and Standards (Contaminants, Toxins and Residues) Regulations.\"",
+      "match": "= 0.25"
+    },
+    {
+      "file": "backend/app/models/conversation.py",
+      "line": 35,
+      "type": "magic_floats",
+      "content": "confidence_score = Column(Float, default=0.9)",
+      "match": "=0.9"
+    },
+    {
+      "file": "backend/app/multilingual/dictionary.py",
+      "line": 6,
+      "type": "module_dict",
+      "content": "LEGAL_AYUSH_DICTIONARY = {",
+      "match": "LEGAL_AYUSH_DICTIONARY = {"
+    },
+    {
+      "file": "backend/app/multilingual/normalizer.py",
+      "line": 26,
+      "type": "module_dict",
+      "content": "HERB_MAP = {",
+      "match": "HERB_MAP = {"
+    },
+    {
+      "file": "backend/app/multilingual/normalizer.py",
+      "line": 63,
+      "type": "module_dict",
+      "content": "COLLOQUIAL_INTENT_MAP = {",
+      "match": "COLLOQUIAL_INTENT_MAP = {"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "line": 112,
+      "type": "magic_floats",
+      "content": "citation_entailment=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "line": 113,
+      "type": "magic_floats",
+      "content": "citation_completeness=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "line": 114,
+      "type": "magic_floats",
+      "content": "grounded_claim_rate=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "line": 221,
+      "type": "magic_floats",
+      "content": "if overlap_ratio >= 0.12 or not claim_tokens:",
+      "match": "= 0.12"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "line": 234,
+      "type": "magic_floats",
+      "content": "if overlap_ratio >= 0.15 or not claim_tokens:",
+      "match": "= 0.15"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 26,
+      "type": "magic_floats",
+      "content": "score=0.1,",
+      "match": "=0.1"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 27,
+      "type": "magic_floats",
+      "content": "source_authority_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 28,
+      "type": "magic_floats",
+      "content": "retrieval_relevance_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 29,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 30,
+      "type": "magic_floats",
+      "content": "source_freshness_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 31,
+      "type": "magic_floats",
+      "content": "citation_grounding_score=0.0,",
+      "match": "=0.0"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 53,
+      "type": "magic_floats",
+      "content": "freshness_score = 0.95",
+      "match": "= 0.95"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 66,
+      "type": "magic_floats",
+      "content": "if final_score >= 0.80:",
+      "match": "= 0.80"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 69,
+      "type": "magic_floats",
+      "content": "elif final_score >= 0.55:",
+      "match": "= 0.55"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "line": 72,
+      "type": "magic_floats",
+      "content": "elif final_score >= 0.35:",
+      "match": "= 0.35"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "line": 279,
+      "type": "magic_floats",
+      "content": "if not is_direct and chunk.get(\"retrieval_score\", 0.0) >= 0.70:",
+      "match": "= 0.70"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 10,
+      "type": "module_dict",
+      "content": "STOPWORDS = {",
+      "match": "STOPWORDS = {"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 332,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score = 0.6",
+      "match": "= 0.6"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 334,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score = 0.01",
+      "match": "= 0.01"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 345,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score = 0.8",
+      "match": "= 0.8"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 349,
+      "type": "magic_floats",
+      "content": "jurisdiction_match_score = 0.01",
+      "match": "= 0.01"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "line": 381,
+      "type": "magic_floats",
+      "content": "if weighted_lexical >= 0.06 or is_exact_match:",
+      "match": "= 0.06"
+    },
+    {
+      "file": "backend/app/rag/providers/vllm_provider.py",
+      "line": 12,
+      "type": "hardcoded_hosts",
+      "content": "self.base_url = (base_url or getattr(settings, \"VLLM_BASE_URL\", \"http://localhost:8000/v1\")).rstrip(\"/\")",
+      "match": "localhost"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 19,
+      "type": "magic_floats",
+      "content": "score: float = 0.92",
+      "match": "= 0.92"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 20,
+      "type": "magic_floats",
+      "content": "source_authority_score: float = 0.95",
+      "match": "= 0.95"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 21,
+      "type": "magic_floats",
+      "content": "retrieval_relevance_score: float = 0.90",
+      "match": "= 0.90"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 23,
+      "type": "magic_floats",
+      "content": "source_freshness_score: float = 0.95",
+      "match": "= 0.95"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 24,
+      "type": "magic_floats",
+      "content": "citation_grounding_score: float = 0.94",
+      "match": "= 0.94"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 52,
+      "type": "magic_floats",
+      "content": "query_parsing_ms: float = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 53,
+      "type": "magic_floats",
+      "content": "retrieval_ms: float = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 54,
+      "type": "magic_floats",
+      "content": "evidence_filtering_ms: float = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 55,
+      "type": "magic_floats",
+      "content": "generation_ms: float = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 56,
+      "type": "magic_floats",
+      "content": "verification_ms: float = 0.0",
+      "match": "= 0.0"
+    },
+    {
+      "file": "backend/app/schemas/chat.py",
+      "line": 57,
+      "type": "magic_floats",
+      "content": "total_ms: float = 0.0",
+      "match": "= 0.0"
+    }
+  ],
+  "frontend": [
+    {
+      "file": "frontend/src/app/layout.tsx",
+      "line": 34,
+      "type": "hardcoded_urls",
+      "content": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\" />",
+      "match": "https://fonts.googleapis.com"
+    },
+    {
+      "file": "frontend/src/app/layout.tsx",
+      "line": 35,
+      "type": "hardcoded_urls",
+      "content": "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossOrigin=\"anonymous\" />",
+      "match": "https://fonts.gstatic.com"
+    },
+    {
+      "file": "frontend/src/app/layout.tsx",
+      "line": 37,
+      "type": "hardcoded_urls",
+      "content": "href=\"https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap\"",
+      "match": "https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 48,
+      "type": "inline_arrays",
+      "content": "const samplePrompts = [",
+      "match": "const samplePrompts = ["
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 237,
+      "type": "literal_jsx",
+      "content": "<span>Citation-Grounded AI \u2022 Evidence Validation & Safe Abstention</span>",
+      "match": ">Citation-Grounded AI \u2022 Evidence Validation & Safe Abstention<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 254,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-400\">Target Framework:</span>",
+      "match": ">Target Framework:<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 365,
+      "type": "literal_jsx",
+      "content": "<span>Export Report</span>",
+      "match": ">Export Report<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 375,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-emerald-700\">Copied!</span>",
+      "match": ">Copied!<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 390,
+      "type": "literal_jsx",
+      "content": "<span>Consult IP Facilitator</span>",
+      "match": ">Consult IP Facilitator<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 407,
+      "type": "literal_jsx",
+      "content": "<span>Searching statutory registries, verifying TKDL exclusions, and synthesizing grounded legal guidance...</span>",
+      "match": ">Searching statutory registries, verifying TKDL exclusions, and synthesizing grounded legal guidance...<"
+    },
+    {
+      "file": "frontend/src/app/page.tsx",
+      "line": 445,
+      "type": "literal_jsx",
+      "content": "<span>Ask Sahayak</span>",
+      "match": ">Ask Sahayak<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 63,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-sm font-bold text-slate-900 uppercase tracking-wider\">Assessment Questionnaire</h2>",
+      "match": ">Assessment Questionnaire<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 83,
+      "type": "placeholders",
+      "content": "placeholder=\"e.g. Ashwagandha root, Guggulu resin, Tulsi leaves\"",
+      "match": "placeholder=\"e.g. Ashwagandha root, Guggulu resin, Tulsi leaves\""
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 107,
+      "type": "literal_jsx",
+      "content": "<option value=\"Indian Individual/Entity\">Indian Citizen / 100% Indian Entity</option>",
+      "match": ">Indian Citizen / 100% Indian Entity<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 108,
+      "type": "literal_jsx",
+      "content": "<option value=\"Foreign Entity / NRI / Entity with Foreign Participation\">Foreign Entity / NRI / Indian Entity with Foreign Shareholding (Sec 3(2))</option>",
+      "match": ">Foreign Entity / NRI / Indian Entity with Foreign Shareholding (Sec 3(2))<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 191,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-2\">Mandatory Statutory Filings</h3>",
+      "match": ">Mandatory Statutory Filings<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 204,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-2\">Step-by-Step Compliance Roadmap</h3>",
+      "match": ">Step-by-Step Compliance Roadmap<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 216,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5\">Documents to Keep Ready</h3>",
+      "match": ">Documents to Keep Ready<"
+    },
+    {
+      "file": "frontend/src/app/abs-helper/page.tsx",
+      "line": 242,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-base font-bold text-slate-700\">Awaiting Biological Resource Parameters</h3>",
+      "match": ">Awaiting Biological Resource Parameters<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 96,
+      "type": "literal_jsx",
+      "content": "<span>Refresh Telemetry</span>",
+      "match": ">Refresh Telemetry<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 104,
+      "type": "literal_jsx",
+      "content": "<span>Grounding Score</span>",
+      "match": ">Grounding Score<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 115,
+      "type": "literal_jsx",
+      "content": "<span>Abstention Rate</span>",
+      "match": ">Abstention Rate<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 121,
+      "type": "literal_jsx",
+      "content": "<p className=\"text-[11px] text-slate-500 font-medium\">Safe Graceful Abstentions</p>",
+      "match": ">Safe Graceful Abstentions<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 126,
+      "type": "literal_jsx",
+      "content": "<span>Authoritative Records</span>",
+      "match": ">Authoritative Records<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 132,
+      "type": "literal_jsx",
+      "content": "<p className=\"text-[11px] text-slate-500 font-medium\">Indexed Legal & Botanical Records</p>",
+      "match": ">Indexed Legal & Botanical Records<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 137,
+      "type": "literal_jsx",
+      "content": "<span>Escalation Queue</span>",
+      "match": ">Escalation Queue<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 143,
+      "type": "literal_jsx",
+      "content": "<p className=\"text-[11px] text-amber-700 font-medium\">Pending Facilitator Review</p>",
+      "match": ">Pending Facilitator Review<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 151,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-base font-bold text-slate-900\">Golden Dataset Quality Benchmark</h2>",
+      "match": ">Golden Dataset Quality Benchmark<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 171,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-emerald-800 font-medium\">Pass Rate:</span>",
+      "match": ">Pass Rate:<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 178,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-teal-800 font-medium\">Groundedness Score:</span>",
+      "match": ">Groundedness Score:<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 185,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-blue-800 font-medium\">Citation Completeness:</span>",
+      "match": ">Citation Completeness:<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 192,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-600 font-medium\">Retrieval Recall@3:</span>",
+      "match": ">Retrieval Recall@3:<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 204,
+      "type": "literal_jsx",
+      "content": "<th className=\"p-2.5\">Case ID</th>",
+      "match": ">Case ID<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 205,
+      "type": "literal_jsx",
+      "content": "<th className=\"p-2.5\">Test Query</th>",
+      "match": ">Test Query<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 206,
+      "type": "literal_jsx",
+      "content": "<th className=\"p-2.5\">Detected Domain</th>",
+      "match": ">Detected Domain<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 207,
+      "type": "literal_jsx",
+      "content": "<th className=\"p-2.5\">Confidence</th>",
+      "match": ">Confidence<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 208,
+      "type": "literal_jsx",
+      "content": "<th className=\"p-2.5\">Status</th>",
+      "match": ">Status<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 257,
+      "type": "literal_jsx",
+      "content": "<strong>Inquiry:</strong> {esc.question}",
+      "match": ">Inquiry:<"
+    },
+    {
+      "file": "frontend/src/app/admin/page.tsx",
+      "line": 261,
+      "type": "literal_jsx",
+      "content": "<span>Contact: <strong>{esc.contact_email}</strong> \u2022 {esc.contact_phone || 'No phone'}</span>",
+      "match": ">Contact: <"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 64,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-sm font-bold text-slate-900 uppercase tracking-wider\">Product Parameters</h2>",
+      "match": ">Product Parameters<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 68,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Product Formulation Name</label>",
+      "match": ">Product Formulation Name<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 79,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Ingredients (Comma separated)</label>",
+      "match": ">Ingredients (Comma separated)<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 97,
+      "type": "literal_jsx",
+      "content": "<span>Reference text in First Schedule (Samhita / AFI)?</span>",
+      "match": ">Reference text in First Schedule (Samhita / AFI)?<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 102,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-medium text-slate-600 mb-0.5\">Authoritative Text Citation</label>",
+      "match": ">Authoritative Text Citation<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 121,
+      "type": "literal_jsx",
+      "content": "<span>Modified / Novel Extract</span>",
+      "match": ">Modified / Novel Extract<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 131,
+      "type": "literal_jsx",
+      "content": "<span>Novel Process</span>",
+      "match": ">Novel Process<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 136,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Intended Claims & Purpose</label>",
+      "match": ">Intended Claims & Purpose<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 141,
+      "type": "placeholders",
+      "content": "placeholder=\"Describe if intended for disease therapy, food wellness, or external cosmetic use...\"",
+      "match": "placeholder=\"Describe if intended for disease therapy, food wellness, or external cosmetic use...\""
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 148,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Dosage Form</label>",
+      "match": ">Dosage Form<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 154,
+      "type": "literal_jsx",
+      "content": "<option value=\"Vati / Tablet\">Vati / Tablet</option>",
+      "match": ">Vati / Tablet<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 155,
+      "type": "literal_jsx",
+      "content": "<option value=\"Asava / Arishta\">Asava / Arishta (Fermented)</option>",
+      "match": ">Asava / Arishta (Fermented)<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 156,
+      "type": "literal_jsx",
+      "content": "<option value=\"Churna / Powder\">Churna / Powder</option>",
+      "match": ">Churna / Powder<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 157,
+      "type": "literal_jsx",
+      "content": "<option value=\"Taila / Ghrita (Medicated Oil/Ghee)\">Taila / Ghrita</option>",
+      "match": ">Taila / Ghrita<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 158,
+      "type": "literal_jsx",
+      "content": "<option value=\"Standardized Botanical Extract Capsule\">Standardized Botanical Extract Capsule</option>",
+      "match": ">Standardized Botanical Extract Capsule<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 159,
+      "type": "literal_jsx",
+      "content": "<option value=\"Ayurveda Aahar Health Drink / Food Bar\">Ayurveda Aahar Health Drink / Food Bar</option>",
+      "match": ">Ayurveda Aahar Health Drink / Food Bar<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 160,
+      "type": "literal_jsx",
+      "content": "<option value=\"Topical Cream / Hair Oil (Cosmetic)\">Topical Cream / Hair Oil (Cosmetic)</option>",
+      "match": ">Topical Cream / Hair Oil (Cosmetic)<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 182,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-xs font-bold text-teal-800 uppercase tracking-wider\">Classification Outcome</span>",
+      "match": ">Classification Outcome<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 197,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-1\">Rationale</h3>",
+      "match": ">Rationale<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 205,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-2\">Licensing & Regulatory Pathways</h3>",
+      "match": ">Licensing & Regulatory Pathways<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 237,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5\">Mandatory Labeling Requirements</h3>",
+      "match": ">Mandatory Labeling Requirements<"
+    },
+    {
+      "file": "frontend/src/app/classify/page.tsx",
+      "line": 263,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-base font-bold text-slate-700\">Awaiting Product Inputs</h3>",
+      "match": ">Awaiting Product Inputs<"
+    },
+    {
+      "file": "frontend/src/app/documents/page.tsx",
+      "line": 72,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-sm font-bold text-slate-900 uppercase tracking-wider\">Upload Private Document</h2>",
+      "match": ">Upload Private Document<"
+    },
+    {
+      "file": "frontend/src/app/documents/page.tsx",
+      "line": 115,
+      "type": "literal_jsx",
+      "content": "<div className=\"p-8 text-center text-xs text-slate-500\">Loading documents...</div>",
+      "match": ">Loading documents...<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 75,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-sm font-bold text-slate-900 uppercase tracking-wider\">Product Innovation Data</h2>",
+      "match": ">Product Innovation Data<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 79,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Product / Brand Name</label>",
+      "match": ">Product / Brand Name<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 90,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Brief Description of Innovation</label>",
+      "match": ">Brief Description of Innovation<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 101,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Ingredients Used</label>",
+      "match": ">Ingredients Used<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 119,
+      "type": "literal_jsx",
+      "content": "<span>Demonstrable Synergistic Efficacy</span>",
+      "match": ">Demonstrable Synergistic Efficacy<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 129,
+      "type": "literal_jsx",
+      "content": "<span>Novel Process / Extraction Method</span>",
+      "match": ">Novel Process / Extraction Method<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 139,
+      "type": "literal_jsx",
+      "content": "<span>Exact Classical Ayurvedic Recipe</span>",
+      "match": ">Exact Classical Ayurvedic Recipe<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 160,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-[10px] font-bold text-teal-400 uppercase tracking-wider\">Executive Strategy</span>",
+      "match": ">Executive Strategy<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 168,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-xs font-bold text-slate-600 uppercase tracking-wider\">Evaluated IP Protection Routes</h3>",
+      "match": ">Evaluated IP Protection Routes<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 188,
+      "type": "literal_jsx",
+      "content": "<span className=\"font-semibold text-slate-800\">Action Plan:</span>",
+      "match": ">Action Plan:<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 213,
+      "type": "literal_jsx",
+      "content": "<span>Timeline: {item.timeline}</span>",
+      "match": ">Timeline: {item.timeline}<"
+    },
+    {
+      "file": "frontend/src/app/ip-strategy/page.tsx",
+      "line": 237,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-base font-bold text-slate-700\">Awaiting Product Strategy Inputs</h3>",
+      "match": ">Awaiting Product Strategy Inputs<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 99,
+      "type": "literal_jsx",
+      "content": "<span>New Product Formulation</span>",
+      "match": ">New Product Formulation<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 105,
+      "type": "literal_jsx",
+      "content": "<div className=\"p-12 text-center text-xs text-slate-500\">Loading products...</div>",
+      "match": ">Loading products...<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 143,
+      "type": "literal_jsx",
+      "content": "<span>Dosage Form: <strong>{prod.dosage_form}</strong></span>",
+      "match": ">Dosage Form: <"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 156,
+      "type": "literal_jsx",
+      "content": "<span>Created {new Date(prod.created_at).toLocaleDateString()}</span>",
+      "match": ">Created {new Date(prod.created_at).toLocaleDateString()}<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 157,
+      "type": "literal_jsx",
+      "content": "<span className=\"font-semibold text-teal-700\">Ready for Dossier</span>",
+      "match": ">Ready for Dossier<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 168,
+      "type": "literal_jsx",
+      "content": "<h2 className=\"text-lg font-bold text-slate-900\">Create New Formulation Workspace</h2>",
+      "match": ">Create New Formulation Workspace<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 172,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Product Formulation Name</label>",
+      "match": ">Product Formulation Name<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 177,
+      "type": "placeholders",
+      "content": "placeholder=\"e.g. Saptamrit Loha Extract Capsule\"",
+      "match": "placeholder=\"e.g. Saptamrit Loha Extract Capsule\""
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 185,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Category Type</label>",
+      "match": ">Category Type<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 191,
+      "type": "literal_jsx",
+      "content": "<option value=\"classical_ayurvedic\">Classical Ayurvedic (First Schedule)</option>",
+      "match": ">Classical Ayurvedic (First Schedule)<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 192,
+      "type": "literal_jsx",
+      "content": "<option value=\"proprietary_ayurvedic\">Patent or Proprietary (Rule 158B)</option>",
+      "match": ">Patent or Proprietary (Rule 158B)<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 193,
+      "type": "literal_jsx",
+      "content": "<option value=\"ayurveda_aahar\">Ayurveda Aahar (FSSAI 2022)</option>",
+      "match": ">Ayurveda Aahar (FSSAI 2022)<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 194,
+      "type": "literal_jsx",
+      "content": "<option value=\"phytopharmaceutical\">Phytopharmaceutical Drug</option>",
+      "match": ">Phytopharmaceutical Drug<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 195,
+      "type": "literal_jsx",
+      "content": "<option value=\"cosmetic\">Herbal / Ayurvedic Cosmetic</option>",
+      "match": ">Herbal / Ayurvedic Cosmetic<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 200,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Dosage Delivery Form</label>",
+      "match": ">Dosage Delivery Form<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 211,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Botanical Ingredients (Comma separated)</label>",
+      "match": ">Botanical Ingredients (Comma separated)<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 222,
+      "type": "literal_jsx",
+      "content": "<label className=\"block font-semibold text-slate-700 mb-1\">Therapeutic / Wellness Claims</label>",
+      "match": ">Therapeutic / Wellness Claims<"
+    },
+    {
+      "file": "frontend/src/app/products/page.tsx",
+      "line": 227,
+      "type": "placeholders",
+      "content": "placeholder=\"Intended physiological indications...\"",
+      "match": "placeholder=\"Intended physiological indications...\""
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 147,
+      "type": "literal_jsx",
+      "content": "<span>Sync & Verify All Sources</span>",
+      "match": ">Sync & Verify All Sources<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 188,
+      "type": "literal_jsx",
+      "content": "<div className=\"p-16 text-center text-xs text-slate-500\">Loading authoritative statutory sources...</div>",
+      "match": ">Loading authoritative statutory sources...<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 214,
+      "type": "literal_jsx",
+      "content": "<span>Authority: <strong>{src.authority}</strong></span>",
+      "match": ">Authority: <"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 218,
+      "type": "literal_jsx",
+      "content": "<span>Type: <strong>{src.document_type || src.source_type}</strong> (Rank #{src.authority_rank})</span>",
+      "match": ">Type: <"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 235,
+      "type": "literal_jsx",
+      "content": "<span>Inspect Records</span>",
+      "match": ">Inspect Records<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 242,
+      "type": "literal_jsx",
+      "content": "<span>Versions</span>",
+      "match": ">Versions<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 271,
+      "type": "literal_jsx",
+      "content": "<span>Official Gazette</span>",
+      "match": ">Official Gazette<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 305,
+      "type": "literal_jsx",
+      "content": "<div className=\"py-12 text-center text-xs text-slate-500\">Loading parsed legal structure records...</div>",
+      "match": ">Loading parsed legal structure records...<"
+    },
+    {
+      "file": "frontend/src/app/sources/page.tsx",
+      "line": 379,
+      "type": "literal_jsx",
+      "content": "<div className=\"py-8 text-center text-xs text-slate-500\">Loading version history...</div>",
+      "match": ">Loading version history...<"
+    },
+    {
+      "file": "frontend/src/components/ConfidenceBadge.tsx",
+      "line": 36,
+      "type": "literal_jsx",
+      "content": "<span>Confidence: <strong>{confidence.level}</strong> ({Math.round(confidence.score * 100)}%)</span>",
+      "match": ">Confidence: <"
+    },
+    {
+      "file": "frontend/src/components/ConfidenceBadge.tsx",
+      "line": 45,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-500\">Source Authority Hierarchy:</span>",
+      "match": ">Source Authority Hierarchy:<"
+    },
+    {
+      "file": "frontend/src/components/ConfidenceBadge.tsx",
+      "line": 49,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-500\">Semantic Relevance:</span>",
+      "match": ">Semantic Relevance:<"
+    },
+    {
+      "file": "frontend/src/components/ConfidenceBadge.tsx",
+      "line": 53,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-500\">Jurisdictional Precision:</span>",
+      "match": ">Jurisdictional Precision:<"
+    },
+    {
+      "file": "frontend/src/components/ConfidenceBadge.tsx",
+      "line": 57,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-slate-500\">Citation Grounding:</span>",
+      "match": ">Citation Grounding:<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 48,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"font-semibold text-sm\">Escalate to Certified IP Facilitator</h3>",
+      "match": ">Escalate to Certified IP Facilitator<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 66,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"text-lg font-bold text-slate-900\">Escalation Request Submitted!</h3>",
+      "match": ">Escalation Request Submitted!<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 87,
+      "type": "literal_jsx",
+      "content": "<label className=\"block text-xs font-semibold text-slate-700 mb-1\">Subject / Query Title</label>",
+      "match": ">Subject / Query Title<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 99,
+      "type": "literal_jsx",
+      "content": "<label className=\"block text-xs font-semibold text-slate-700 mb-1\">Contact Email</label>",
+      "match": ">Contact Email<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 109,
+      "type": "literal_jsx",
+      "content": "<label className=\"block text-xs font-semibold text-slate-700 mb-1\">Phone Number</label>",
+      "match": ">Phone Number<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 120,
+      "type": "literal_jsx",
+      "content": "<label className=\"block text-xs font-semibold text-slate-700 mb-1\">Additional Formulation / Case Notes</label>",
+      "match": ">Additional Formulation / Case Notes<"
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 125,
+      "type": "placeholders",
+      "content": "placeholder=\"Mention specific concerns regarding traditional knowledge prior art, SBB notice, or commercial targets...\"",
+      "match": "placeholder=\"Mention specific concerns regarding traditional knowledge prior art, SBB notice, or commercial targets...\""
+    },
+    {
+      "file": "frontend/src/components/EscalationModal.tsx",
+      "line": 132,
+      "type": "literal_jsx",
+      "content": "<span>Prior AI analysis and retrieved statutory provisions will be automatically attached to this escalation package.</span>",
+      "match": ">Prior AI analysis and retrieved statutory provisions will be automatically attached to this escalation package.<"
+    },
+    {
+      "file": "frontend/src/components/Footer.tsx",
+      "line": 21,
+      "type": "literal_jsx",
+      "content": "<span className=\"ml-1 text-[10px] text-teal-400 font-bold uppercase tracking-wider\">Sahayak</span>",
+      "match": ">Sahayak<"
+    },
+    {
+      "file": "frontend/src/components/Footer.tsx",
+      "line": 72,
+      "type": "literal_jsx",
+      "content": "<span>Facilitator Escalation Portal \u2192</span>",
+      "match": ">Facilitator Escalation Portal \u2192<"
+    },
+    {
+      "file": "frontend/src/components/LegalDisclaimerBanner.tsx",
+      "line": 13,
+      "type": "placeholders",
+      "content": "<aside aria-label=\"Statutory Notice\" className=\"bg-gradient-to-r from-amber-500/10 via-amber-400/5 to-amber-500/10 border-b border-amber-200/60 py-1.5 px-4 text-xs\">",
+      "match": "aria-label=\"Statutory Notice\""
+    },
+    {
+      "file": "frontend/src/components/LegalDisclaimerBanner.tsx",
+      "line": 26,
+      "type": "literal_jsx",
+      "content": "<span>Primary Statutory Grounding Active</span>",
+      "match": ">Primary Statutory Grounding Active<"
+    },
+    {
+      "file": "frontend/src/components/Navbar.tsx",
+      "line": 39,
+      "type": "inline_arrays",
+      "content": "const navLinks = [",
+      "match": "const navLinks = ["
+    },
+    {
+      "file": "frontend/src/components/Navbar.tsx",
+      "line": 149,
+      "type": "literal_jsx",
+      "content": "<span className=\"hidden sm:inline\">International</span>",
+      "match": ">International<"
+    },
+    {
+      "file": "frontend/src/components/Navbar.tsx",
+      "line": 176,
+      "type": "placeholders",
+      "content": "title=\"English\"",
+      "match": "title=\"English\""
+    },
+    {
+      "file": "frontend/src/components/Navbar.tsx",
+      "line": 185,
+      "type": "placeholders",
+      "content": "title=\"\u0939\u093f\u0928\u094d\u0926\u0940\"",
+      "match": "title=\"\u0939\u093f\u0928\u094d\u0926\u0940\""
+    },
+    {
+      "file": "frontend/src/components/Navbar.tsx",
+      "line": 194,
+      "type": "placeholders",
+      "content": "title=\"\u0ba4\u0bae\u0bbf\u0bb4\u0bcd\"",
+      "match": "title=\"\u0ba4\u0bae\u0bbf\u0bb4\u0bcd\""
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 18,
+      "type": "literal_jsx",
+      "content": "<h3 className=\"font-semibold text-sm\">Authoritative Source Inspector</h3>",
+      "match": ">Authoritative Source Inspector<"
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 46,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-xs font-bold text-slate-500 uppercase tracking-wider\">Statutory Provision:</span>",
+      "match": ">Statutory Provision:<"
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 52,
+      "type": "literal_jsx",
+      "content": "<h4 className=\"text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5\">Official Excerpt:</h4>",
+      "match": ">Official Excerpt:<"
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 60,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-xs text-slate-500\">Version:</span>",
+      "match": ">Version:<"
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 64,
+      "type": "literal_jsx",
+      "content": "<span className=\"text-xs text-slate-500\">Effective Date:</span>",
+      "match": ">Effective Date:<"
+    },
+    {
+      "file": "frontend/src/components/SourceDrawer.tsx",
+      "line": 77,
+      "type": "literal_jsx",
+      "content": "<span>View Official Government Registry</span>",
+      "match": ">View Official Government Registry<"
+    },
+    {
+      "file": "frontend/src/lib/api.ts",
+      "line": 3,
+      "type": "hardcoded_urls",
+      "content": "const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';",
+      "match": "http://127.0.0.1:8000/api/v1"
+    }
+  ]
+}

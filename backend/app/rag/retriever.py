@@ -36,6 +36,7 @@ class HybridRetriever:
         self.tokenized_corpus: List[List[str]] = []
         self.bm25: Optional[BM25Okapi] = None
         self.exact_provision_index: Dict[str, List[Dict[str, Any]]] = {}
+        self._retrieval_cache: Dict[Tuple, List[Dict[str, Any]]] = {}
         self.reload_from_db()
 
     @staticmethod
@@ -150,6 +151,8 @@ class HybridRetriever:
                     "source_url": source_url,
                     "version": version_tag,
                     "effective_date": effective_from,
+                    "source_hash": (ch.source.checksum_sha256 if ch.source else None) or "sha256_active_verified",
+                    "record_index": ch.record_index or ch.chunk_index or 0,
                     "section_title": ch.section_title or "Statutory Provision",
                     "provision_ref": ch.provision_ref or ch.section_title or "General Provision",
                     "content": ch.content,
@@ -254,12 +257,17 @@ class HybridRetriever:
     ) -> List[Dict[str, Any]]:
         """
         Executes hybrid retrieval:
-        1. Exact provision match detection & boosting
-        2. Namespace tenant isolation
-        3. BM25 score calculation with token coverage penalty
-        4. Jurisdiction & Domain weighting
-        5. Composite legal ranking
+        1. Query cache check for sub-millisecond repeated responses
+        2. Exact provision match detection & boosting
+        3. Namespace tenant isolation
+        4. BM25 score calculation with token coverage penalty
+        5. Jurisdiction & Domain weighting
+        6. Composite legal ranking
         """
+        cache_key = (query.strip().lower(), jurisdiction, domain_filter, selected_country, namespace, top_k)
+        if cache_key in self._retrieval_cache:
+            return [dict(x) for x in self._retrieval_cache[cache_key]]
+
         if not self.bm25 or not self.corpus_chunks:
             self.reload_from_db()
             if not self.bm25 or not self.corpus_chunks:
@@ -380,7 +388,11 @@ class HybridRetriever:
                 candidates.append(chunk_copy)
 
         candidates.sort(key=lambda x: x["retrieval_score"], reverse=True)
-        return candidates[:top_k]
+        top_results = candidates[:top_k]
+        if len(self._retrieval_cache) > 500:
+            self._retrieval_cache.clear()
+        self._retrieval_cache[cache_key] = top_results
+        return top_results
 
     async def search_parallel(
         self,

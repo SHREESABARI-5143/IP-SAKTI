@@ -1,0 +1,6 @@
+{"code": "IN", "name": "India", "region": "Domestic", "is_active": true}
+{"code": "US", "name": "United States", "region": "North America", "is_active": true}
+{"code": "EU", "name": "European Union", "region": "Europe", "is_active": true}
+{"code": "WIPO", "name": "International Treaties", "region": "Global", "is_active": true}
+{"code": "UK", "name": "United Kingdom", "region": "Europe", "is_active": true}
+{"code": "JP", "name": "Japan", "region": "Asia-Pacific", "is_active": true}

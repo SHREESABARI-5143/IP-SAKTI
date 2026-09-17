@@ -23,11 +23,30 @@ class Settings(BaseSettings):
     # LLM Settings (Local Open Source & Offline Zero-API Fallback)
     LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "ollama")  # ollama, deterministic, vllm
     OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
-    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3.1:latest")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "qwen2.5:3b")
     OLLAMA_TIMEOUT_SECONDS: float = float(os.getenv("OLLAMA_TIMEOUT_SECONDS", "60.0"))
-    VLLM_BASE_URL: str = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
-    DEFAULT_MODEL: str = os.getenv("DEFAULT_MODEL", "llama3.1:latest")
+    OLLAMA_KEEP_ALIVE: str = os.getenv("OLLAMA_KEEP_ALIVE", "15m")
+    LLM_TEMPERATURE: float = float(os.getenv("LLM_TEMPERATURE", "0.1"))
+    LLM_NUM_CTX: int = int(os.getenv("LLM_NUM_CTX", "4096"))
+    LLM_NUM_PREDICT: int = int(os.getenv("LLM_NUM_PREDICT", "512"))
+    DEFAULT_MODEL: str = os.getenv("DEFAULT_MODEL", "qwen2.5:3b")
+    LLM_MODEL_BY_LOCALE: dict = {
+        "en": os.getenv("LLM_MODEL_EN", "qwen2.5:3b"),
+        "hi": os.getenv("LLM_MODEL_HI", "qwen2.5:3b"),
+        "ta": os.getenv("LLM_MODEL_TA", "qwen2.5:3b")
+    }
     EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3")
+    VLLM_BASE_URL: str = os.getenv("VLLM_BASE_URL", "http://localhost:8000/v1")
+
+    # Retrieval & Confidence Thresholds
+    RRF_K: int = int(os.getenv("RRF_K", "60"))
+    RRF_DEFAULT_MIN_SCORE: float = float(os.getenv("RRF_DEFAULT_MIN_SCORE", "0.22"))
+    RRF_FALLBACK_MIN_SCORE: float = float(os.getenv("RRF_FALLBACK_MIN_SCORE", "0.18"))
+    INTENT_EVIDENCE_DIRECT_THRESHOLD: float = float(os.getenv("INTENT_EVIDENCE_DIRECT_THRESHOLD", "0.70"))
+    INTENT_EVIDENCE_CONTEXTUAL_THRESHOLD: float = float(os.getenv("INTENT_EVIDENCE_CONTEXTUAL_THRESHOLD", "0.85"))
+    CONFIDENCE_ABSTAIN_THRESHOLD: float = float(os.getenv("CONFIDENCE_ABSTAIN_THRESHOLD", "0.65"))
+    CONFIDENCE_ESCALATE_THRESHOLD: float = float(os.getenv("CONFIDENCE_ESCALATE_THRESHOLD", "0.55"))
+    LLM_TOP_P: float = float(os.getenv("LLM_TOP_P", "0.9"))
     
     # CORS
     CORS_ORIGINS: List[str] = [

@@ -1,125 +1,184 @@
+"""
+backend/app/knowledge_graph/engine.py — Dynamic Relational Knowledge Graph Engine (Milestone M11)
+Queries nodes and edges from database tables (KnowledgeEntity, KnowledgeRelationship) with in-memory caching.
+"""
+
 from typing import List, Dict, Any, Optional
 import json
+import time
+from backend.app.core.database import SyncSessionLocal
+from backend.app.models.knowledge_graph import KnowledgeEntity, KnowledgeRelationship
 
 class KnowledgeGraphEngine:
     """
-    In-memory and relational multi-hop Knowledge Graph for IP & AYUSH Regulations.
-    Enables traversal from herbs to biological resources, statutory exclusions,
-    regulatory pathways, and international treaty requirements.
+    Relational multi-hop Knowledge Graph for IP & AYUSH Regulations.
+    Traverses herbs, biological resources, statutory exclusions, regulatory pathways, and international treaties.
     """
 
-    def __init__(self):
+    def __init__(self, cache_ttl_seconds: int = 300):
         self.entities: Dict[str, Dict[str, Any]] = {}
         self.relationships: List[Dict[str, Any]] = []
-        self._initialize_graph()
+        self._cache_ttl = cache_ttl_seconds
+        self._last_loaded_time = 0.0
+        self.reload()
 
-    def _initialize_graph(self):
-        # 1. Statutory & Regulatory Entities
-        entities_data = [
-            # Acts & Treaties
-            {"id": "ACT_PATENTS_1970", "name": "Indian Patents Act, 1970", "type": "Law", "jurisdiction": "India"},
-            {"id": "ACT_BD_2002_2023", "name": "Biological Diversity Act, 2002 & 2023", "type": "Law", "jurisdiction": "India"},
-            {"id": "ACT_DRUGS_COSMETICS_1940", "name": "Drugs and Cosmetics Act, 1940 (Chapter IV-A)", "type": "Law", "jurisdiction": "India"},
-            {"id": "REG_AYURVEDA_AAHAR_2022", "name": "FSSAI Ayurveda Aahar Regulations, 2022", "type": "Regulation", "jurisdiction": "India"},
-            {"id": "TREATY_WIPO_GRATK", "name": "WIPO GRATK Treaty (2024)", "type": "Treaty", "jurisdiction": "International"},
-            {"id": "TREATY_NAGOYA", "name": "Nagoya Protocol on ABS", "type": "Treaty", "jurisdiction": "International"},
-            {"id": "REG_US_DSHEA", "name": "US FDA DSHEA (21 CFR 111)", "type": "Regulation", "jurisdiction": "USA"},
-            {"id": "DIR_EU_THMPD", "name": "EU Traditional Herbal Directive (2004/24/EC)", "type": "Regulation", "jurisdiction": "EU"},
+    def reload(self):
+        """Loads entities and relationships directly from the database."""
+        session = SyncSessionLocal()
+        try:
+            db_entities = session.query(KnowledgeEntity).all()
+            db_rels = session.query(KnowledgeRelationship).all()
 
-            # Sections & Rules
-            {"id": "SEC_PATENT_3P", "name": "Section 3(p) [Traditional Knowledge Exclusion]", "type": "Section", "jurisdiction": "India"},
-            {"id": "SEC_PATENT_3D", "name": "Section 3(d) [Efficacy Enhancement Requirement]", "type": "Section", "jurisdiction": "India"},
-            {"id": "SEC_PATENT_10_4", "name": "Section 10(4)(d)(ii) [Source Disclosure]", "type": "Section", "jurisdiction": "India"},
-            {"id": "SEC_BD_6", "name": "Section 6 [NBA Approval for IPR]", "type": "Section", "jurisdiction": "India"},
-            {"id": "SEC_BD_7", "name": "Section 7 [SBB Prior Intimation]", "type": "Section", "jurisdiction": "India"},
-            {"id": "RULE_158B", "name": "Rule 158B [Proof of Effectiveness for ASU Drugs]", "type": "Rule", "jurisdiction": "India"},
+            self.entities = {}
+            for ent in db_entities:
+                self.entities[ent.entity_id] = {
+                    "id": ent.entity_id,
+                    "db_id": ent.id,
+                    "name": ent.name,
+                    "type": ent.entity_type,
+                    "jurisdiction": ent.jurisdiction,
+                    "description": ent.description
+                }
 
-            # Authorities
-            {"id": "AUTH_CGPDTM", "name": "Patent Office (CGPDTM / DPIIT)", "type": "Authority", "jurisdiction": "India"},
-            {"id": "AUTH_NBA", "name": "National Biodiversity Authority (NBA)", "type": "Authority", "jurisdiction": "India"},
-            {"id": "AUTH_AYUSH", "name": "Ministry of AYUSH / State Licensing Authorities", "type": "Authority", "jurisdiction": "India"},
-            {"id": "AUTH_FSSAI", "name": "Food Safety and Standards Authority of India", "type": "Authority", "jurisdiction": "India"},
-            {"id": "AUTH_USFDA", "name": "United States Food and Drug Administration", "type": "Authority", "jurisdiction": "USA"},
+            self.relationships = []
+            for rel in db_rels:
+                src = session.query(KnowledgeEntity).filter(KnowledgeEntity.id == rel.source_entity_id).first()
+                tgt = session.query(KnowledgeEntity).filter(KnowledgeEntity.id == rel.target_entity_id).first()
+                if src and tgt:
+                    self.relationships.append({
+                        "source": src.entity_id,
+                        "target": tgt.entity_id,
+                        "rel": rel.relationship_type,
+                        "weight": rel.weight
+                    })
 
-            # Key Ayurvedic Herbs / Biological Resources
-            {"id": "HERB_ASHWAGANDHA", "name": "Ashwagandha (Withania somnifera)", "type": "BiologicalResource", "jurisdiction": "India"},
-            {"id": "HERB_TURMERIC", "name": "Haridra / Turmeric (Curcuma longa)", "type": "BiologicalResource", "jurisdiction": "India"},
-            {"id": "HERB_NEEM", "name": "Nimba / Neem (Azadirachta indica)", "type": "BiologicalResource", "jurisdiction": "India"},
-            {"id": "HERB_BRAHMI", "name": "Brahmi (Bacopa monnieri)", "type": "BiologicalResource", "jurisdiction": "India"},
-            {"id": "HERB_GUDUCHI", "name": "Guduchi / Giloy (Tinospora cordifolia)", "type": "BiologicalResource", "jurisdiction": "India"},
-            {"id": "HERB_TULSI", "name": "Tulsi (Ocimum sanctum)", "type": "BiologicalResource", "jurisdiction": "India"}
-        ]
+            self._last_loaded_time = time.time()
+        finally:
+            session.close()
 
-        for ent in entities_data:
-            self.entities[ent["id"]] = ent
+    def _ensure_fresh(self):
+        if time.time() - self._last_loaded_time > self._cache_ttl:
+            self.reload()
 
-        # 2. Relational Edges
-        relations_data = [
-            # Law -> Section
-            {"source": "ACT_PATENTS_1970", "target": "SEC_PATENT_3P", "rel": "LAW_HAS_SECTION", "weight": 1.0},
-            {"source": "ACT_PATENTS_1970", "target": "SEC_PATENT_3D", "rel": "LAW_HAS_SECTION", "weight": 1.0},
-            {"source": "ACT_PATENTS_1970", "target": "SEC_PATENT_10_4", "rel": "LAW_HAS_SECTION", "weight": 1.0},
-            {"source": "ACT_BD_2002_2023", "target": "SEC_BD_6", "rel": "LAW_HAS_SECTION", "weight": 1.0},
-            {"source": "ACT_BD_2002_2023", "target": "SEC_BD_7", "rel": "LAW_HAS_SECTION", "weight": 1.0},
-            {"source": "ACT_DRUGS_COSMETICS_1940", "target": "RULE_158B", "rel": "LAW_HAS_RULE", "weight": 1.0},
+    def get_entity(self, entity_id: str) -> Optional[Dict[str, Any]]:
+        self._ensure_fresh()
+        return self.entities.get(entity_id)
 
-            # Authority -> Law
-            {"source": "AUTH_CGPDTM", "target": "ACT_PATENTS_1970", "rel": "ADMINISTERS", "weight": 1.0},
-            {"source": "AUTH_NBA", "target": "ACT_BD_2002_2023", "rel": "ADMINISTERS", "weight": 1.0},
-            {"source": "AUTH_AYUSH", "target": "ACT_DRUGS_COSMETICS_1940", "rel": "ADMINISTERS", "weight": 1.0},
-            {"source": "AUTH_FSSAI", "target": "REG_AYURVEDA_AAHAR_2022", "rel": "ADMINISTERS", "weight": 1.0},
+    def find_neighbors(self, entity_id: str, rel_type: Optional[str] = None) -> List[Dict[str, Any]]:
+        self._ensure_fresh()
+        neighbors = []
+        for edge in self.relationships:
+            if edge["source"] == entity_id:
+                if rel_type is None or edge["rel"] == rel_type:
+                    target_ent = self.entities.get(edge["target"])
+                    if target_ent:
+                        neighbors.append({
+                            "direction": "outgoing",
+                            "relationship": edge["rel"],
+                            "weight": edge["weight"],
+                            "entity": target_ent
+                        })
+            elif edge["target"] == entity_id:
+                if rel_type is None or edge["rel"] == rel_type:
+                    source_ent = self.entities.get(edge["source"])
+                    if source_ent:
+                        neighbors.append({
+                            "direction": "incoming",
+                            "relationship": edge["rel"],
+                            "weight": edge["weight"],
+                            "entity": source_ent
+                        })
+        return neighbors
 
-            # Herb -> Biological Resource & Regulatory Links
-            {"source": "HERB_ASHWAGANDHA", "target": "ACT_BD_2002_2023", "rel": "SUBJECT_TO_ABS", "weight": 0.95},
-            {"source": "HERB_ASHWAGANDHA", "target": "SEC_PATENT_3P", "rel": "REQUIRES_TK_SCRUTINY", "weight": 0.95},
-            {"source": "HERB_TURMERIC", "target": "ACT_BD_2002_2023", "rel": "SUBJECT_TO_ABS", "weight": 0.95},
-            {"source": "HERB_TURMERIC", "target": "SEC_PATENT_3P", "rel": "REQUIRES_TK_SCRUTINY", "weight": 0.95},
-            {"source": "HERB_NEEM", "target": "SEC_PATENT_3P", "rel": "REQUIRES_TK_SCRUTINY", "weight": 0.95},
+    def multi_hop_search(self, start_entity_id: str, max_depth: int = 2) -> Dict[str, Any]:
+        self._ensure_fresh()
+        visited = set()
+        nodes = []
+        links = []
 
-            # Multi-hop Cross-statutory Linkages
-            {"source": "SEC_PATENT_10_4", "target": "SEC_BD_6", "rel": "MANDATES_COMPLIANCE_WITH", "weight": 1.0},
-            {"source": "SEC_BD_6", "target": "AUTH_NBA", "rel": "REQUIRES_APPROVAL_FROM", "weight": 1.0},
-            {"source": "ACT_PATENTS_1970", "target": "TREATY_WIPO_GRATK", "rel": "ALIGNED_WITH_TREATY", "weight": 0.9}
-        ]
+        def traverse(current_id: str, depth: int):
+            if depth > max_depth or current_id in visited:
+                return
+            visited.add(current_id)
 
-        self.relationships.extend(relations_data)
+            curr_node = self.entities.get(current_id)
+            if curr_node:
+                nodes.append(curr_node)
 
-    def find_entity_by_name(self, name: str) -> Optional[Dict[str, Any]]:
-        name_lower = name.lower()
-        for ent in self.entities.values():
-            if name_lower in ent["name"].lower() or name_lower in ent["id"].lower():
-                return ent
-        return None
+            for edge in self.relationships:
+                if edge["source"] == current_id:
+                    links.append(edge)
+                    traverse(edge["target"], depth + 1)
+                elif edge["target"] == current_id:
+                    links.append(edge)
+                    traverse(edge["source"], depth + 1)
 
-    def get_multi_hop_subgraph(self, query_terms: List[str], max_hops: int = 2) -> Dict[str, Any]:
-        """
-        Extracts relevant subgraph connected to terms mentioned in the user query.
-        """
-        matched_node_ids = set()
-        for term in query_terms:
-            for ent_id, ent in self.entities.items():
-                if term.lower() in ent["name"].lower():
-                    matched_node_ids.add(ent_id)
+        traverse(start_entity_id, 0)
+        return {"nodes": nodes, "links": links}
 
-        # Multi-hop expansion
-        active_nodes = set(matched_node_ids)
-        expanded_edges = []
+    def get_multi_hop_subgraph(self, keywords: List[str], max_hops: int = 2) -> List[Dict[str, Any]]:
+        self._ensure_fresh()
+        results = []
+        matched_eids = set()
+        for kw in keywords:
+            if not kw:
+                continue
+            kw_low = str(kw).lower()
+            for eid, ent in self.entities.items():
+                if kw_low in ent["name"].lower() or kw_low in ent["type"].lower():
+                    matched_eids.add(eid)
 
-        for _ in range(max_hops):
-            new_nodes = set()
-            for rel in self.relationships:
-                if rel["source"] in active_nodes:
-                    new_nodes.add(rel["target"])
-                    expanded_edges.append(rel)
-                elif rel["target"] in active_nodes:
-                    new_nodes.add(rel["source"])
-                    expanded_edges.append(rel)
-            active_nodes.update(new_nodes)
+        for eid in matched_eids:
+            neighbors = self.find_neighbors(eid)
+            for n in neighbors:
+                results.append({
+                    "source_entity": self.entities[eid]["name"],
+                    "relationship": n["relationship"],
+                    "target_entity": n["entity"]["name"],
+                    "target_type": n["entity"]["type"],
+                    "jurisdiction": n["entity"].get("jurisdiction", "India")
+                })
+        return results
 
-        nodes = [self.entities[nid] for nid in active_nodes if nid in self.entities]
+    def analyze_ingredient_ip_risk(self, ingredient_name: str) -> Dict[str, Any]:
+        """Analyzes statutory and biological IP risk for a given Ayurvedic herb or ingredient."""
+        self._ensure_fresh()
+        matched_id = None
+        for eid, ent in self.entities.items():
+            if ingredient_name.lower() in ent["name"].lower():
+                matched_id = eid
+                break
+
+        if not matched_id:
+            return {
+                "matched": False,
+                "ingredient": ingredient_name,
+                "risk_factors": ["No statutory knowledge graph entity match found in local registry."]
+            }
+
+        neighbors = self.find_neighbors(matched_id)
+        risks = []
+        statutory_citations = []
+
+        for n in neighbors:
+            rel = n["relationship"]
+            ent = n["entity"]
+            if rel == "EXCLUDED_UNDER_3P":
+                risks.append(f"Statutory bar under Section 3(p) of Patents Act 1970 for {ent['name']}")
+                statutory_citations.append("Section 3(p), Patents Act 1970")
+            elif rel == "REQUIRES_NBA_APPROVAL":
+                risks.append(f"Mandatory National Biodiversity Authority approval under Section 6 of Biological Diversity Act")
+                statutory_citations.append("Section 6, Biological Diversity Act 2002/2023")
+            elif rel == "EXEMPT_UNDER_NTC":
+                risks.append(f"Exempted from commercial trade benefit sharing under Section 40 NTC notification")
+                statutory_citations.append("Section 40 Normally Traded Commodities Notification")
+
         return {
-            "nodes": nodes,
-            "edges": expanded_edges
+            "matched": True,
+            "entity": self.entities[matched_id],
+            "risk_factors": risks,
+            "statutory_citations": list(set(statutory_citations))
         }
 
-knowledge_graph = KnowledgeGraphEngine()
+kg_engine = KnowledgeGraphEngine()
+knowledge_graph = kg_engine

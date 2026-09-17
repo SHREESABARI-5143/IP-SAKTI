@@ -147,16 +147,29 @@ class MultilingualNormalizer:
                 extracted_concepts.append(canonical_botanical)
 
         # 4. Canonical Provision & Keyword Mapping (Multilingual)
-        if any(w in query_lower or w in query for w in ["patent", "turmeric", "ashwagandha", "herbal", "formulation", "traditional", "3(p)", "3p", "पेटेंट", "காப்புரிமை", "हल्दी", "அஸ்வகந்தா", "மஞ்சள்", "अश्वगंधा", "आयुर्वेदिक"]):
-            supplemental_keywords.append("traditional knowledge aggregation duplication Section 3(p) Patents Act 1970")
-        if any(p in query_lower for p in ["3(p)", "3p", "section 3(p)", "dhara 3(p)", "pirivu 3(p)"]):
-            supplemental_keywords.append("Section 3(p) Patents Act 1970 Traditional Knowledge non-patentable")
-        if any(p in query_lower for p in ["3(d)", "3d", "section 3(d)", "efficacy", "synergy"]):
-            supplemental_keywords.append("Section 3(d) Patents Act 1970 Enhanced Efficacy Synergistic Formulation")
+        is_patent_query = any(w in query_lower or w in query for w in ["patent", "patentable", "patentability", "3(p)", "3p", "पेटेंट", "காப்புரிமை"])
+        is_export_query = any(w in query_lower or w in query for w in ["export", "us fda", "fda", "dshea", "21 cfr", "thmpd", "eu herbal", "wipo", "gratk"])
+
+        if is_patent_query and not is_export_query:
+            if any(w in query_lower or w in query for w in ["can i patent", "patent eligibility", "is it patentable", "traditional knowledge", "3(p)", "3p", "aggregation", "synergistic", "हल्दी", "அஸ்வகந்தா", "மஞ்சள்", "अश्वगंधा"]):
+                supplemental_keywords.append("traditional knowledge aggregation duplication Section 3(p) Patents Act 1970")
+            if any(p in query_lower for p in ["3(p)", "3p", "section 3(p)", "dhara 3(p)", "pirivu 3(p)"]):
+                supplemental_keywords.append("Section 3(p) Patents Act 1970 Traditional Knowledge non-patentable")
+            if any(p in query_lower for p in ["3(d)", "3d", "section 3(d)", "efficacy", "synergy"]):
+                supplemental_keywords.append("Section 3(d) Patents Act 1970 Enhanced Efficacy Synergistic Formulation")
+
+        if is_export_query:
+            if any(w in query_lower for w in ["us fda", "fda", "dshea", "21 cfr", "usa"]):
+                supplemental_keywords.append("US FDA DSHEA 21 CFR Part 111 21 CFR 101 Dietary Supplement labeling")
+            if any(w in query_lower for w in ["eu", "europe", "thmpd", "2004/24/ec"]):
+                supplemental_keywords.append("EU Traditional Herbal Medicinal Products Directive 2004/24/EC HMPC monograph")
+            if any(w in query_lower for w in ["wipo", "gratk", "treaty"]):
+                supplemental_keywords.append("WIPO GRATK Treaty 2024 mandatory patent disclosure of genetic resources")
+
         if any(w in query_lower or w in query for w in ["158b", "rule 158b", "p&p", "proprietary", "लाइसेंस", "உரிமம்"]):
             supplemental_keywords.append("Rule 158B Drugs and Cosmetics Rules 1945 Patent or Proprietary ASU Medicine")
-        if any(w in query_lower or w in query for w in ["bda", "bda 2023", "nba", "sbb", "form 3", "form iii", "biological resource", "जैव विविधता", "உயிரியல் பன்முகத்தன்மை"]):
-            supplemental_keywords.append("Biological Diversity Act 2023 Section 6 NBA Form III Prior Approval")
+        if any(w in query_lower or w in query for w in ["bda", "bda 2023", "nba", "sbb", "biological diversity act", "form 3", "form iii", "biological resource", "जैव विविधता", "உயிரியல் பன்முகத்தன்மை", "பல்லுயிர்", "பல்லுயிர் சட்டம்"]):
+            supplemental_keywords.append("Biological Diversity Act 2023 Section 6 NBA Form III Prior Approval Section 3 Section 7 foreign entities approval")
 
         # Build final search query
         rewritten = query

@@ -1,5 +1,6 @@
 import re
 from typing import Dict, Any, List, Optional, Set, Tuple
+from backend.app.core.config import settings
 
 class QueryIntentClassifier:
     """
@@ -17,7 +18,7 @@ class QueryIntentClassifier:
     # Matches: Section 3, Section 3(p), Section 10(4)(d)(ii), Section 25(1)(k), Rule 158B, Rule 158B(1),
     # Regulation 4, Article 3, Clause 4, First Schedule, Second Schedule, etc.
     RE_PROVISION_UNIVERSAL = re.compile(
-        r'(?:section|sec\.?|rule|regulation|reg\.?|article|art\.?|clause)\s*'
+        r'(?:section|sec\.?|rule|regulation|reg\.?|article|art\.?|clause|பிரிவு|விதி|धारा|नियम|अनुच्छेद)\s*'
         r'([0-9]+(?:[\(\[][a-zA-Z0-9_\-]+[\)\]])*(?:[a-zA-Z])?)'
         r'|((?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|1st|2nd|3rd|4th|5th)\s+schedule)',
         re.IGNORECASE
@@ -67,8 +68,20 @@ class QueryIntentClassifier:
         sec_title = re.sub(r'[\s\(\)\[\]\-_,.]+', '', (chunk_title or "").lower())
         t_norm = re.sub(r'[\s\(\)\[\]\-_,.]+', '', target.lower())
 
-        # 1. Exact or substring match on reference / title
-        if t_norm in p_ref or t_norm in sec_title or p_ref in t_norm:
+        # Category guard: statutory sections/rules and bare numeric targets must not match monograph/ntc entries unless specifically Section 40
+        c_ref_low = (chunk_ref or "").lower()
+        c_title_low = (chunk_title or "").lower()
+        c_content_low = (chunk_content or "").lower()
+        is_mono_chunk = ("monograph" in c_ref_low or c_title_low.startswith("monograph"))
+        is_ntc_chunk = (c_ref_low.startswith("ntc") or "ntc entry" in c_title_low or "normally traded" in c_title_low or "section 40" in c_content_low)
+        is_mono_target = ("monograph" in t_norm)
+        is_ntc_target = ("ntc" in t_norm or "40" in t_norm)
+
+        if (is_mono_chunk and not is_mono_target) or (is_ntc_chunk and not is_ntc_target):
+            return False
+
+        # 1. Exact or substring match on reference / title or explicit provision in content
+        if t_norm in p_ref or t_norm in sec_title or p_ref in t_norm or (f"section {t_norm}" in c_content_low or f"section{t_norm}" in c_content_low):
             return True
 
         # 2. Extract base section/rule number and clause suffix e.g. "2ja" -> base 2, clause ja
@@ -265,7 +278,7 @@ class QueryIntentClassifier:
                         is_direct = True
                         break
                 
-                if not is_direct and chunk.get("retrieval_score", 0.0) >= 0.70:
+                if not is_direct and chunk.get("retrieval_score", 0.0) >= settings.INTENT_EVIDENCE_DIRECT_THRESHOLD:
                     chunk["evidence_type"] = "CONTEXTUAL"
                     contextual_evidence.append(chunk)
 
@@ -280,8 +293,8 @@ class QueryIntentClassifier:
         filtered = []
         for c in candidates:
             score = c.get("retrieval_score", 0.0)
-            if score >= (top_score * 0.70) or c.get("exact_provision_match", False):
-                c["evidence_type"] = "DIRECT" if score >= (top_score * 0.85) else "CONTEXTUAL"
+            if score >= (top_score * settings.INTENT_EVIDENCE_DIRECT_THRESHOLD) or c.get("exact_provision_match", False):
+                c["evidence_type"] = "DIRECT" if score >= (top_score * settings.INTENT_EVIDENCE_CONTEXTUAL_THRESHOLD) else "CONTEXTUAL"
                 filtered.append(c)
 
         return filtered[:max_chunks] if filtered else candidates[:max_chunks]
@@ -323,7 +336,7 @@ class QueryIntentClassifier:
         token_coverage = top_chunk.get("token_coverage", 1.0)
         is_exact = top_chunk.get("exact_provision_match", False)
 
-        if not is_exact and (top_score < 0.22 or token_coverage < 0.18):
+        if not is_exact and (top_score < settings.RRF_DEFAULT_MIN_SCORE or token_coverage < settings.RRF_FALLBACK_MIN_SCORE):
             return False, "INSUFFICIENT_RETRIEVAL_SCORE"
 
         return True, None

@@ -125,8 +125,9 @@ async def get_source(source_id: str, db: AsyncSession = Depends(get_db)):
     return src
 
 @router.get("/{source_id}/chunks", response_model=List[DocumentChunkOut])
-async def get_source_chunks(source_id: str, db: AsyncSession = Depends(get_db)):
-    """Gets all parsed structural chunks for a specific source."""
+@router.get("/{source_id}/records", response_model=List[DocumentChunkOut])
+async def get_source_records(source_id: str, db: AsyncSession = Depends(get_db)):
+    """Gets all parsed authoritative knowledge records for a specific source."""
     res = await db.execute(select(SourceRegistry).where(SourceRegistry.source_id == source_id))
     src = res.scalars().first()
     if not src:
@@ -151,12 +152,14 @@ async def get_source_versions(source_id: str, db: AsyncSession = Depends(get_db)
     return res_vers.scalars().all()
 
 @router.get("/chunks/all", response_model=List[DocumentChunkOut])
-async def list_all_chunks(
+@router.get("/records/all", response_model=List[DocumentChunkOut])
+async def list_all_records(
     source_id: Optional[str] = Query(None),
+    limit: int = Query(500),
     db: AsyncSession = Depends(get_db)
 ):
     query = select(DocumentChunk)
     if source_id:
         query = query.where(DocumentChunk.source_id == source_id)
-    res = await db.execute(query.limit(200))
+    res = await db.execute(query.limit(limit))
     return res.scalars().all()

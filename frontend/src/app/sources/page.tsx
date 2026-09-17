@@ -232,7 +232,7 @@ export default function SourcesPage() {
                     className="inline-flex items-center gap-1 text-teal-700 hover:text-teal-800 font-bold"
                   >
                     <Layers className="w-3.5 h-3.5" />
-                    <span>Inspect Chunks</span>
+                    <span>Inspect Records</span>
                   </button>
                   <button
                     onClick={() => handleOpenVersions(src)}
@@ -279,7 +279,7 @@ export default function SourcesPage() {
         </div>
       )}
 
-      {/* Chunks Inspector Modal */}
+      {/* Records Inspector Modal */}
       {selectedSourceForChunks && (
         <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200">
@@ -289,7 +289,7 @@ export default function SourcesPage() {
                   {selectedSourceForChunks.jurisdiction} • {selectedSourceForChunks.legal_domain || selectedSourceForChunks.domain}
                 </span>
                 <h2 className="text-lg font-bold text-slate-900 mt-1">
-                  Hierarchical Chunk Inspector: {selectedSourceForChunks.name || selectedSourceForChunks.title}
+                  Authoritative Record Inspector: {selectedSourceForChunks.name || selectedSourceForChunks.title}
                 </h2>
               </div>
               <button
@@ -302,9 +302,9 @@ export default function SourcesPage() {
 
             <div className="p-6 overflow-y-auto space-y-4 flex-1">
               {loadingChunks ? (
-                <div className="py-12 text-center text-xs text-slate-500">Loading parsed legal structure chunks...</div>
+                <div className="py-12 text-center text-xs text-slate-500">Loading parsed legal structure records...</div>
               ) : chunks.length === 0 ? (
-                <div className="py-12 text-center text-xs text-slate-500">No chunks indexed yet for this source.</div>
+                <div className="py-12 text-center text-xs text-slate-500">No records indexed yet for this source.</div>
               ) : (
                 chunks.map((c) => (
                   <div key={c.id} className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">

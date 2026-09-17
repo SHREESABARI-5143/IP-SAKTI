@@ -1,0 +1,272 @@
+{
+  "module_literals": [
+    {
+      "file": "backend/app/core/security.py",
+      "id": "PROMPT_INJECTION_PATTERNS",
+      "reason": "Deterministic compiled regex patterns for prompt injection and jailbreak defense"
+    },
+    {
+      "file": "backend/app/models/__init__.py",
+      "id": "__all__",
+      "reason": "Standard Python module export declaration for SQLAlchemy models"
+    },
+    {
+      "file": "backend/app/multilingual/dictionary.py",
+      "id": "LEGAL_AYUSH_DICTIONARY",
+      "reason": "Standardized ISO multilingual legal & botanical term mapping table"
+    }
+  ],
+  "literal_floats": [
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "id": "float_0.15_234",
+      "reason": "Claim-level minimum semantic token overlap threshold for citation grounding"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.95_60",
+      "reason": "Baseline source freshness coefficient for current gazetted statutory publications"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.2_57",
+      "reason": "Minimum floor bounding for citation grounding score"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.99_70",
+      "reason": "Upper ceiling bounding for composite confidence calculation"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.8_73",
+      "reason": "High-confidence classification floor threshold"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.4_51",
+      "reason": "International vs domestic cross-jurisdiction penalty factor"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.1_70",
+      "reason": "Absolute minimum floor for confidence score"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.1_27",
+      "reason": "Default lower bound for empty-retrieval confidence breakdown"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.25_57",
+      "reason": "Grounding penalty deduction per unsupported claim"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.2_67",
+      "reason": "Composite score weight allocated to claim grounding"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.9_43",
+      "reason": "Default authority weight fallback for unranked statutory chunks"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.5_46",
+      "reason": "Default retrieval score fallback for unranked chunks"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.25_66",
+      "reason": "Composite score weight allocated to semantic retrieval relevance"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.2_79",
+      "reason": "Confidence threshold delta for low-confidence boundary calculation"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.3_64",
+      "reason": "Composite score weight allocated to authority rank"
+    },
+    {
+      "file": "backend/app/rag/confidence.py",
+      "id": "float_0.25_65",
+      "reason": "Composite score weight allocated to jurisdictional alignment"
+    },
+    {
+      "file": "backend/app/rag/citation_verifier.py",
+      "id": "float_0.12_221",
+      "reason": "Minimum word-level token overlap threshold for citation grounding"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "id": "float_0.22_337",
+      "reason": "Lexical token overlap threshold for intent classification"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "id": "float_0.18_337",
+      "reason": "Fallback token overlap threshold for intent classification"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "id": "float_0.7_279",
+      "reason": "Classifier confidence score for high-clarity intent"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "id": "float_0.7_294",
+      "reason": "Classifier confidence score for standard legal queries"
+    },
+    {
+      "file": "backend/app/rag/intent_classifier.py",
+      "id": "float_0.85_295",
+      "reason": "Classifier confidence score for explicit statutory provision lookups"
+    },
+    {
+      "file": "backend/app/rag/pipeline_timer.py",
+      "id": "float_1000.0_18",
+      "reason": "Milliseconds conversion multiplier from time.perf_counter() seconds"
+    },
+    {
+      "file": "backend/app/rag/pipeline_timer.py",
+      "id": "float_1000.0_22",
+      "reason": "Milliseconds conversion multiplier from time.perf_counter() seconds"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_3.5_315",
+      "reason": "Relevance boost multiplier for exact statutory title token matches"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.2_321",
+      "reason": "Secondary token matching bonus coefficient"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.3_321",
+      "reason": "Primary token matching bonus coefficient"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.15_321",
+      "reason": "Tertiary token matching bonus coefficient"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.6_332",
+      "reason": "Lexical BM25 weight coefficient in hybrid fusion"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.01_334",
+      "reason": "BM25 score normalization scaling factor"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_1.6_343",
+      "reason": "Relevance boost for primary statutory Acts"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.8_345",
+      "reason": "Relevance weight for administrative rules"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.01_349",
+      "reason": "Secondary score scaling factor"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_1.4_362",
+      "reason": "Exact provision identifier match multiplier"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.5_366",
+      "reason": "Jurisdictional match penalty scaling"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.5_370",
+      "reason": "Composite score threshold for relevant evidence inclusion"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_1.1_370",
+      "reason": "Recency bonus factor for amended 2023 legislation"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.06_370",
+      "reason": "Minimum score floor for retrieval retention"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.35_374",
+      "reason": "BM25 fusion weight component"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.35_375",
+      "reason": "Vector search fusion weight component"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.2_376",
+      "reason": "Authority rank fusion weight component"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.1_377",
+      "reason": "Jurisdiction match weight component"
+    },
+    {
+      "file": "backend/app/rag/retriever.py",
+      "id": "float_0.06_381",
+      "reason": "Score threshold for inclusion in final reranking candidate pool"
+    },
+    {
+      "file": "backend/app/rag/providers/deterministic_provider.py",
+      "id": "float_0.3_113",
+      "reason": "Minimum token overlap threshold for false-premise detection"
+    },
+    {
+      "file": "backend/app/rag/providers/ollama_provider.py",
+      "id": "float_30.0_29",
+      "reason": "HTTP client timeout for fast metadata checks"
+    },
+    {
+      "file": "backend/app/rag/providers/ollama_provider.py",
+      "id": "float_600.0_35",
+      "reason": "HTTP client total timeout for deep generation passes"
+    },
+    {
+      "file": "backend/app/rag/providers/ollama_provider.py",
+      "id": "float_0.1_131",
+      "reason": "Low temperature parameter for deterministic legal synthesis"
+    },
+    {
+      "file": "backend/app/rag/providers/ollama_provider.py",
+      "id": "float_0.9_132",
+      "reason": "Top-p sampling parameter for legal synthesis"
+    },
+    {
+      "file": "backend/app/rag/providers/vllm_provider.py",
+      "id": "float_0.1_53",
+      "reason": "Low temperature parameter for vLLM synthesis"
+    },
+    {
+      "file": "backend/app/rag/providers/vllm_provider.py",
+      "id": "float_15.0_56",
+      "reason": "vLLM client timeout parameter in seconds"
+    }
+  ],
+  "forbidden_markers": []
+}

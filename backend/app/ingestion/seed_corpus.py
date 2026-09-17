@@ -1,21 +1,18 @@
 """
-Dynamic Statutory Corpus Loader for IP-SAKTI Sahayak
-Loads verified statutory provisions dynamically from external structured dataset files.
+backend/app/ingestion/seed_corpus.py — Thin loader for authoritative legal corpus (Milestone M11)
+Loads canonical data files from data/corpus/*.jsonl, data/knowledge_graph/, and data/play/ without inline literals.
 """
+
 import os
-import json
+from sqlalchemy.orm import Session
+from scripts.ingest_corpus import run_ingestion
 
-DATASET_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-    "data", "corpora", "statutory_corpus.json"
-)
+def ingest_large_scale_corpus(session: Session = None, corpus_version_tag: str = "v1.0"):
+    """
+    Thin loader delegating to the production ingestion pipeline.
+    """
+    print("Executing thin corpus loader from data/corpus/*.jsonl...")
+    run_ingestion(source_filter="all", corpus_version_tag=corpus_version_tag, resume=True)
 
-def get_authoritative_sources():
-    """Dynamically loads authoritative statutory sources from external JSON corpus dataset."""
-    if os.path.exists(DATASET_PATH):
-        with open(DATASET_PATH, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return []
-
-# Dynamic property / fallback
-AUTHORITATIVE_SOURCES = get_authoritative_sources()
+if __name__ == "__main__":
+    ingest_large_scale_corpus()

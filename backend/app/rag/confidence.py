@@ -1,16 +1,17 @@
 from typing import List, Dict, Any
+from backend.app.core.config import settings
 from backend.app.schemas.chat import ConfidenceBreakdown
 
 class AlgorithmicConfidenceCalculator:
     """
     Computes objective, deterministic confidence scores for legal and regulatory answers.
     Takes into account:
-    - Number of retrieved authoritative sources
+    - Distinct authoritative records retrieved
     - Authority hierarchy score (Primary acts vs regulations vs secondary sources)
     - Jurisdictional alignment
     - Semantic retrieval relevance
     - Recency / Version validity
-    - Abstention thresholds
+    - Abstention thresholds configured in central settings
     """
 
     @staticmethod
@@ -31,6 +32,12 @@ class AlgorithmicConfidenceCalculator:
                 citation_grounding_score=0.0,
                 explanation="Insufficient authoritative sources found in verified knowledge registry. Safe abstention active."
             )
+
+        # Distinct record accounting
+        distinct_records = set(
+            s.get("document_id") or s.get("source_id") or s.get("source_hash")
+            for s in retrieved_sources if s
+        )
 
         # 1. Authority Hierarchy Score
         avg_authority = sum(s.get("authority_weight", 0.9) for s in retrieved_sources) / len(retrieved_sources)
@@ -62,14 +69,14 @@ class AlgorithmicConfidenceCalculator:
 
         final_score = min(0.99, max(0.10, final_score))
 
-        # Classification
+        # Classification based on Central Config Thresholds
         if final_score >= 0.80:
             level = "High"
-            explanation = f"Answer strongly grounded in {len(retrieved_sources)} primary statutory and regulatory sources with high jurisdictional alignment."
-        elif final_score >= 0.55:
+            explanation = f"Answer strongly grounded in {len(distinct_records)} distinct authoritative legal records with high jurisdictional alignment."
+        elif final_score >= settings.CONFIDENCE_ESCALATE_THRESHOLD:
             level = "Medium"
-            explanation = "Moderate grounding. Some relevant provisions found, but specific case-by-case facts or additional clarifications are recommended."
-        elif final_score >= 0.35:
+            explanation = f"Moderate grounding across {len(distinct_records)} distinct records. Review or facilitator consultation recommended."
+        elif final_score >= (settings.CONFIDENCE_ABSTAIN_THRESHOLD - 0.20):
             level = "Low"
             explanation = "Low confidence. Limited directly applicable provisions identified in current knowledge index."
         else:
@@ -78,12 +85,12 @@ class AlgorithmicConfidenceCalculator:
 
         return ConfidenceBreakdown(
             level=level,
-            score=round(final_score, 2),
-            source_authority_score=round(avg_authority, 2),
-            retrieval_relevance_score=round(avg_relevance, 2),
-            jurisdiction_match_score=round(jurisdiction_score, 2),
-            source_freshness_score=round(freshness_score, 2),
-            citation_grounding_score=round(grounding_score, 2),
+            score=round(final_score, 3),
+            source_authority_score=round(avg_authority, 3),
+            retrieval_relevance_score=round(avg_relevance, 3),
+            jurisdiction_match_score=round(jurisdiction_score, 3),
+            source_freshness_score=round(freshness_score, 3),
+            citation_grounding_score=round(grounding_score, 3),
             explanation=explanation
         )
 

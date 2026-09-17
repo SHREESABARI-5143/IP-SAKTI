@@ -101,7 +101,12 @@ export const api = {
   },
 
   getSourceChunks: async (sourceId: string) => {
-    const res = await apiClient.get(`/sources/${sourceId}/chunks`);
+    const res = await apiClient.get(`/sources/${sourceId}/records`);
+    return res.data;
+  },
+
+  getSourceRecords: async (sourceId: string) => {
+    const res = await apiClient.get(`/sources/${sourceId}/records`);
     return res.data;
   },
 

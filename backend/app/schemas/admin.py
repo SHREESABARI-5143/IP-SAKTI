@@ -48,11 +48,12 @@ class AdminStatsOut(BaseModel):
     total_conversations: int
     total_queries: int
     total_sources: int
-    total_chunks: int
+    total_records: int
+    total_chunks: int = 0
     total_escalations: int
     pending_escalations: int
-    avg_confidence_score: float
-    abstention_rate: float
+    avg_confidence_score: Optional[float] = None
+    abstention_rate: Optional[float] = None
     jurisdiction_breakdown: Dict[str, int]
     domain_breakdown: Dict[str, int]
 

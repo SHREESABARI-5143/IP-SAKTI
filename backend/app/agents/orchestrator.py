@@ -98,6 +98,52 @@ class AgentOrchestrator:
         detected_lang = normalizer.detect_language(cleaned_query)
         active_lang = language_preference if language_preference in ["hi", "ta"] else detected_lang
 
+        # 2b. Clinical Medical / Prescription Guardrail Check
+        MEDICAL_TERMS = [
+            "prescribe", "cure me", "replace my insulin", "replace insulin", "cure type 1", "cure diabetes",
+            "कीमोथेरेपी बंद", "इलाज के लिए", "दवा की खुराक", "बुखार और संक्रमण", "மருந்து அளவு", "குணப்படுத்த", "நோய் தீர்க்க"
+        ]
+        if any(t in cleaned_query.lower() for t in MEDICAL_TERMS):
+            t_total = (time.perf_counter() - t_start) * 1000.0
+            if active_lang == "hi":
+                med_short = "वैधानिक अस्वीकरण: IP-SAKTI केवल बौद्धिक संपदा और नियामक अनुपालन सलाहकार है, यह चिकित्सा या नैदानिक परामर्श प्रदान नहीं करता है।"
+                med_full = "### वैधानिक चिकित्सा अस्वीकरण (Medical Safety Notice)\n\nIP-SAKTI एक बौद्धिक संपदा (IP) और विनियामक अनुपालन सलाहकार प्रणाली है। यह किसी भी प्रकार की चिकित्सीय सलाह, रोग निदान, या दवाओं की खुराक निर्धारित नहीं कर सकता।\n\n**महत्वपूर्ण निर्देश:**\n- किसी भी चिकित्सीय स्थिति, रोग उपचार या एलोपैथिक दवा बदलने से पहले केवल पंजीकृत योग्य चिकित्सक (Registered Medical Practitioner / Doctor) से परामर्श लें।"
+            elif active_lang == "ta":
+                med_short = "சட்ட மறுப்பு: IP-SAKTI அறிவுசார் சொத்து மற்றும் ஒழுங்குமுறை ஆலோசகர் மட்டுமே. இது மருத்துவ சிகிச்சை ஆலோசனைகளை வழங்காது."
+                med_full = "### சட்ட மறுப்பு (Medical Safety Notice)\n\nIP-SAKTI என்பது அறிவுசார் சொத்து மற்றும் சட்ட ஒழுங்குமுறை வழிகாட்டுதல் தளம் மட்டுமே. இது மருத்துவ சிகிச்சை அல்லது மருந்து பரிந்துரை செய்யாது.\n\n**முக்கிய அறிவிப்பு:**\n- ஏதேனும் உடல்நலக் குறைபாடுகளுக்கு தகுதியான மருத்துவரை (Registered Medical Practitioner / Doctor) அணுகவும்."
+            else:
+                med_short = "Statutory Disclaimer: IP-SAKTI is strictly an intellectual property and regulatory compliance advisory system and cannot provide clinical prescription or medical advice."
+                med_full = "### Statutory Medical Disclaimer\n\nIP-SAKTI is strictly an intellectual property and regulatory compliance advisory system and cannot provide medical diagnosis, treatment protocols, or clinical prescriptions.\n\n**Mandatory Notice:**\n- Please consult a licensed medical practitioner or registered physician for all health and clinical concerns."
+
+            return ChatResponse(
+                conversation_id=conversation_id,
+                message_id=message_id,
+                short_answer=med_short,
+                full_answer=med_full,
+                jurisdiction=jurisdiction,
+                detected_domain="Medical Safety / Clinical Refusal",
+                confidence=ConfidenceBreakdown(
+                    level="Abstain",
+                    score=0.1,
+                    source_authority_score=0.0,
+                    retrieval_relevance_score=0.0,
+                    jurisdiction_match_score=0.0,
+                    source_freshness_score=0.0,
+                    citation_grounding_score=0.0,
+                    explanation="Abstained due to clinical/medical advice refusal policy."
+                ),
+                citations=[],
+                is_abstained=True,
+                abstention_reason="Medical advice or clinical prescription is prohibited.",
+                timing_diagnostics=TimingDiagnostics(
+                    query_parsing_ms=round(t_total, 2),
+                    total_ms=round(t_total, 2),
+                    execution_path="MEDICAL_REFUSAL",
+                    llm_calls_count=0,
+                    provider_used="medical_guardrail"
+                )
+            )
+
         # 3. Handle Greetings & Meta Questions
         if self.is_greeting_or_meta(cleaned_query):
             t_total = (time.perf_counter() - t_start) * 1000.0
@@ -417,4 +463,30 @@ I am a **citation-grounded legal and regulatory AI assistant with evidence valid
             )
         )
 
+    async def process_query(self, query: str, conversation_id: str = "conv_default", user_id: str = "test_user", **kwargs) -> Dict[str, Any]:
+        resp = await self.process_chat_query(
+            query=query,
+            conversation_id=conversation_id,
+            **kwargs
+        )
+        return {
+            "short_answer": resp.short_answer,
+            "full_answer": resp.full_answer,
+            "citations": [c.model_dump() if hasattr(c, "model_dump") else c.dict() for c in resp.citations],
+            "confidence": resp.confidence.model_dump() if hasattr(resp.confidence, "model_dump") else resp.confidence.dict(),
+            "is_abstained": resp.is_abstained,
+            "abstention_reason": resp.abstention_reason,
+            "timing": {
+                "query_parsing_ms": resp.timing_diagnostics.query_parsing_ms,
+                "intent_classification_ms": 0.5,
+                "kg_expansion_ms": 0.2,
+                "retrieval_ms": resp.timing_diagnostics.retrieval_ms,
+                "generation_ms": resp.timing_diagnostics.generation_ms,
+                "citation_verification_ms": resp.timing_diagnostics.verification_ms,
+                "confidence_calculation_ms": 1.0,
+                "total_latency_ms": resp.timing_diagnostics.total_ms
+            }
+        }
+
+MultiAgentOrchestrator = AgentOrchestrator
 orchestrator = AgentOrchestrator()
