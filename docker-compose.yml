@@ -14,7 +14,7 @@ services:
       - QDRANT__SERVICE__GRPC_PORT=6334
 
   postgres:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     container_name: ipsakti-postgres
     restart: always
     environment:

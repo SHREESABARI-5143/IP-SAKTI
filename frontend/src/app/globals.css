@@ -313,3 +313,18 @@ body {
 ::-webkit-scrollbar-track  { background: #f8fafc; }
 ::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 9999px; }
 ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+/* ════════════════════════════════════════════
+   HIDE NEXT.JS DEV INDICATOR BADGE
+   ════════════════════════════════════════════ */
+nextjs-portal,
+[data-nextjs-dev-indicator],
+[data-nextjs-toast],
+div[class*="dev-indicator"],
+div[class*="nextjs-dev"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

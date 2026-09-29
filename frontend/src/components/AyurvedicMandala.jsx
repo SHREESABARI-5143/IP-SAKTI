@@ -1,7 +1,7 @@
 import React from "react";
 import { TulsiLeafIcon } from "./AyurvedicIcons";
 
-export const AyurvedicMandala: React.FC<{ className?: string }> = ({ className = "" }) => {
+export const AyurvedicMandala = ({ className = "" }) => {
   return (
     <div className={`pointer-events-none overflow-hidden ${className}`}>
       {/* ── Central Vedic Sacred Geometry Mandala ── */}

@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import { Shield, AlertCircle, Leaf, ExternalLink } from "lucide-react";
+import { AlertCircle, Leaf, ExternalLink } from "lucide-react";
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
   return (
     <footer className="w-full border-t border-emerald-100 bg-white py-8 px-4 text-xs text-slate-500">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">

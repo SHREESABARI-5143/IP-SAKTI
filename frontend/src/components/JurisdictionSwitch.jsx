@@ -3,12 +3,7 @@
 import React from "react";
 import { Globe } from "lucide-react";
 
-interface JurisdictionSwitchProps {
-  jurisdiction: "india" | "international" | "both";
-  onChange: (j: "india" | "international" | "both") => void;
-}
-
-export const JurisdictionSwitch: React.FC<JurisdictionSwitchProps> = ({
+export const JurisdictionSwitch = ({
   jurisdiction,
   onChange,
 }) => {

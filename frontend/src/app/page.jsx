@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { SupportedLanguage } from "@/components/LanguageSelector";
 import {
   Sparkles,
   ArrowRight,
@@ -31,10 +30,10 @@ import {
   AyurvedaNyayaIcon,
 } from "@/components/AyurvedicIcons";
 import { AyurvedicMandala } from "@/components/AyurvedicMandala";
+import { useApp } from "@/context/AppContext";
 
 export default function Home() {
-  const [jurisdiction, setJurisdiction] = useState<"india" | "international" | "both">("india");
-  const [language, setLanguage] = useState<SupportedLanguage>("en");
+  const { jurisdiction, setJurisdiction, language, setLanguage } = useApp();
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 relative">
@@ -52,6 +51,7 @@ export default function Home() {
         language={language}
         onLanguageChange={setLanguage}
       />
+
 
       <main className="flex-1 w-full relative z-10">
         {/* ═══════ HERO SECTION WITH VISIBLE AYURVEDIC BACKGROUND & VEDIC MANDALA ANIMATION ═══════ */}

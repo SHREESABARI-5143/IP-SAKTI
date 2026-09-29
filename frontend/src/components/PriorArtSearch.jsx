@@ -1,27 +1,31 @@
 "use client";
 
 import React, { useState } from "react";
-import { searchPriorArt, PriorArtResponse } from "@/lib/api";
-import { Search, BookOpen, AlertTriangle, Microscope } from "lucide-react";
-import { SupportedLanguage } from "./LanguageSelector";
+import { searchPriorArt } from "@/lib/api";
+import { Search, AlertTriangle, Microscope } from "lucide-react";
+import { useApp } from "@/context/AppContext";
 
-interface PriorArtSearchProps {
-  language: SupportedLanguage;
-}
+export const PriorArtSearch = ({ language }) => {
+  const { addPriorArtHistory } = useApp();
+  const [ingredientInput, setIngredientInput] = useState("Haridra, Pippali, Ghrita");
+  const [freeTextInput, setFreeTextInput] = useState("Turmeric based formulation for skin allergy");
+  const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-export const PriorArtSearch: React.FC<PriorArtSearchProps> = ({ language }) => {
-  const [ingredientInput, setIngredientInput] = useState<string>("Haridra, Pippali, Ghrita");
-  const [freeTextInput, setFreeTextInput] = useState<string>("Turmeric based formulation for skin allergy");
-  const [response, setResponse] = useState<PriorArtResponse | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const handleSearch = async (e: React.FormEvent) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const ings = ingredientInput.split(",").map((s) => s.trim()).filter(Boolean);
       const res = await searchPriorArt(ings, freeTextInput);
       setResponse(res);
+      if (addPriorArtHistory) {
+        addPriorArtHistory({
+          ingredients: ings,
+          query: freeTextInput,
+          match_count: res.matches?.length || 0,
+        });
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -116,10 +120,10 @@ export const PriorArtSearch: React.FC<PriorArtSearchProps> = ({ language }) => {
           {/* Matched formulations */}
           <div className="space-y-3">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Matched Classical Formulations ({response.matches.length})
+              Matched Classical Formulations ({response.matches?.length || 0})
             </h3>
 
-            {response.matches.map((match) => (
+            {response.matches?.map((match) => (
               <div
                 key={match.id}
                 className="bg-white p-5 rounded-xl border border-emerald-100 hover:border-emerald-300 shadow-sm hover:shadow-md transition space-y-3"
@@ -143,7 +147,7 @@ export const PriorArtSearch: React.FC<PriorArtSearchProps> = ({ language }) => {
                   <div>
                     <span className="font-semibold text-slate-500 block mb-1">Ingredients in Text:</span>
                     <div className="flex flex-wrap gap-1">
-                      {match.ingredients.map((ing, idx) => (
+                      {match.ingredients?.map((ing, idx) => (
                         <span
                           key={idx}
                           className="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded border border-emerald-200 text-[11px] font-medium"

@@ -1,7 +1,7 @@
 import React from "react";
 
 // 1. Khalva Yantra (Ayurvedic Mortar & Pestle for herbal preparation)
-export const KhalvaIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const KhalvaIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Pestle */}
     <path d="M14.5 3.5l-4 8.5" />
@@ -16,7 +16,7 @@ export const KhalvaIcon: React.FC<{ className?: string }> = ({ className = "w-6 
 );
 
 // 2. Talapatra / Palm Leaf Manuscript (Codified Classical Texts / Grantha)
-export const TalapatraIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const TalapatraIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Top manuscript slat */}
     <rect x="3" y="4" width="18" height="4.5" rx="1.5" />
@@ -37,7 +37,7 @@ export const TalapatraIcon: React.FC<{ className?: string }> = ({ className = "w
 );
 
 // 3. Tulsi / Sacred Herbal Botanical (Holy Basil Leaf Node)
-export const TulsiLeafIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const TulsiLeafIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Main central stem */}
     <path d="M12 22C12 14 12 7 12 2" />
@@ -55,7 +55,7 @@ export const TulsiLeafIcon: React.FC<{ className?: string }> = ({ className = "w
 );
 
 // 4. Padma / Sacred Lotus (Purity & Ayurvedic Heritage)
-export const LotusIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const LotusIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Central petal */}
     <path d="M12 4c-2 4-2 8 0 12 2-4 2-8 0-12z" />
@@ -70,7 +70,7 @@ export const LotusIcon: React.FC<{ className?: string }> = ({ className = "w-6 h
 );
 
 // 5. Kalash / Amrit Kumbha (Sacred Ayurvedic Formulation Vessel)
-export const KalashIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const KalashIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Coconut / Mango leaves on top */}
     <path d="M12 2l-2 4 4 0-2-4z" />
@@ -88,7 +88,7 @@ export const KalashIcon: React.FC<{ className?: string }> = ({ className = "w-6 
 );
 
 // 6. Nyaya Scales + Dravyaguna (Legal Protection + Ayurvedic Wisdom)
-export const AyurvedaNyayaIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+export const AyurvedaNyayaIcon = ({ className = "w-6 h-6" }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={className}>
     {/* Pillar & Base */}
     <line x1="12" y1="3" x2="12" y2="20" />

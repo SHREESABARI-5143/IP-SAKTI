@@ -10,6 +10,8 @@ class SourceReference(BaseModel):
     citation_key: str
     excerpt: str
     relevance_score: float
+    url: Optional[str] = None
+    effective_date: Optional[str] = None
 
 class QueryRequest(BaseModel):
     query: str = Field(..., description="User query in Hindi or English")

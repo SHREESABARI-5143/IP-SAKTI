@@ -3,15 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Globe, ChevronDown, Check } from "lucide-react";
 
-export type SupportedLanguage = "en" | "hi" | "sa" | "ta" | "te" | "mr" | "bn";
-
-export interface LanguageOption {
-  code: SupportedLanguage;
-  nativeLabel: string;
-  englishLabel: string;
-}
-
-export const SUPPORTED_LANGUAGES: LanguageOption[] = [
+export const SUPPORTED_LANGUAGES = [
   { code: "en", nativeLabel: "English", englishLabel: "English" },
   { code: "hi", nativeLabel: "हिन्दी", englishLabel: "Hindi" },
   { code: "sa", nativeLabel: "संस्कृतम्", englishLabel: "Sanskrit" },
@@ -21,24 +13,19 @@ export const SUPPORTED_LANGUAGES: LanguageOption[] = [
   { code: "bn", nativeLabel: "বাংলা", englishLabel: "Bengali" },
 ];
 
-interface LanguageSelectorProps {
-  language: SupportedLanguage;
-  onChange: (lang: SupportedLanguage) => void;
-}
-
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+export const LanguageSelector = ({
   language,
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef(null);
 
   const currentOption =
     SUPPORTED_LANGUAGES.find((l) => l.code === language) || SUPPORTED_LANGUAGES[0];
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };

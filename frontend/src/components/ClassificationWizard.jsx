@@ -4,8 +4,6 @@ import React, { useState, useEffect } from "react";
 import {
   startClassification,
   submitClassificationAnswer,
-  ClassificationQuestion,
-  ClassificationResult,
   getPathwayRecommendation,
 } from "@/lib/api";
 import {
@@ -13,30 +11,20 @@ import {
   ArrowRight,
   RotateCcw,
   ShieldCheck,
-  Award,
   Layers,
   FileCheck,
   Scale,
 } from "lucide-react";
-import { SupportedLanguage } from "./LanguageSelector";
+import { useApp } from "@/context/AppContext";
 
-interface ClassificationWizardProps {
-  language: SupportedLanguage;
-}
-
-export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
-  language,
-}) => {
-  const [currentQuestion, setCurrentQuestion] = useState<ClassificationQuestion | null>(null);
-  const [result, setResult] = useState<ClassificationResult | null>(null);
-  const [pathwayData, setPathwayData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [stepCount, setStepCount] = useState<number>(1);
-  const [sessionId] = useState<string>(() => `sess_${Date.now()}`);
-
-  useEffect(() => {
-    loadStartQuestion();
-  }, []);
+export const ClassificationWizard = ({ language }) => {
+  const { addClassificationHistory } = useApp();
+  const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [result, setResult] = useState(null);
+  const [pathwayData, setPathwayData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [stepCount, setStepCount] = useState(1);
+  const [sessionId] = useState(() => `sess_${Date.now()}`);
 
   const loadStartQuestion = async () => {
     setLoading(true);
@@ -53,14 +41,26 @@ export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
     }
   };
 
-  const handleOptionSelect = async (optionId: string) => {
+  useEffect(() => {
+    loadStartQuestion();
+  }, []);
+
+  const handleOptionSelect = async (optionId) => {
     if (!currentQuestion) return;
     setLoading(true);
     try {
       const res = await submitClassificationAnswer(sessionId, currentQuestion.question_id, optionId);
-      if ("category" in res) {
+      if (res && "category" in res) {
         setResult(res);
         setCurrentQuestion(null);
+        if (addClassificationHistory) {
+          addClassificationHistory({
+            category: res.category,
+            category_name_en: res.category_name_en,
+            category_name_hi: res.category_name_hi,
+            confidence: res.confidence,
+          });
+        }
         const pw = await getPathwayRecommendation(res.category);
         setPathwayData(pw);
       } else {
@@ -147,7 +147,7 @@ export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
                     <span>Statutory Basis</span>
                   </div>
                   <ul className="text-xs text-slate-700 space-y-1">
-                    {result.cited_rules.map((rule, idx) => (
+                    {result.cited_rules?.map((rule, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
                         <span className="text-amber-600">•</span>
                         <span>{rule}</span>
@@ -163,7 +163,7 @@ export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
                     <span>Available IP Protection</span>
                   </div>
                   <ul className="text-xs text-slate-700 space-y-1">
-                    {result.applicable_ip_instruments.map((ip, idx) => (
+                    {result.applicable_ip_instruments?.map((ip, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
                         <span className="text-emerald-600">•</span>
                         <span>{ip}</span>
@@ -182,13 +182,13 @@ export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
                 <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-700 pt-1">
                   <div>
                     <span className="font-semibold text-slate-500 block mb-1">Licences Needed:</span>
-                    {result.regulatory_implications.map((imp, idx) => (
+                    {result.regulatory_implications?.map((imp, idx) => (
                       <div key={idx} className="mb-1 text-emerald-700 font-medium">✓ {imp}</div>
                     ))}
                   </div>
                   <div>
                     <span className="font-semibold text-slate-500 block mb-1">Action Items:</span>
-                    {result.next_steps.map((st, idx) => (
+                    {result.next_steps?.map((st, idx) => (
                       <div key={idx} className="mb-1 text-teal-700 font-medium">➔ {st}</div>
                     ))}
                   </div>
@@ -236,7 +236,7 @@ export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
 
             {/* Option cards */}
             <div className="space-y-3 pt-2">
-              {currentQuestion.options.map((opt) => (
+              {currentQuestion.options?.map((opt) => (
                 <button
                   key={opt.id}
                   onClick={() => handleOptionSelect(opt.id)}

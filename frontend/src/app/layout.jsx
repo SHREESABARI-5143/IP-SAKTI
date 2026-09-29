@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import { AppProvider } from "@/context/AppContext";
 
 /* Inter — body, UI labels, buttons, nav, small text */
 const inter = Inter({
@@ -18,22 +18,21 @@ const manrope = Manrope({
   display: "swap",
 });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "IP-SAKTI Sahayak — Ministry of Ayush IP & Regulatory AI Intelligence",
   description:
     "Source-cited, jurisdiction-aware AI assistant, classical prior-art search, and statutory product classification engine for the Ayurvedic medicine sector.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <body className="min-h-screen bg-white text-slate-900 flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-900 font-inter">
-        {children}
+        <AppProvider>
+          {children}
+        </AppProvider>
       </body>
     </html>
   );
 }
+

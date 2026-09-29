@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "@/components/Navbar";
+import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { ClassificationWizard } from "@/components/ClassificationWizard";
-import { SupportedLanguage } from "@/components/LanguageSelector";
+import { useApp } from "@/context/AppContext";
 
 export default function ClassifyPage() {
-  const [jurisdiction, setJurisdiction] = useState<"india" | "international" | "both">("india");
-  const [language, setLanguage] = useState<SupportedLanguage>("en");
+  const { jurisdiction, setJurisdiction, language, setLanguage } = useApp();
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50/50 relative">
@@ -25,10 +25,17 @@ export default function ClassifyPage() {
         language={language}
         onLanguageChange={setLanguage}
       />
-      <main className="flex-1 py-8 relative z-10">
-        <ClassificationWizard language={language} />
-      </main>
+      
+      <div className="flex-1 flex flex-row w-full relative z-10">
+        <Sidebar />
+        <main className="flex-1 min-w-0 py-6 px-4 transition-all duration-300">
+          <ClassificationWizard language={language} />
+        </main>
+      </div>
+
       <Footer />
     </div>
   );
 }
+
+
