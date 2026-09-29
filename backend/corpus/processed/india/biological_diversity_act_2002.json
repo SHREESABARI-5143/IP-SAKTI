@@ -1,0 +1,109 @@
+[
+  {
+    "chunk_id": "in-bda-sec2-c",
+    "title": "Section 2(c) - Definition of Biological Resources",
+    "section_or_article": "Section 2(c)",
+    "statute": "The Biological Diversity Act, 2002 (Act No. 18 of 2003)",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-02-05 (amended 2023)",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "'biological resources' means plants, animals and micro-organisms or parts thereof, their genetic material and by-products (excluding value added products) with actual or potential use or value, but does not include human genetic material. The 2023 amendment explicitly exempted registered AYUSH practitioners and codified traditional knowledge holders from certain notification requirements for internal clinical use, but commercial utilization and foreign patenting remain strictly regulated under NBA oversight.",
+    "tags": [
+      "bda",
+      "biological resources",
+      "genetic material",
+      "ayush practitioners"
+    ]
+  },
+  {
+    "chunk_id": "in-bda-sec3",
+    "title": "Section 3 - Certain Persons Not to Undertake Biodiversity-related Activities without NBA Approval",
+    "section_or_article": "Section 3",
+    "statute": "The Biological Diversity Act, 2002",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2004-07-01",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "No person who is not a citizen of India, or a citizen of India who is an NRI, or a body corporate, association or organization not incorporated or registered in India, or incorporated in India which has any non-Indian participation in its share capital or management, shall obtain any biological resource occurring in India or knowledge associated thereto for research or for commercial utilization or for bio-survey and bio-utilization without previous approval of the National Biodiversity Authority (Form I).",
+    "tags": [
+      "bda section 3",
+      "foreign entity",
+      "nri",
+      "commercial utilization",
+      "form I",
+      "nba approval"
+    ]
+  },
+  {
+    "chunk_id": "in-bda-sec6",
+    "title": "Section 6 - Prior Approval of NBA Required for Applying for Intellectual Property Rights",
+    "section_or_article": "Section 6",
+    "statute": "The Biological Diversity Act, 2002",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2004-07-01",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "(1) No person shall apply for any intellectual property right, by whatever name called, in or outside India for any invention based on any research or information on a biological resource obtained from India without obtaining the previous approval of the National Biodiversity Authority before making such application. Provided that if a person applies for a patent, permission of the National Biodiversity Authority may be obtained after making the application but before the grant of the patent by the patent authority. (2) The National Biodiversity Authority may, while granting the approval under this section, impose benefit sharing fee or royalty or both or conditions on the commercial utilization of such patent.",
+    "tags": [
+      "bda section 6",
+      "ipr approval",
+      "patent application",
+      "benefit sharing",
+      "form III",
+      "nba mandatory"
+    ]
+  },
+  {
+    "chunk_id": "in-bda-sec7",
+    "title": "Section 7 - Prior Intimation to State Biodiversity Board (SBB) by Indian Citizens for Commercial Utilization",
+    "section_or_article": "Section 7",
+    "statute": "The Biological Diversity Act, 2002",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2004-07-01",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "No person, who is a citizen of India or a body corporate, association or organization which is registered in India, shall obtain any biological resource for commercial utilization, or bio-survey and bio-utilization for commercial utilization except after giving prior intimation to the State Biodiversity Board concerned. Vaids and hakims who are practicing Indian systems of medicine are exempted from giving prior intimation.",
+    "tags": [
+      "bda section 7",
+      "sbb intimation",
+      "indian citizens",
+      "commercial utilization"
+    ]
+  },
+  {
+    "chunk_id": "in-bda-sec21",
+    "title": "Section 21 - Determination of Equitable Benefit Sharing by National Biodiversity Authority",
+    "section_or_article": "Section 21",
+    "statute": "The Biological Diversity Act, 2002",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2004-07-01",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "The National Biodiversity Authority shall ensure that the terms and conditions subject to which approval is granted secures equitable sharing of benefits arising out of the use of accessed biological resources, their by-products, innovations and practices associated with their use and applications and knowledge relating thereto in accordance with mutually agreed terms and conditions between the persons applying for such approval, local bodies concerned and the benefit claimers. Benefit sharing mechanisms include grant of joint ownership of IPRs, transfer of technology, location of production/R&D units in source regions, association of Indian scientists/claimers, and payment of monetary compensation into the National Biodiversity Fund.",
+    "tags": [
+      "bda section 21",
+      "abs",
+      "benefit sharing",
+      "nagoya protocol",
+      "equitable sharing"
+    ]
+  },
+  {
+    "chunk_id": "in-bda-sec55",
+    "title": "Section 55 - Penalties for Contravention of Section 3, Section 4 and Section 6",
+    "section_or_article": "Section 55",
+    "statute": "The Biological Diversity Act, 2002",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2004-07-01",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2046",
+    "text": "Whoever contravenes or attempts to contravene or abets the contravention of the provisions of section 3 or section 4 or section 6 shall be punishable with imprisonment for a term which may extend to five years, or with fine which may extend to ten lakh rupees and where the damage caused exceeds ten lakh rupees such fine may commensurate with the damage caused, or with both. (Amended 2023 to civil penalties adjudicated by designated adjudicating officers, with fines up to Rs. 50 lakhs).",
+    "tags": [
+      "bda section 55",
+      "penalties",
+      "cognizable offence",
+      "criminal liability"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "doc_id": "nagoya_protocol",
+  "title": "Nagoya Protocol on Access and Benefit-Sharing (Nagoya Protocol / CBD)",
+  "jurisdiction": "international",
+  "doc_type": "treaty",
+  "effective_date": "2014-10-12",
+  "sections": [
+    {
+      "section_id": "art5",
+      "section_title": "Article 5 — Fair and Equitable Benefit-Sharing",
+      "content": "Benefits arising from the utilization of genetic resources as well as subsequent applications and commercialization shall be shared in a fair and equitable way with the Party providing such resources. Sharing shall be upon mutually agreed terms (MAT).",
+      "citation_key": "Nagoya Protocol, Article 5"
+    },
+    {
+      "section_id": "art7",
+      "section_title": "Article 7 — Access to Traditional Knowledge Associated with Genetic Resources",
+      "content": "Each Party shall take measures to ensure that traditional knowledge associated with genetic resources held by indigenous and local communities is accessed with the prior informed consent (PIC) or approval and involvement of these communities.",
+      "citation_key": "Nagoya Protocol, Article 7"
+    }
+  ]
+}

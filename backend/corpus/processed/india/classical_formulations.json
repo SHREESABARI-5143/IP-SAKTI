@@ -1,0 +1,985 @@
+[
+  {
+    "chunk_id": "in-afi-chyawanprash",
+    "title": "Chyawanprash (Avaleha) - AFI Part I (3:11)",
+    "formulation_name": "Chyawanprash",
+    "sanskrit_name": "च्यवनप्राश",
+    "dosage_form": "Avaleha (Semisolid electuary)",
+    "classical_reference": "Charaka Samhita, Chikitsasthana, Adhyaya 1:1, Shloka 62-74; Sharangadhara Samhita, Madhyama Khanda, Adhyaya 8; AFI Part I, 3:11",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I, First Schedule DCA 1940",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Phyllanthus emblica (Amalaki fresh fruit)",
+        "ratio": "500 fruits"
+      },
+      {
+        "botanical": "Aegle marmelos (Bilva root/bark)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Clerodendrum phlomidis (Agnimantha)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Oroxylum indicum (Shyonaka)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Stereospermum suaveolens (Patala)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Gmelina arborea (Gambhari)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Desmodium gangeticum (Shalaparni)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Uraria picta (Prishniparni)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Solanum indicum (Brihati)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Solanum surattense (Kantakari)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Tribulus terrestris (Gokshura)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper longum (Pippali)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Pistacia chinensis / integerrima (Karkatashringi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Phyllanthus niruri (Bhumiamalaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Vitis vinifera (Draksha)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Tinospora cordifolia (Guduchi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Inula racemosa / Terminalia chebula (Haritaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Sida cordifolia (Bala)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Boerhavia diffusa (Punarnava)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Adhatoda vasica (Vasa)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Withania somnifera (Ashwagandha)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Asparagus racemosus (Shatavari)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Clarified butter (Ghrita) and Sesame oil (Tila taila)",
+        "ratio": "Vehicle"
+      },
+      {
+        "botanical": "Sugar candy (Sharkara) and Honey (Madhu)",
+        "ratio": "Sweetener"
+      }
+    ],
+    "preparation_method": "Decoction (Kwatha) of Dashamula and accompanying herbs prepared, boiled with fresh Amalaki fruit pulp. Fried in Ghrita and Taila until brownish-black non-sticking consistency obtained. Sugar syrup prepared separately and mixed. Prakshepa dravyas (Vamshalochana, Pippali, Ela, Twak, Tejapatra, Nagakeshara) added after cooling below 45°C followed by Madhu.",
+    "therapeutic_indications": "Kasa (Cough), Shwasa (Asthma / Dyspnea), Kshaya (Wasting disease / Phthisis), Rasayana (Immunomodulator and rejuvenation), Daurbalya (General debility), Svarabheda (Hoarseness of voice).",
+    "patent_relevance": "Classical Ayurvedic formulation documented in TKDL and First Schedule of D&C Act. Unpatentable as an invention per se under Section 3(p) of Patents Act 1970. Novel extraction of specific bioactive fractions or novel stabilized delivery forms can only be claimed if supported by unexpected synergism data (Section 3(e)) and enhanced therapeutic efficacy (Section 3(d)).",
+    "tags": [
+      "chyawanprash",
+      "amalaki",
+      "dashamula",
+      "rasayana",
+      "immunity",
+      "avaleha",
+      "afi 3:11"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-triphala-churna",
+    "title": "Triphala Churna - AFI Part I (7:16)",
+    "formulation_name": "Triphala Churna",
+    "sanskrit_name": "त्रिफला चूर्ण",
+    "dosage_form": "Churna (Fine powdered herbal mixture)",
+    "classical_reference": "Sharangadhara Samhita, Madhyama Khanda, Adhyaya 6, Shloka 12-14; Charaka Samhita, Chikitsasthana 1:3; AFI Part I, 7:16; API Part I, Vol I",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Terminalia chebula (Haritaki dried pericarp)",
+        "ratio": "1 part (equal)"
+      },
+      {
+        "botanical": "Terminalia bellirica (Bibhitaki dried pericarp)",
+        "ratio": "1 part (equal)"
+      },
+      {
+        "botanical": "Phyllanthus emblica / Emblica officinalis (Amalaki dried pericarp)",
+        "ratio": "1 part (equal)"
+      }
+    ],
+    "preparation_method": "All three fruits dried, seeds removed, pericarps individually pulverized and passed through sieve No. 80. Homogeneously mixed in equal proportions (1:1:1 by weight) under controlled humidity conditions.",
+    "therapeutic_indications": "Anaha (Constipation / Flatulence), Vibandha, Netraroga (Ophthalmic disorders, taken with honey and ghee), Prameha (Urinary disorders / Metabolic syndrome), Deepana, Pachana, Rasayana.",
+    "patent_relevance": "Prior art cited globally against hundreds of foreign patent applications claiming bowel regulation, antioxidant extracts, or dental rinse formulations. Completely unpatentable under Section 3(p).",
+    "tags": [
+      "triphala",
+      "haritaki",
+      "bibhitaki",
+      "amalaki",
+      "churna",
+      "digestive",
+      "laxative",
+      "afi 7:16"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-yograj-guggulu",
+    "title": "Yograj Guggulu (Vati) - AFI Part I (5:7)",
+    "formulation_name": "Yograj Guggulu",
+    "sanskrit_name": "योगराज गुग्गुलु",
+    "dosage_form": "Vati / Gutika (Pill / Tablet)",
+    "classical_reference": "Bhaishajya Ratnavali, Amavata Rogadhikara, Shloka 90-95; Sharangadhara Samhita, Madhyama Khanda, Adhyaya 7; AFI Part I, 5:7",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Commiphora mukul (Shuddha Guggulu)",
+        "ratio": "54 parts"
+      },
+      {
+        "botanical": "Zingiber officinale (Shunthi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper longum (Pippali)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper nigrum (Maricha)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper retrofractum (Chavya)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Plumbago zeylanica (Chitraka)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Ferula foetida (Hingu)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Trachyspermum ammi (Ajawain)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Carum carvi (Krishna Jeeraka)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cuminum cyminum (Shweta Jeeraka)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cedrus deodara (Devadaru)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Terminalia chebula (Haritaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Terminalia bellirica (Bibhitaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Phyllanthus emblica (Amalaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cyperus rotundus (Musta)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Embelia ribes (Vidanga)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Tribulus terrestris (Gokshura)",
+        "ratio": "1 part"
+      }
+    ],
+    "preparation_method": "Shuddha Guggulu melted in Triphala decoction with Ghrita, fine herbal powder folded in during hot stage, pounded thoroughly in mortar (khalva yantra) and rolled into pills of 500mg each.",
+    "therapeutic_indications": "Amavata (Rheumatoid arthritis), Sandhigata Vata (Osteoarthritis), Vatavyadhi (Neurological disorders), Kati Shoola (Lumbago), Sciatica.",
+    "patent_relevance": "Classical polyherbal anti-inflammatory. Primary prior art against claims on guggulsterone mixtures or arthritic remedies.",
+    "tags": [
+      "yograj guggulu",
+      "amavata",
+      "arthritis",
+      "anti-inflammatory",
+      "guggulu",
+      "afi 5:7"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-haridra-khanda",
+    "title": "Haridra Khanda (Granules / Avaleha) - AFI Part I (3:31)",
+    "formulation_name": "Haridra Khanda",
+    "sanskrit_name": "हरिद्रा खण्ड",
+    "dosage_form": "Khanda / Avaleha (Granules / Confection)",
+    "classical_reference": "Bhaishajya Ratnavali, Sheetapitta Rogadhikara, Shloka 12-16; AFI Part I, 3:31; API Part I",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Curcuma longa (Haridra / Turmeric rhizome powder)",
+        "ratio": "384 g"
+      },
+      {
+        "botanical": "Cow's Ghee (Go-Ghrita)",
+        "ratio": "288 g"
+      },
+      {
+        "botanical": "Cow's Milk (Go-Dugdha)",
+        "ratio": "3.072 kg"
+      },
+      {
+        "botanical": "Sharkara (Sugar candy)",
+        "ratio": "2.4 kg"
+      },
+      {
+        "botanical": "Zingiber officinale (Shunthi)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Piper nigrum (Maricha)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Piper longum (Pippali)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Cinnamomum tamala (Tejapatra)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Elettaria cardamomum (Ela)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Cinnamomum zeylanicum (Twak)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Embelia ribes (Vidanga)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Operculina turpethum (Trivrit)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Triphala (Haritaki, Bibhitaki, Amalaki)",
+        "ratio": "48 g each"
+      },
+      {
+        "botanical": "Cyperus rotundus (Musta)",
+        "ratio": "48 g"
+      },
+      {
+        "botanical": "Lauha Bhasma (Incinerated Iron)",
+        "ratio": "48 g"
+      }
+    ],
+    "preparation_method": "Haridra churna fried in Ghrita, added to boiling milk, cooked till thick mass forms. Sugar syrup prepared separately to two-thread consistency. Mixed, and fine powders of Shunthi, Maricha, Pippali, Twak, Ela, Patra, Vidanga, Trivrit, Triphala, Musta and Lauha Bhasma added while stirring. Cooled and granulated.",
+    "therapeutic_indications": "Sheetapitta (Urticaria / Allergic rash), Udarda, Kotha, Kandu (Pruritus), Allergic rhinitis, Skin allergies.",
+    "patent_relevance": "Key reference in CSIR revocation of US Patent 5,401,504 on wound healing properties of turmeric. Proves classical prior knowledge of therapeutic utility of Curcuma longa in allergic and dermatological conditions. Any turmeric patent must overcome this prior art under Section 3(p) and 3(d).",
+    "tags": [
+      "haridra khanda",
+      "curcuma longa",
+      "turmeric",
+      "csir patent revocation",
+      "urticaria",
+      "allergy",
+      "afi 3:31"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-ashwagandharishta",
+    "title": "Ashwagandharishta (Asava/Arishta) - AFI Part I (1:3)",
+    "formulation_name": "Ashwagandharishta",
+    "sanskrit_name": "अश्वगन्धारिष्ट",
+    "dosage_form": "Arishta (Self-generated hydroalcoholic fermentation)",
+    "classical_reference": "Bhaishajya Ratnavali, Murcha Rogadhikara, Shloka 13-17; AFI Part I, 1:3",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Withania somnifera (Ashwagandha root)",
+        "ratio": "2.4 kg"
+      },
+      {
+        "botanical": "Musali (Chlorophytum tuberosum)",
+        "ratio": "960 g"
+      },
+      {
+        "botanical": "Manjishta (Rubia cordifolia)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Haritaki (Terminalia chebula)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Haridra (Curcuma longa)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Daru Haridra (Berberis aristata)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Yashtimadhu (Glycyrrhiza glabra)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Rasna (Pluchea lanceolata)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Vidari (Pueraria tuberosa)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Arjuna (Terminalia arjuna)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Musta (Cyperus rotundus)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Trivrit (Operculina turpethum)",
+        "ratio": "480 g"
+      },
+      {
+        "botanical": "Dhataki pushpa (Woodfordia fruticosa flower)",
+        "ratio": "768 g (fermentation starter)"
+      },
+      {
+        "botanical": "Madhu (Honey)",
+        "ratio": "14.4 kg"
+      }
+    ],
+    "preparation_method": "Coarse herbs boiled in water to prepare Kashaya. Filtered, transferred to wooden or clay fermentation vat coated inside with ghee. Honey and Dhataki flowers added. Sealed and kept in underground fermentation chamber for 30 days. Filtered after self-generated alcohol reaches 5-10% v/v.",
+    "therapeutic_indications": "Murcha (Fainting / Syncope), Apasmara (Epilepsy / Convulsive disorders), Unmada (Psychosis / Mental disorders), Karshya (Emaciation), Daurbalya (General weakness), Smriti Kshaya (Memory loss).",
+    "patent_relevance": "Withanolide and adaptogenic neurological claims are anticipated by Ashwagandharishta in TKDL. Precludes broad neuroprotective claims.",
+    "tags": [
+      "ashwagandharishta",
+      "withania somnifera",
+      "adaptogen",
+      "neurology",
+      "arishta",
+      "afi 1:3"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-brahmi-ghrita",
+    "title": "Brahmi Ghrita - AFI Part I (6:32)",
+    "formulation_name": "Brahmi Ghrita",
+    "sanskrit_name": "ब्राह्मी घृत",
+    "dosage_form": "Ghrita (Medicated clarified butter)",
+    "classical_reference": "Ashtanga Hridaya, Uttarasthana, Adhyaya 6, Shloka 23-25; Charaka Samhita, Chikitsasthana 10:25; AFI Part I, 6:32",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Bacopa monnieri (Brahmi fresh juice / swarasa)",
+        "ratio": "3.072 liters"
+      },
+      {
+        "botanical": "Old Cow Ghee (Purana Go-Ghrita)",
+        "ratio": "768 g"
+      },
+      {
+        "botanical": "Acorus calamus (Vacha)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Saussurea lappa (Kushtha)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Convolvulus pluricaulis (Shankhapushpi)",
+        "ratio": "12 g"
+      }
+    ],
+    "preparation_method": "Sneha Paka process: Medicated ghee boiled with herbal paste (Kalka) of Vacha, Kushtha and Shankhapushpi and Brahmi juice until water completely evaporates and Ghrita siddhi lakshana (Madhyama Paka - froth disappears, wax-like roll forms) is achieved.",
+    "therapeutic_indications": "Unmada (Psychosis), Apasmara (Epilepsy), Graharoga, Medha Vardhaka (Nootropic / Cognitive enhancement), Smriti Vardhana (Memory booster), Buddhi Vardhana (Intellect enhancer).",
+    "patent_relevance": "Bacoside memory enhancement claims heavily overlap with Brahmi Ghrita prior art. Bacoside extraction with specific solvents may be patentable if novel process, but the cognitive indication itself is non-novel under Section 3(p).",
+    "tags": [
+      "brahmi ghrita",
+      "bacopa monnieri",
+      "nootropic",
+      "cognition",
+      "memory",
+      "ghrita",
+      "afi 6:32"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-sitopaladi-churna",
+    "title": "Sitopaladi Churna - AFI Part I (7:37)",
+    "formulation_name": "Sitopaladi Churna",
+    "sanskrit_name": "सितोपलादि चूर्ण",
+    "dosage_form": "Churna (Herbal powder)",
+    "classical_reference": "Sharangadhara Samhita, Madhyama Khanda, Adhyaya 6, Shloka 134-137; Bhaishajya Ratnavali, Rajayakshmadhikara; AFI Part I, 7:37",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Sitopala (Sugar candy)",
+        "ratio": "16 parts"
+      },
+      {
+        "botanical": "Bambusa bambos (Vamshalochana / Bamboo silica)",
+        "ratio": "8 parts"
+      },
+      {
+        "botanical": "Piper longum (Pippali fruit)",
+        "ratio": "4 parts"
+      },
+      {
+        "botanical": "Elettaria cardamomum (Ela seeds)",
+        "ratio": "2 parts"
+      },
+      {
+        "botanical": "Cinnamomum zeylanicum (Twak / Cinnamon bark)",
+        "ratio": "1 part"
+      }
+    ],
+    "preparation_method": "Ingredients cleaned, dried, powdered separately, sieved through mesh 80, and thoroughly blended in decreasing geometric progression (16:8:4:2:1).",
+    "therapeutic_indications": "Kasa (Cough), Shwasa (Bronchitis / Asthma), Rajayakshma (Tuberculosis / Wasting), Mandagni (Impaired digestion), Suptajihva (Loss of sensation on tongue), Parshwashoola (Pleurodynia / Chest pain).",
+    "patent_relevance": "Antitussive and bronchodilatory natural claims for Pippali + Cinnamomum combinations are barred by Section 3(p) due to Sitopaladi Churna prior art.",
+    "tags": [
+      "sitopaladi",
+      "pippali",
+      "vamshalochana",
+      "cough",
+      "bronchitis",
+      "respiratory",
+      "afi 7:37"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-avipattikar-churna",
+    "title": "Avipattikar Churna - AFI Part I (7:2)",
+    "formulation_name": "Avipattikar Churna",
+    "sanskrit_name": "अविपत्तिकर चूर्ण",
+    "dosage_form": "Churna (Digestive powder)",
+    "classical_reference": "Bhaishajya Ratnavali, Amlapitta Rogadhikara, Shloka 25-27; Sharangadhara Samhita, Madhyama Khanda 6:130; AFI Part I, 7:2",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Zingiber officinale (Shunthi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper nigrum (Maricha)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Piper longum (Pippali)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Terminalia chebula (Haritaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Terminalia bellirica (Bibhitaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Phyllanthus emblica (Amalaki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cyperus rotundus (Musta)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Vida Lavana (Salt)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Embelia ribes (Vidanga)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Elettaria cardamomum (Ela)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cinnamomum tamala (Tejapatra)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Syzygium aromaticum (Lavanga)",
+        "ratio": "11 parts"
+      },
+      {
+        "botanical": "Operculina turpethum (Trivrit)",
+        "ratio": "44 parts"
+      },
+      {
+        "botanical": "Sharkara (Sugar candy)",
+        "ratio": "66 parts"
+      }
+    ],
+    "preparation_method": "All ingredients powdered separately, passed through sieve 80, and mixed in prescribed proportions with sugar candy powder.",
+    "therapeutic_indications": "Amlapitta (Hyperacidity / GERD), Vibandha (Constipation), Agnimandya (Dyspepsia), Arsha (Piles), Mutrakricchra (Dysuria).",
+    "patent_relevance": "Prior art for herbal antacids and gastroprotective herbal products.",
+    "tags": [
+      "avipattikar",
+      "amlapitta",
+      "gerd",
+      "antacid",
+      "trivrit",
+      "lavanga",
+      "afi 7:2"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-arogyavardhini-vati",
+    "title": "Arogyavardhini Vati - AFI Part I (20:4)",
+    "formulation_name": "Arogyavardhini Vati / Gutika",
+    "sanskrit_name": "आरोग्यवर्धिनी वटी",
+    "dosage_form": "Vati / Rasaushadhi (Herbo-mineral pill)",
+    "classical_reference": "Rasaratna Samucchaya, Adhyaya 20, Shloka 87-93; Bhaishajya Ratnavali, Kushtharogadhikara; AFI Part I, 20:4",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I, First Schedule DCA 1940",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Shuddha Parada (Purified Mercury)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Shuddha Gandhaka (Purified Sulphur)",
+        "ratio": "1 part (triturated to Kajjali)"
+      },
+      {
+        "botanical": "Lauha Bhasma (Calcined Iron)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Abhraka Bhasma (Calcined Mica)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Tamra Bhasma (Calcined Copper)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Triphala (Haritaki, Bibhitaki, Amalaki)",
+        "ratio": "2 parts each (total 6)"
+      },
+      {
+        "botanical": "Shilajit (Purified Asphaltum)",
+        "ratio": "3 parts"
+      },
+      {
+        "botanical": "Shuddha Guggulu (Commiphora mukul)",
+        "ratio": "4 parts"
+      },
+      {
+        "botanical": "Plumbago zeylanica (Chitraka root)",
+        "ratio": "4 parts"
+      },
+      {
+        "botanical": "Picrorhiza kurroa (Katuki rhizome)",
+        "ratio": "22 parts"
+      },
+      {
+        "botanical": "Azadirachta indica (Nimba patra swarasa - Neem juice)",
+        "ratio": "Bhavana liquid for 2 days"
+      }
+    ],
+    "preparation_method": "Kajjali prepared from Parada and Gandhaka, bhasmas added and thoroughly mixed, Katuki and Chitraka powder added, Shilajit and Guggulu incorporated, bhavana given with Nimba patra swarasa for 2 days in khalva yantra until pill mass forms, rolled into 250mg tablets.",
+    "therapeutic_indications": "Yakrit Roga (Hepatic disorders / Fatty liver / Hepatitis), Jwara (Chronic fever), Kushtha (Skin disorders / Eczema / Psoriasis), Medoroga (Obesity / Dyslipidemia), Deepana, Pachana, Malashodhaka.",
+    "patent_relevance": "Heavily cited against patents on hepatoprotective herbal formulations (especially Picrorhiza kurroa / Kutkin extracts). Mandatory Schedule T compliance and heavy metal limits testing required.",
+    "tags": [
+      "arogyavardhini",
+      "picrorhiza kurroa",
+      "katuki",
+      "hepatoprotective",
+      "liver",
+      "kushtha",
+      "afi 20:4"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-dashamularishta",
+    "title": "Dashamularishta - AFI Part I (1:18)",
+    "formulation_name": "Dashamularishta",
+    "sanskrit_name": "दशमूलारिष्ट",
+    "dosage_form": "Arishta (Fermented herbal elixir)",
+    "classical_reference": "Bhaishajya Ratnavali, Sharangadhara Samhita; AFI Part I, 1:18",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Dashamula (10 roots: Bilva, Agnimantha, Shyonaka, Patala, Gambhari, Shalaparni, Prishniparni, Brihati, Kantakari, Gokshura)",
+        "ratio": "Total 4.8 kg"
+      },
+      {
+        "botanical": "Chitraka, Pushkaramula, Lodhra, Guduchi, Dhatri, Duralabha, Khadira, Bijaka, Triphala, Kushta, Manjishta, Devadaru, Vidanga, Yashti",
+        "ratio": "Each 48 g"
+      },
+      {
+        "botanical": "Draksha (Raisins)",
+        "ratio": "3.2 kg"
+      },
+      {
+        "botanical": "Dhataki flowers (Woodfordia fruticosa)",
+        "ratio": "768 g"
+      },
+      {
+        "botanical": "Jaggery (Guda)",
+        "ratio": "19.2 kg"
+      }
+    ],
+    "preparation_method": "Boiled to kashaya, filtered, jaggery dissolved, fermentation starter Dhataki added, kept sealed for 30 days.",
+    "therapeutic_indications": "Sutika Roga (Post-partum recovery and disorders), Vatavyadhi (Degenerative neurological conditions), Grahani (IBS), Aruchi (Anorexia), Shwasa, Kasa, Daurbalya.",
+    "patent_relevance": "Post-partum recovery and anti-fatigue tonic prior art in TKDL.",
+    "tags": [
+      "dashamularishta",
+      "dashamula",
+      "post-partum",
+      "vatavyadhi",
+      "arishta",
+      "afi 1:18"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-kanchnar-guggulu",
+    "title": "Kanchnar Guggulu - AFI Part I (5:1)",
+    "formulation_name": "Kanchnar Guggulu",
+    "sanskrit_name": "काञ्चनार गुग्गुलु",
+    "dosage_form": "Vati (Guggulu tablet)",
+    "classical_reference": "Bhaishajya Ratnavali, Galagandadi Rogadhikara, Shloka 31-35; Sharangadhara Samhita 7:95; AFI Part I, 5:1",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Bauhinia variegata (Kanchnar bark)",
+        "ratio": "10 parts"
+      },
+      {
+        "botanical": "Triphala (Haritaki, Bibhitaki, Amalaki)",
+        "ratio": "2 parts each (total 6)"
+      },
+      {
+        "botanical": "Trikatu (Shunthi, Maricha, Pippali)",
+        "ratio": "1 part each (total 3)"
+      },
+      {
+        "botanical": "Crataeva nurvala (Varuna bark)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Elettaria cardamomum (Ela)",
+        "ratio": "0.5 part"
+      },
+      {
+        "botanical": "Cinnamomum zeylanicum (Twak)",
+        "ratio": "0.5 part"
+      },
+      {
+        "botanical": "Cinnamomum tamala (Tejapatra)",
+        "ratio": "0.5 part"
+      },
+      {
+        "botanical": "Commiphora mukul (Shuddha Guggulu)",
+        "ratio": "21.5 parts"
+      }
+    ],
+    "preparation_method": "Kanchnar bark decoction prepared and boiled down, Shuddha Guggulu added and melted, fine powders of remaining herbs folded in, pounded in mortar and rolled into 500mg tablets.",
+    "therapeutic_indications": "Galaganda (Goitre / Thyroid swellings), Gandamala (Cervical lymphadenitis / Scrofula), Granthi (Benign tumors / Cysts / Fibroids / PCOS), Arbuda, Apachi.",
+    "patent_relevance": "Extensively cited against patent applications claiming herbal treatments for PCOS, thyroid nodules, or lymphadenopathy.",
+    "tags": [
+      "kanchnar guggulu",
+      "bauhinia variegata",
+      "thyroid",
+      "pcos",
+      "fibroids",
+      "guggulu",
+      "afi 5:1"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-punarnavadi-kwatha",
+    "title": "Punarnavadi Kwatha - AFI Part I (4:21)",
+    "formulation_name": "Punarnavadi Kwatha",
+    "sanskrit_name": "पुनर्नवादि क्वाथ",
+    "dosage_form": "Kwatha / Kashaya (Herbal decoction)",
+    "classical_reference": "Bhaishajya Ratnavali, Shotharogadhikara, Shloka 48; Sahasrayogam; AFI Part I, 4:21",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Boerhavia diffusa (Punarnava root)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Azadirachta indica (Nimba bark)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Trichosanthes dioica (Patola leaf)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Zingiber officinale (Shunthi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Picrorhiza kurroa (Katuki)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Tinospora cordifolia (Guduchi)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cedrus deodara (Devadaru)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Terminalia chebula (Haritaki)",
+        "ratio": "1 part"
+      }
+    ],
+    "preparation_method": "Coarse powder of ingredients boiled in 16 times water, reduced to one-fourth (1/4th) volume, strained through clean cloth.",
+    "therapeutic_indications": "Sarvanga Shotha (Generalized edema / Anasarca), Udara Roga (Ascites), Kamala (Jaundice), Kasa, Shwasa, Shoola.",
+    "patent_relevance": "Key prior art for nephroprotective and diuretic natural products.",
+    "tags": [
+      "punarnavadi",
+      "boerhavia diffusa",
+      "edema",
+      "diuretic",
+      "nephroprotective",
+      "kwatha",
+      "afi 4:21"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-kumkumadi-taila",
+    "title": "Kumkumadi Taila - AFI Part I (8:10)",
+    "formulation_name": "Kumkumadi Taila",
+    "sanskrit_name": "कुंकुमादि तैल",
+    "dosage_form": "Taila (Medicated cosmetic and therapeutic oil)",
+    "classical_reference": "Bhaishajya Ratnavali, Kshudrarogadhikara, Shloka 63-69; Yogaratnakara; AFI Part I, 8:10",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Crocus sativus (Kumkuma / Saffron stigma)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Pterocarpus santalinus (Rakta Chandana)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Rubia cordifolia (Manjishta)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Glycyrrhiza glabra (Yashtimadhu)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Nelumbo nucifera (Kamala flower)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Ficus benghalensis (Nyagrodha aerial roots)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Prunus cerasoides (Padmaka)",
+        "ratio": "12 g"
+      },
+      {
+        "botanical": "Sesamum indicum oil (Tila Taila)",
+        "ratio": "768 ml"
+      },
+      {
+        "botanical": "Goat's Milk (Aja Dugdha)",
+        "ratio": "1.536 liters"
+      }
+    ],
+    "preparation_method": "Taila Paka method: Saffron paste and botanical paste prepared with goat's milk and sesame oil, cooked on mild fire until sneha siddhi attained.",
+    "therapeutic_indications": "Mukhadushika (Acne vulgaris), Vyanga (Melasma / Facial pigmentation), Tilakalaka (Freckles), Varnyakara (Complexion promoter), Vranaropaka (Wound healing).",
+    "patent_relevance": "Heavily cited against cosmetic patents claiming skin brightening, anti-hyperpigmentation, or anti-aging herbal creams.",
+    "tags": [
+      "kumkumadi taila",
+      "crocus sativus",
+      "saffron",
+      "cosmetic",
+      "melasma",
+      "skin brightening",
+      "afi 8:10"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-anu-taila",
+    "title": "Anu Taila - AFI Part I (8:1)",
+    "formulation_name": "Anu Taila",
+    "sanskrit_name": "अणु तैल",
+    "dosage_form": "Taila / Nasya (Nasal drop medicated oil)",
+    "classical_reference": "Charaka Samhita, Sutrasthana, Adhyaya 5, Shloka 56-62; Ashtanga Hridaya, Sutrasthana 20; AFI Part I, 8:1",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Holostemma ada-kodien (Jivanti)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Coleus vettiveroides (Hrivera)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cedrus deodara (Devadaru)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cyperus rotundus (Musta)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Cinnamomum zeylanicum (Twak)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Vetiveria zizanioides (Ushira)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Hemidesmus indicus (Sariva)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Santalum album (Chandana)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Berberis aristata (Daruharidra)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Glycyrrhiza glabra (Yashtimadhu)",
+        "ratio": "1 part"
+      },
+      {
+        "botanical": "Sesame oil (Tila Taila)",
+        "ratio": "Vehicle"
+      },
+      {
+        "botanical": "Goat's Milk (Aja Kshira)",
+        "ratio": "Vehicle"
+      }
+    ],
+    "preparation_method": "Processed 10 times consecutively (Dasha Paka) with decoctions and goat milk to achieve micronized penetration into nasal mucosa.",
+    "therapeutic_indications": "Shirogata Roga (Disorders of head and neck), Suryavarta (Sinusitis / Migraine), Manyastambha (Cervical spondylosis), Khalitya (Alopecia), Palitya (Premature graying of hair), Indriyaprabodha (Sensory organ rejuvenation via Nasya).",
+    "patent_relevance": "Nasal delivery of botanicals for neurological and sinusitis indications is anticipated by Anu Taila.",
+    "tags": [
+      "anu taila",
+      "nasya",
+      "sinusitis",
+      "migraine",
+      "nasal drug delivery",
+      "afi 8:1"
+    ]
+  },
+  {
+    "chunk_id": "in-afi-trikatu-churna",
+    "title": "Trikatu Churna - AFI Part I (7:13)",
+    "formulation_name": "Trikatu Churna",
+    "sanskrit_name": "त्रिकटु चूर्ण",
+    "dosage_form": "Churna (Bio-enhancer powder)",
+    "classical_reference": "Sharangadhara Samhita, Madhyama Khanda 6:12; Charaka Samhita; AFI Part I, 7:13",
+    "statute": "Ayurvedic Formulary of India (AFI), Part I",
+    "jurisdiction": "india",
+    "doc_type": "pharmacopoeia",
+    "ingredients": [
+      {
+        "botanical": "Zingiber officinale (Shunthi / Dried ginger)",
+        "ratio": "1 part (33.3%)"
+      },
+      {
+        "botanical": "Piper nigrum (Maricha / Black pepper)",
+        "ratio": "1 part (33.3%)"
+      },
+      {
+        "botanical": "Piper longum (Pippali / Long pepper)",
+        "ratio": "1 part (33.3%)"
+      }
+    ],
+    "preparation_method": "Dried fruits and rhizome cleaned, pulverized separately, sieved via mesh 80, blended in 1:1:1 equal weight ratio.",
+    "therapeutic_indications": "Agnimandya (Loss of appetite), Galashundika (Throat disorders), Pinasa (Rhinitis), Shwasa, Kasa, Kushta, Deepana, Pachana, Bioavailability enhancer (Yogavahi).",
+    "patent_relevance": "Foundational prior art establishing piperine and gingerols as bioavailability enhancers centuries before modern pharmaceutical patents.",
+    "tags": [
+      "trikatu",
+      "piperine",
+      "bioavailability enhancer",
+      "black pepper",
+      "ginger",
+      "afi 7:13"
+    ]
+  }
+]

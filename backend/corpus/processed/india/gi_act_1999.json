@@ -1,0 +1,54 @@
+[
+  {
+    "chunk_id": "in-gi-sec2-1-e",
+    "title": "Section 2(1)(e) - Definition of Geographical Indication",
+    "section_or_article": "Section 2(1)(e)",
+    "statute": "The Geographical Indications of Goods (Registration and Protection) Act, 1999 (Act No. 48 of 1999)",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-09-15",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1981",
+    "text": "'geographical indication', in relation to goods, means an indication which identifies such goods as agricultural goods, natural goods or manufactured goods as originating, or manufactured in the territory of a country, or a region or locality in that territory, where a given quality, reputation or other characteristic of such goods is essentially attributable to its geographical origin and in case where such goods are manufactured goods one of the activities of either the production or of processing or preparation of the goods concerned takes place in such territory, region or locality, as the case may be.",
+    "tags": [
+      "gi act",
+      "geographical indication",
+      "terroir",
+      "kashmiri saffron",
+      "malabar pepper"
+    ]
+  },
+  {
+    "chunk_id": "in-gi-sec9",
+    "title": "Section 9 - Prohibition of Registration of Certain Geographical Indications",
+    "section_or_article": "Section 9",
+    "statute": "The Geographical Indications of Goods Act, 1999",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-09-15",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1981",
+    "text": "A geographical indication: (a) the use of which would be likely to deceive or cause confusion; or (b) the use of which would be contrary to any law for the time being in force; or (c) which comprises or contains scandalous or obscene matter; or (d) which comprises or contains any matter likely to hurt the religious susceptibilities of any class or section of the citizens of India; or (e) which would otherwise be disentitled to protection in a court; or (f) which are determined to be generic names or indications of goods and have, therefore, ceased to be protected in their country of origin, or which have fallen into disuse in that country; or (g) which, although literally true as to the country, territory or locality in which the goods originate, falsely represent to the public that the goods originate in another territory, shall not be registered.",
+    "tags": [
+      "gi section 9",
+      "prohibition",
+      "generic names",
+      "misleading gi"
+    ]
+  },
+  {
+    "chunk_id": "in-gi-sec21",
+    "title": "Section 21 - Rights Conferred by Registration of Geographical Indication",
+    "section_or_article": "Section 21",
+    "statute": "The Geographical Indications of Goods Act, 1999",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-09-15",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1981",
+    "text": "The registration of a geographical indication shall give to the registered proprietor and the authorized user the right to obtain relief in respect of infringement of the geographical indication in the manner provided by this Act; and to the authorized user thereof the exclusive right to the use of the geographical indication in relation to the goods in respect of which the geographical indication is registered.",
+    "tags": [
+      "gi section 21",
+      "rights conferred",
+      "authorized user",
+      "infringement remedy"
+    ]
+  }
+]

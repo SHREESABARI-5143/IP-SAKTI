@@ -1,0 +1,257 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import {
+  startClassification,
+  submitClassificationAnswer,
+  ClassificationQuestion,
+  ClassificationResult,
+  getPathwayRecommendation,
+} from "@/lib/api";
+import {
+  CheckCircle2,
+  ArrowRight,
+  RotateCcw,
+  ShieldCheck,
+  Award,
+  Layers,
+  FileCheck,
+  Scale,
+} from "lucide-react";
+import { SupportedLanguage } from "./LanguageSelector";
+
+interface ClassificationWizardProps {
+  language: SupportedLanguage;
+}
+
+export const ClassificationWizard: React.FC<ClassificationWizardProps> = ({
+  language,
+}) => {
+  const [currentQuestion, setCurrentQuestion] = useState<ClassificationQuestion | null>(null);
+  const [result, setResult] = useState<ClassificationResult | null>(null);
+  const [pathwayData, setPathwayData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [stepCount, setStepCount] = useState<number>(1);
+  const [sessionId] = useState<string>(() => `sess_${Date.now()}`);
+
+  useEffect(() => {
+    loadStartQuestion();
+  }, []);
+
+  const loadStartQuestion = async () => {
+    setLoading(true);
+    setResult(null);
+    setPathwayData(null);
+    setStepCount(1);
+    try {
+      const q = await startClassification();
+      setCurrentQuestion(q);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOptionSelect = async (optionId: string) => {
+    if (!currentQuestion) return;
+    setLoading(true);
+    try {
+      const res = await submitClassificationAnswer(sessionId, currentQuestion.question_id, optionId);
+      if ("category" in res) {
+        setResult(res);
+        setCurrentQuestion(null);
+        const pw = await getPathwayRecommendation(res.category);
+        setPathwayData(pw);
+      } else {
+        setCurrentQuestion(res);
+        setStepCount((prev) => prev + 1);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
+
+      {/* Header */}
+      <div className="bg-white border border-emerald-100 shadow-md p-6 rounded-2xl space-y-2">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center">
+            <Scale className="w-5 h-5 text-amber-600" />
+          </div>
+          <div>
+            <h2 className="t-subheading text-slate-900">
+              {language === "hi" ? "आयुष उत्पाद वर्गीकरण सहायक" : "AYUSH Regulatory Product Classifier"}
+            </h2>
+            <p className="t-small text-slate-500">6-category decision tree • D&C Act, FSSAI, Schedule T</p>
+          </div>
+        </div>
+        <p className="t-body text-slate-600 max-w-2xl leading-relaxed">
+          {language === "hi"
+            ? "अपने आयुर्वेदिक उत्पाद को औषधीय एवं प्रसाधन सामग्री अधिनियम, एएफआई तथा एफएसएसएआई के तहत 6 विनियामक श्रेणियों में से सही श्रेणी में वर्गीकृत करें।"
+            : "Classify your Ayurvedic product into one of the 6 official Indian regulatory categories (Classical, Patent & Proprietary, Phytopharmaceutical, AYUSH Aahar, Cosmeceutical, Nutraceutical) to identify licensing & IP pathways."}
+        </p>
+      </div>
+
+      {/* Loading state */}
+      {loading ? (
+        <div className="bg-white border border-emerald-100 shadow-md p-12 rounded-2xl text-center space-y-4">
+          <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs font-semibold text-slate-500">
+            {language === "hi" ? "उत्पाद विनिर्देश संसाधित किए जा रहे हैं..." : "Evaluating regulatory rules..."}
+          </p>
+        </div>
+
+      ) : result ? (
+        /* ── Result Card ── */
+        <div className="space-y-6 animate-in fade-in duration-300">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl border-2 border-emerald-300 shadow-xl relative overflow-hidden">
+            {/* Decorative gradient blob */}
+            <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-100 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="flex items-center justify-between border-b border-emerald-100 pb-4 mb-6">
+              <div>
+                <span className="t-label tracking-wider text-emerald-600 uppercase">
+                  Classification Result
+                </span>
+                <h3 className="t-subheading text-slate-900 mt-1">
+                  {language === "hi" ? result.category_name_hi : result.category_name_en}
+                </h3>
+              </div>
+              <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full t-label flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4" />
+                Confidence: {result.confidence}
+              </span>
+            </div>
+
+            <div className="space-y-4">
+              {/* Legal rationale */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+                  Legal Rationale
+                </h4>
+                <p className="text-xs text-slate-700 bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-100 leading-relaxed">
+                  {result.reasoning}
+                </p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4 pt-2">
+                {/* Statutory basis */}
+                <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-amber-700">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Statutory Basis</span>
+                  </div>
+                  <ul className="text-xs text-slate-700 space-y-1">
+                    {result.cited_rules.map((rule, idx) => (
+                      <li key={idx} className="flex items-start gap-1.5">
+                        <span className="text-amber-600">•</span>
+                        <span>{rule}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* IP protection */}
+                <div className="bg-emerald-50 p-4 rounded-xl border border-emerald-200 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-700">
+                    <Layers className="w-4 h-4" />
+                    <span>Available IP Protection</span>
+                  </div>
+                  <ul className="text-xs text-slate-700 space-y-1">
+                    {result.applicable_ip_instruments.map((ip, idx) => (
+                      <li key={idx} className="flex items-start gap-1.5">
+                        <span className="text-emerald-600">•</span>
+                        <span>{ip}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Licensing & next steps */}
+              <div className="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold text-teal-700">
+                  <FileCheck className="w-4 h-4" />
+                  <span>Mandatory Licensing Requirements & Next Steps</span>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-2 text-xs text-slate-700 pt-1">
+                  <div>
+                    <span className="font-semibold text-slate-500 block mb-1">Licences Needed:</span>
+                    {result.regulatory_implications.map((imp, idx) => (
+                      <div key={idx} className="mb-1 text-emerald-700 font-medium">✓ {imp}</div>
+                    ))}
+                  </div>
+                  <div>
+                    <span className="font-semibold text-slate-500 block mb-1">Action Items:</span>
+                    {result.next_steps.map((st, idx) => (
+                      <div key={idx} className="mb-1 text-teal-700 font-medium">➔ {st}</div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Restart */}
+            <div className="pt-6 flex justify-end">
+              <button
+                onClick={loadStartQuestion}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-xs font-semibold rounded-xl transition text-slate-700 border border-slate-200"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Classify Another Product</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      ) : (
+        /* ── Wizard Question ── */
+        currentQuestion && (
+          <div className="bg-white border border-emerald-100 shadow-md p-6 sm:p-8 rounded-2xl space-y-6 animate-in fade-in duration-200">
+            {/* Step counter */}
+            <div className="flex items-center justify-between text-xs font-semibold text-slate-500 border-b border-emerald-50 pb-3">
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Step {stepCount} of Classification Flow
+              </span>
+              <span className="text-amber-600 font-bold">AYUSH Regulatory Engine</span>
+            </div>
+
+            {/* Question text */}
+            <div className="space-y-2">
+              <h3 className="t-card-heading text-slate-900 leading-snug">
+                {language === "hi" ? currentQuestion.title_hi : currentQuestion.title_en}
+              </h3>
+              {(currentQuestion.description_en || currentQuestion.description_hi) && (
+                <p className="t-small text-slate-600 leading-relaxed bg-emerald-50/60 p-3 rounded-lg border border-emerald-100">
+                  {language === "hi" ? currentQuestion.description_hi : currentQuestion.description_en}
+                </p>
+              )}
+            </div>
+
+            {/* Option cards */}
+            <div className="space-y-3 pt-2">
+              {currentQuestion.options.map((opt) => (
+                <button
+                  key={opt.id}
+                  onClick={() => handleOptionSelect(opt.id)}
+                  className="w-full text-left p-4 rounded-xl bg-white border border-emerald-100 hover:border-emerald-400 hover:bg-emerald-50/40 hover:shadow-md flex items-center justify-between group transition-all duration-200"
+                >
+                  <span className="t-small font-medium text-slate-700 group-hover:text-emerald-800">
+                    {language === "hi" ? opt.label_hi : opt.label_en}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-transform" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )
+      )}
+    </div>
+  );
+};

@@ -1,0 +1,233 @@
+[
+  {
+    "chunk_id": "in-patent-sec2-1-j",
+    "title": "Section 2(1)(j) - Definition of Invention",
+    "section_or_article": "Section 2(1)(j)",
+    "statute": "The Patents Act, 1970 (Act No. 39 of 1970)",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1972-04-20 (amended 2002, 2005)",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "'invention' means a new product or process involving an inventive step and capable of industrial application. For an invention to be patentable, it must satisfy three cumulative criteria: novelty (not anticipated in prior art anywhere in the world), inventive step (a feature of an invention that involves technical advance as compared to existing knowledge or having economic significance or both and that makes the invention not obvious to a person skilled in the art), and utility / industrial applicability.",
+    "tags": [
+      "patentability",
+      "invention",
+      "novelty",
+      "inventive_step",
+      "industrial_applicability"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-a",
+    "title": "Section 3(a) - Inventions contrary to natural laws or frivolous",
+    "section_or_article": "Section 3(a)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (a) an invention which is frivolous or which claims anything obviously contrary to well established natural laws.",
+    "tags": [
+      "section 3",
+      "non-patentable",
+      "frivolous"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-b",
+    "title": "Section 3(b) - Contrary to public order or morality or injurious to health",
+    "section_or_article": "Section 3(b)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (b) an invention the primary or intended use or commercial exploitation of which could be contrary to public order or morality or which causes serious prejudice to human, animal or plant life or health or to the environment.",
+    "tags": [
+      "section 3",
+      "public order",
+      "morality",
+      "environment"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-c",
+    "title": "Section 3(c) - Mere discovery of scientific principle or living thing",
+    "section_or_article": "Section 3(c)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (c) the mere discovery of a scientific principle or the formulation of an abstract theory or discovery of any living thing or non-living substance occurring in nature. Pure natural plant extracts, unisolated native phytochemicals, or naturally occurring botanical species cannot be claimed as patentable subject matter.",
+    "tags": [
+      "section 3",
+      "natural substances",
+      "botanicals",
+      "living thing",
+      "discovery"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-d",
+    "title": "Section 3(d) - Mere discovery of new form of known substance without enhanced efficacy",
+    "section_or_article": "Section 3(d)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2005-04-05",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (d) the mere discovery of a new form of a known substance which does not result in the enhancement of the known efficacy of that substance or the mere discovery of any new property or new use for a known substance or of the mere use of a known process, machine or apparatus unless such known process results in a new product or employs at least one new reactant. Explanation.—For the purposes of this clause, salts, esters, ethers, polymorphs, metabolites, pure form, particle size, isomers, mixtures of isomers, complexes, combinations and other derivatives of known substance shall be considered to be the same substance, unless they differ significantly in properties with regard to efficacy.",
+    "tags": [
+      "section 3(d)",
+      "therapeutic efficacy",
+      "known substance",
+      "derivative",
+      "pharma"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-e",
+    "title": "Section 3(e) - Mere admixture resulting only in aggregation of properties",
+    "section_or_article": "Section 3(e)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (e) a substance obtained by a mere admixture resulting only in aggregation of the properties of the components thereof or a process for producing such substance. In AYUSH formulations, simply mixing two or more known herbs (e.g. Ashwagandha + Shatavari) without demonstrating unexpected synergism (synergistic ratio substantiated by experimental comparative bioassay data) falls squarely under Section 3(e) and is rejected.",
+    "tags": [
+      "section 3(e)",
+      "mere admixture",
+      "synergy",
+      "aggregation",
+      "ayush formulations"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-h",
+    "title": "Section 3(h) - Method of agriculture or horticulture",
+    "section_or_article": "Section 3(h)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (h) a method of agriculture or horticulture. Cultivation techniques for medicinal plants, wild harvesting protocols, or nursery propagation methods cannot be patented.",
+    "tags": [
+      "section 3(h)",
+      "agriculture",
+      "horticulture",
+      "medicinal plants"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-i",
+    "title": "Section 3(i) - Method of treatment of human beings or animals",
+    "section_or_article": "Section 3(i)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (i) any process for the medicinal, surgical, curative, prophylactic, diagnostic, therapeutic or other treatment of human beings or any similar treatment of animals to render them free of disease or to increase their economic value or that of their products. Methods of treating diseases with herbal extracts or dosage regimens cannot be patented in India; only novel, synergistic compositions or novel extraction processes can be claimed.",
+    "tags": [
+      "section 3(i)",
+      "method of treatment",
+      "therapeutic process",
+      "diagnostic"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-j",
+    "title": "Section 3(j) - Plants and animals in whole or any part thereof",
+    "section_or_article": "Section 3(j)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (j) plants and animals in whole or any part thereof other than micro-organisms, but including seeds, varieties and species and essentially biological processes for production or propagation of plants and animals. Plant varieties are protectable under the Protection of Plant Varieties and Farmers' Rights Act, 2001 (PPVFR Act), not under the Patents Act.",
+    "tags": [
+      "section 3(j)",
+      "plants",
+      "seeds",
+      "biological processes",
+      "ppvfr"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec3-p",
+    "title": "Section 3(p) - Traditional Knowledge or aggregation/duplication thereof",
+    "section_or_article": "Section 3(p)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "The following are not inventions within the meaning of this Act: (p) an invention which in effect, is traditional knowledge or which is an aggregation or duplication of known properties of traditionally known component or components. Added by the Patents (Amendment) Act 2002 to codify protection of Indian traditional medicine (Ayurveda, Unani, Siddha, Sowa-Rigpa) against bio-piracy. If an ingredient or formulation is documented in the Ayurvedic Formulary of India (AFI), Ayurvedic Pharmacopoeia of India (API), Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya, Sharangadhara Samhita, Bhaishajya Ratnavali, or the Traditional Knowledge Digital Library (TKDL), it is unpatentable as an invention per se under Section 3(p).",
+    "tags": [
+      "section 3(p)",
+      "traditional knowledge",
+      "tkdl",
+      "ayurveda",
+      "siddha",
+      "unani",
+      "biopiracy"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec10-4",
+    "title": "Section 10(4) - Mandatory Disclosure of Biological Material Source & NBA Approval",
+    "section_or_article": "Section 10(4)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "Every complete specification shall: (d) disclose the source and geographical origin of the biological material in the specification, when used in an invention. If the biological material is obtained from India, the applicant must disclose the exact location and obtain prior permission from the National Biodiversity Authority (NBA) under Section 6 of the Biological Diversity Act, 2002 before the grant of the patent. Failure to disclose or wrongful disclosure of source/origin is an explicit ground for pre-grant opposition under Section 25(1)(j), post-grant opposition under Section 25(2)(j), and revocation of the patent under Section 64(1)(p).",
+    "tags": [
+      "section 10(4)",
+      "disclosure",
+      "biological material",
+      "geographical origin",
+      "nba",
+      "revocation"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec25",
+    "title": "Section 25 - Opposition to the Grant of Patent (Pre-grant and Post-grant)",
+    "section_or_article": "Section 25",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2005-04-05",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "Under Section 25(1), any person may file a pre-grant opposition in writing against the grant of patent on grounds including: (d) that the invention was publicly known or publicly used in India; (f) that the subject of any claim is not an invention within the meaning of this Act, or is not patentable under Section 3; (k) that the complete specification does not disclose or wrongly mentions the source or geographical origin of biological material used for the invention; (k) that the invention so far as claimed in any claim of the complete specification is anticipated having regard to the knowledge, oral or otherwise, available within any local or indigenous community in India or elsewhere. This enables TKDL and third parties to prevent illegitimate patents.",
+    "tags": [
+      "section 25",
+      "opposition",
+      "pre-grant",
+      "post-grant",
+      "tkdl challenge"
+    ]
+  },
+  {
+    "chunk_id": "in-patent-sec64-1-p",
+    "title": "Section 64(1)(p) - Revocation for Non-disclosure or Anticipation by Traditional Knowledge",
+    "section_or_article": "Section 64(1)(p)",
+    "statute": "The Patents Act, 1970",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "2003-05-20",
+    "url": "https://www.indiacode.nic.in/handle/123456789/1392",
+    "text": "A patent may be revoked on petition of any person interested or the Central Government on the grounds: (p) that the complete specification does not disclose or wrongly mentions the source or geographical origin of biological material used for the invention; (q) that the invention so far as claimed in any claim of the complete specification was anticipated having regard to the knowledge, oral or otherwise, available within any local or indigenous community in India or elsewhere.",
+    "tags": [
+      "section 64",
+      "revocation",
+      "traditional knowledge",
+      "biological origin"
+    ]
+  }
+]

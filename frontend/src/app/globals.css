@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════
+   FONT VARIABLES
+   ════════════════════════════════════════════ */
+@layer base {
+  :root {
+    /* Fonts */
+    --font-inter: 'Inter', sans-serif;
+    --font-manrope: 'Manrope', sans-serif;
+
+    /* ── Design Tokens ── */
+    --bg-page: #ffffff;
+    --bg-surface-tint: #f6fbf8;
+    --surface-card: #ffffff;
+    --surface-card-translucent: rgba(255, 255, 255, 0.94);
+    --surface-hover: #f0fdf4;
+
+    --border-light: #e2e8f0;
+    --border-emerald-soft: #d1fae5;
+    --border-emerald-active: #10b981;
+
+    --primary-emerald: #059669;
+    --primary-emerald-hover: #047857;
+    --mint-light: #ecfdf5;
+    --mint-badge: #d1fae5;
+    --sage-accent: #34d399;
+    --emerald-shadow: rgba(16, 185, 129, 0.12);
+
+    --saffron-gold: #d97706;
+    --amber-light: #fef3c7;
+
+    --text-main: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    --text-emerald-dark: #065f46;
+  }
+}
+
+/* ════════════════════════════════════════════
+   BASE RESET
+   ════════════════════════════════════════════ */
+body {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(at 10% 10%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(52, 211, 153, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(16, 185, 129, 0.04) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ════════════════════════════════════════════
+   FONT FAMILY UTILITIES
+   ════════════════════════════════════════════ */
+.font-inter {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.font-manrope {
+  font-family: var(--font-manrope), 'Inter', sans-serif;
+}
+
+/* ════════════════════════════════════════════
+   TYPOGRAPHY SCALE
+   ════════════════════════════════════════════ */
+
+/* Main Hero Heading — Inter / Manrope 48–64px, 700–800, lh 1.05 */
+.t-hero {
+  font-family: var(--font-manrope), var(--font-inter), sans-serif;
+  font-size: clamp(3rem, 5vw, 4rem);   /* 48px → 64px */
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+/* Section Heading — Inter / Manrope 32–40px, 700, lh 1.15 */
+.t-section {
+  font-family: var(--font-manrope), var(--font-inter), sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.5rem);    /* 32px → 40px */
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* Sub Heading — Inter / Manrope 22–28px, 600, lh 1.25 */
+.t-subheading {
+  font-family: var(--font-manrope), var(--font-inter), sans-serif;
+  font-size: clamp(1.375rem, 2vw, 1.75rem);  /* 22px → 28px */
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+/* Card Heading — Inter 18–20px, 600, lh 1.3 */
+.t-card-heading {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1.125rem, 1.4vw, 1.25rem);  /* 18px → 20px */
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* Body Text — Inter 16–18px, 400, lh 1.5–1.6 */
+.t-body {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);     /* 16px → 18px */
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/* Small Text — Inter 14px, 400–500, lh 1.4 */
+.t-small {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;   /* 14px */
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Button Text — Inter 14–16px, 600, lh 1 */
+.t-btn {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.875rem, 1vw, 1rem);       /* 14px → 16px */
+  font-weight: 600;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Navigation — Inter 14–16px, 500–600, lh 1 */
+.t-nav {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.875rem, 1vw, 1rem);       /* 14px → 16px */
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Labels / Tags — Inter 12–14px, 600, lh 1 */
+.t-label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.75rem, 0.9vw, 0.875rem);  /* 12px → 14px */
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════════
+   ALIGNMENT SYSTEM
+   ════════════════════════════════════════════ */
+
+/* Container */
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Section spacing */
+.section-gap {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-gap {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* ════════════════════════════════════════════
+   GLASS & PANEL COMPONENTS
+   ════════════════════════════════════════════ */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(16, 185, 129, 0.18);
+  box-shadow: 0 10px 30px -5px rgba(16, 185, 129, 0.06), 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.14), 0 4px 12px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════════
+   GRADIENT TEXT
+   ════════════════════════════════════════════ */
+.text-gradient-emerald {
+  background: linear-gradient(135deg, #065f46 0%, #059669 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ════════════════════════════════════════════
+   ANIMATIONS
+   ════════════════════════════════════════════ */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Ayurvedic Sacred Vedic Mandala continuous rotation */
+@keyframes mandalaRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Ayurvedic Sacred Botanical leaf drifting and swaying */
+@keyframes driftLeaf1 {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  25%  { transform: translate(12px, -18px) rotate(6deg); }
+  50%  { transform: translate(24px, -8px) rotate(12deg); }
+  75%  { transform: translate(14px, 8px) rotate(4deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+@keyframes driftLeaf2 {
+  0%   { transform: translate(0px, 0px) rotate(0deg); }
+  30%  { transform: translate(-16px, -14px) rotate(-8deg); }
+  60%  { transform: translate(-28px, 6px) rotate(-14deg); }
+  85%  { transform: translate(-10px, 12px) rotate(-4deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Prana Spandana (Life-force vitality pulsation) */
+@keyframes pranaBreathe {
+  0%, 100% { opacity: 0.35; transform: scale(0.97); }
+  50%      { opacity: 0.75; transform: scale(1.03); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease both;
+}
+
+.animate-mandala-slow {
+  animation: mandalaRotate 60s linear infinite;
+}
+
+.animate-leaf-drift-1 {
+  animation: driftLeaf1 10s ease-in-out infinite;
+}
+
+.animate-leaf-drift-2 {
+  animation: driftLeaf2 14s ease-in-out infinite;
+}
+
+.animate-prana-breathe {
+  animation: pranaBreathe 7s ease-in-out infinite;
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, #ecfdf5 0%, #d1fae5 50%, #ecfdf5 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* ════════════════════════════════════════════
+   SCROLLBAR
+   ════════════════════════════════════════════ */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: #f8fafc; }
+::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #10b981; }

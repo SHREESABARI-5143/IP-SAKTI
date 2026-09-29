@@ -1,0 +1,72 @@
+[
+  {
+    "chunk_id": "intl-trips-art27-1",
+    "title": "Article 27.1 - Patentable Subject Matter",
+    "section_or_article": "Article 27.1",
+    "statute": "Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), 1994",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "1995-01-01",
+    "url": "https://www.wto.org/english/docs_e/legal_e/27-trips_04c_e.htm#5",
+    "text": "Subject to the provisions of paragraphs 2 and 3, patents shall be available for any inventions, whether products or processes, in all fields of technology, provided that they are new, involve an inventive step and are capable of industrial application. Subject to paragraph 4 of Article 65, paragraph 8 of Article 70 and paragraph 3 of this Article, patents shall be available and patent rights enjoyable without discrimination as to the place of invention, the field of technology and whether products are imported or locally produced.",
+    "tags": [
+      "trips",
+      "article 27.1",
+      "patentable subject matter",
+      "non-discrimination",
+      "novelty"
+    ]
+  },
+  {
+    "chunk_id": "intl-trips-art27-2",
+    "title": "Article 27.2 - Exclusions to Protect Ordre Public or Morality",
+    "section_or_article": "Article 27.2",
+    "statute": "TRIPS Agreement, 1994",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "1995-01-01",
+    "url": "https://www.wto.org/english/docs_e/legal_e/27-trips_04c_e.htm#5",
+    "text": "Members may exclude from patentability inventions, the prevention within their territory of the commercial exploitation of which is necessary to protect ordre public or morality, including to protect human, animal or plant life or health or to avoid serious prejudice to the environment, provided that such exclusion is not made merely because the exploitation is prohibited by their law.",
+    "tags": [
+      "trips article 27.2",
+      "ordre public",
+      "morality",
+      "health exceptions"
+    ]
+  },
+  {
+    "chunk_id": "intl-trips-art27-3-b",
+    "title": "Article 27.3(b) - Exclusions for Plants, Animals and Biological Processes",
+    "section_or_article": "Article 27.3(b)",
+    "statute": "TRIPS Agreement, 1994",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "1995-01-01",
+    "url": "https://www.wto.org/english/docs_e/legal_e/27-trips_04c_e.htm#5",
+    "text": "Members may also exclude from patentability: (a) diagnostic, therapeutic and surgical methods for the treatment of humans or animals; (b) plants and animals other than micro-organisms, and essentially biological processes for the production of plants or animals other than non-biological and microbiological processes. However, Members shall provide for the protection of plant varieties either by patents or by an effective sui generis system or by any combination thereof.",
+    "tags": [
+      "trips article 27.3(b)",
+      "plant varieties",
+      "sui generis",
+      "microorganisms",
+      "biological exclusions"
+    ]
+  },
+  {
+    "chunk_id": "intl-trips-art29",
+    "title": "Article 29 - Conditions on Patent Applicants (Sufficiency of Disclosure)",
+    "section_or_article": "Article 29",
+    "statute": "TRIPS Agreement, 1994",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "1995-01-01",
+    "url": "https://www.wto.org/english/docs_e/legal_e/27-trips_04c_e.htm#5",
+    "text": "1. Members shall require that an applicant for a patent shall disclose the invention in a manner sufficiently clear and complete for the invention to be carried out by a person skilled in the art and may require the applicant to indicate the best mode for carrying out the invention known to the inventor at the filing date or, where priority is claimed, at the priority date of the application. 2. Members may require an applicant for a patent to provide information concerning the applicant's corresponding foreign applications and grants.",
+    "tags": [
+      "trips article 29",
+      "disclosure",
+      "best mode",
+      "person skilled in the art"
+    ]
+  }
+]

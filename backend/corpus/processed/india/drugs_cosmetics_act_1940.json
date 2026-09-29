@@ -1,0 +1,130 @@
+[
+  {
+    "chunk_id": "in-dca-sec3-a",
+    "title": "Section 3(a) - Definition of Ayurvedic, Siddha or Unani Drug",
+    "section_or_article": "Section 3(a)",
+    "statute": "The Drugs and Cosmetics Act, 1940 (Act No. 23 of 1940)",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1940-04-10 (amended Chapter IV-A in 1964)",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2366",
+    "text": "'Ayurvedic, Siddha or Unani drug' includes all medicines intended for internal or external use for or in the diagnosis, treatment, mitigation or prevention of disease or disorder in human beings or animals, and manufactured exclusively in accordance with the formulae described in the authoritative books of Ayurvedic, Siddha and Unani Tibb systems of medicine, specified in the First Schedule.",
+    "tags": [
+      "dca",
+      "classical ayurvedic drug",
+      "first schedule",
+      "authoritative books",
+      "asu"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-sec3-h",
+    "title": "Section 3(h) - Patent or Proprietary Medicine (Ayurvedic/ASU)",
+    "section_or_article": "Section 3(h)",
+    "statute": "The Drugs and Cosmetics Act, 1940",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1982-11-13",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2366",
+    "text": "In relation to Ayurvedic, Siddha or Unani Tibb systems of medicine, 'patent or proprietary medicine' means a drug which is a formulation containing only ingredients mentioned in the formulae described in the authoritative books of Ayurveda, Siddha or Unani Tibb systems of medicine specified in the First Schedule, but does not include a medicine which is administered by parenteral route and also a formulation which is not specified in the First Schedule.",
+    "tags": [
+      "dca section 3(h)",
+      "patent or proprietary",
+      "p&p medicine",
+      "asu proprietary",
+      "non-classical"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-first-schedule",
+    "title": "The First Schedule - Authoritative Books of ASU Systems",
+    "section_or_article": "The First Schedule",
+    "statute": "The Drugs and Cosmetics Act, 1940",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1964-06-10 (regularly notified by Central Govt)",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2366",
+    "text": "Specifies the 56 authoritative texts for Ayurveda including: Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya, Ashtanga Samgraha, Sharangadhara Samhita, Bhaishajya Ratnavali, Chakradatta, Rasendra Sara Sangraha, Rasa Ratna Samucchaya, Sahasrayogam, Yogaratnakara, Ayurvedic Formulary of India (AFI Parts I, II, III), and Ayurvedic Pharmacopoeia of India (API). Any classical drug claiming Section 3(a) status MUST be prepared strictly according to recipes in these 56 texts.",
+    "tags": [
+      "first schedule",
+      "charaka",
+      "sushruta",
+      "ashtanga hridaya",
+      "afi",
+      "api",
+      "56 books"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-sec33ee",
+    "title": "Section 33EE - Misbranded Ayurvedic Drugs",
+    "section_or_article": "Section 33EE",
+    "statute": "The Drugs and Cosmetics Act, 1940",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1982-11-13",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2366",
+    "text": "An Ayurvedic drug shall be deemed to be misbranded if: (a) it is so coloured, coated, powdered or polished that damage is concealed, or if it is made to appear of better or greater therapeutic value than it really is; or (b) it is not labelled in the prescribed manner; or (c) its label or container or anything accompanying the drug bears any statement, design or device which makes any false claim for the drug or which is false or misleading in any particular.",
+    "tags": [
+      "dca section 33ee",
+      "misbranded",
+      "labelling",
+      "false claims"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-sec33eeb",
+    "title": "Section 33EEB - Spurious Ayurvedic Drugs",
+    "section_or_article": "Section 33EEB",
+    "statute": "The Drugs and Cosmetics Act, 1940",
+    "jurisdiction": "india",
+    "doc_type": "statute",
+    "effective_date": "1982-11-13",
+    "url": "https://www.indiacode.nic.in/handle/123456789/2366",
+    "text": "An Ayurvedic drug shall be deemed to be spurious: (a) if it is manufactured under a name which belongs to another drug; or (b) if it is an imitation of, or a substitute for, another drug; or (c) if it purports to be the product of a manufacturer of whom it is not truly a product; or (d) if it has been substituted wholly or in part by another drug or substance.",
+    "tags": [
+      "dca section 33eeb",
+      "spurious",
+      "adulteration",
+      "substitution"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-schedule-t",
+    "title": "Schedule T - Good Manufacturing Practices (GMP) for Ayurvedic Drugs",
+    "section_or_article": "Schedule T (D&C Rules 1945)",
+    "statute": "The Drugs and Cosmetics Rules, 1945",
+    "jurisdiction": "india",
+    "doc_type": "rule",
+    "effective_date": "2000-06-23 (updated 2021)",
+    "url": "https://cdsco.gov.in",
+    "text": "Schedule T mandates factory premises, hygiene, raw material storage, machinery equipment, quality control section, raw material identification (botanical authentication, TLC fingerprinting, pesticide residue tests, heavy metals testing - Lead, Cadmium, Arsenic, Mercury), batch manufacturing records (BMR), and stability testing for all licensed ASU manufacturers in India. Non-compliance results in cancellation of manufacturing license under Rule 158.",
+    "tags": [
+      "schedule t",
+      "gmp",
+      "heavy metals",
+      "ayush gmp",
+      "raw material authentication",
+      "tlc"
+    ]
+  },
+  {
+    "chunk_id": "in-dca-rule-158-b",
+    "title": "Rule 158-B - Guidelines for Issue of License with respect to ASU Drugs",
+    "section_or_article": "Rule 158-B (D&C Rules 1945)",
+    "statute": "The Drugs and Cosmetics Rules, 1945",
+    "jurisdiction": "india",
+    "doc_type": "rule",
+    "effective_date": "2010-08-10",
+    "url": "https://cdsco.gov.in",
+    "text": "Provides evidentiary requirements for licensing ASU drugs in India: Category 1 (Classical ASU Drugs): Proof of reference in First Schedule texts, no safety/efficacy trials needed. Category 2 (Patent or Proprietary): Category 2(A) (Ingredients from authoritative texts with same indications): Published literature on safety and evidence of efficacy. Category 2(B) (New combination with new indication): Acute/sub-acute toxicity studies, published clinical trials or pilot clinical trials. Category 2(C) (Extracts of classical plants / Purified fractions): Complete phase I/II/III toxicological and clinical trial data similar to new chemical entities.",
+    "tags": [
+      "rule 158-b",
+      "licensing",
+      "clinical trials",
+      "toxicity studies",
+      "extracts",
+      "p&p licensing"
+    ]
+  }
+]

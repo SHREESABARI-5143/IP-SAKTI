@@ -1,0 +1,27 @@
+{
+  "doc_id": "trips_agreement",
+  "title": "WTO Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS)",
+  "jurisdiction": "international",
+  "doc_type": "treaty",
+  "effective_date": "1995-01-01",
+  "sections": [
+    {
+      "section_id": "art27_1",
+      "section_title": "Article 27.1 — Patentable Subject Matter",
+      "content": "Patents shall be available for any inventions, whether products or processes, in all fields of technology, provided that they are new, involve an inventive step and are capable of industrial application. However, traditional knowledge per se lacks novelty if documented prior to the filing date.",
+      "citation_key": "TRIPS Agreement, Article 27.1"
+    },
+    {
+      "section_id": "art27_3b",
+      "section_title": "Article 27.3(b) — Plants, Animals & Microorganisms Exclusion",
+      "content": "Members may exclude from patentability plants and animals other than micro-organisms, and essentially biological processes for the production of plants or animals. However, Members shall provide for the protection of plant varieties either by patents or by an effective sui generis system (e.g. PPV&FR Act in India).",
+      "citation_key": "TRIPS Agreement, Article 27.3(b)"
+    },
+    {
+      "section_id": "doha_declaration",
+      "section_title": "Doha Declaration on TRIPS and Public Health (2001)",
+      "content": "The Doha Declaration affirms that the TRIPS Agreement does not and should not prevent Members from taking measures to protect public health. It recognizes flexibilities including compulsory licensing and parallel importation for traditional and essential medicines.",
+      "citation_key": "Doha Declaration on TRIPS & Public Health, Paragraph 4"
+    }
+  ]
+}

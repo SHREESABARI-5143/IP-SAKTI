@@ -1,0 +1,72 @@
+[
+  {
+    "chunk_id": "intl-nagoya-art5",
+    "title": "Article 5 - Fair and Equitable Benefit-Sharing",
+    "section_or_article": "Article 5",
+    "statute": "Nagoya Protocol on Access to Genetic Resources and the Fair and Equitable Sharing of Benefits Arising from their Utilization to the Convention on Biological Diversity (2010)",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "2014-10-12",
+    "url": "https://www.cbd.int/abs/text/",
+    "text": "1. In accordance with Article 15, paragraphs 3 and 7 of the Convention, benefits arising from the utilization of genetic resources as well as subsequent applications and commercialization shall be shared in a fair and equitable way with the Party providing such resources that is the country of origin of such resources or a Party that has acquired the genetic resources in accordance with the Convention. Such sharing shall be upon mutually agreed terms. 2. Each Party shall take legislative, administrative or policy measures, as appropriate, with the aim of ensuring that benefits arising from the utilization of genetic resources that are held by indigenous and local communities, in accordance with domestic legislation regarding the established rights of these indigenous and local communities over these genetic resources, are shared in a fair and equitable way with the communities concerned, based on mutually agreed terms.",
+    "tags": [
+      "nagoya protocol",
+      "article 5",
+      "benefit sharing",
+      "mat",
+      "indigenous communities"
+    ]
+  },
+  {
+    "chunk_id": "intl-nagoya-art6",
+    "title": "Article 6 - Prior Informed Consent (PIC) for Access to Genetic Resources",
+    "section_or_article": "Article 6",
+    "statute": "Nagoya Protocol, 2010",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "2014-10-12",
+    "url": "https://www.cbd.int/abs/text/",
+    "text": "1. In the exercise of sovereign rights over natural resources, and subject to domestic access and benefit-sharing legislation or regulatory requirements, access to genetic resources for their utilization shall be subject to the prior informed consent of the Party providing such resources that is the country of origin of such resources or a Party that has acquired the genetic resources in accordance with the Convention, unless otherwise determined by that Party. 2. In accordance with domestic law, each Party shall take measures, as appropriate, with the aim of ensuring that the prior informed consent or approval and involvement of indigenous and local communities is obtained for access to genetic resources where they have the established right to grant access to such resources.",
+    "tags": [
+      "nagoya protocol",
+      "article 6",
+      "pic",
+      "prior informed consent",
+      "sovereign rights"
+    ]
+  },
+  {
+    "chunk_id": "intl-nagoya-art7",
+    "title": "Article 7 - Access to Traditional Knowledge Associated with Genetic Resources",
+    "section_or_article": "Article 7",
+    "statute": "Nagoya Protocol, 2010",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "2014-10-12",
+    "url": "https://www.cbd.int/abs/text/",
+    "text": "In accordance with domestic law, each Party shall take measures, as appropriate, with the aim of ensuring that traditional knowledge associated with genetic resources that is held by indigenous and local communities is accessed with the prior and informed consent or approval and involvement of these indigenous and local communities, and that mutually agreed terms have been established. This international obligation prevents foreign pharmaceutical and biotech corporations from accessing traditional indigenous remedies without explicit consent and fair financial/technological return.",
+    "tags": [
+      "nagoya protocol",
+      "article 7",
+      "traditional knowledge",
+      "indigenous consent",
+      "biopiracy defense"
+    ]
+  },
+  {
+    "chunk_id": "intl-nagoya-art15-16",
+    "title": "Articles 15 & 16 - Compliance with Domestic Legislation on ABS and TK",
+    "section_or_article": "Articles 15 & 16",
+    "statute": "Nagoya Protocol, 2010",
+    "jurisdiction": "international",
+    "doc_type": "treaty",
+    "effective_date": "2014-10-12",
+    "url": "https://www.cbd.int/abs/text/",
+    "text": "Each Party shall take appropriate, effective and proportionate legislative, administrative or policy measures to provide that genetic resources and traditional knowledge associated with genetic resources utilized within its jurisdiction have been accessed in accordance with prior informed consent and that mutually agreed terms have been established, as required by the domestic access and benefit-sharing legislation of the other Party. Parties shall cooperate in cases of alleged violation.",
+    "tags": [
+      "nagoya compliance",
+      "international enforcement",
+      "user country measures"
+    ]
+  }
+]

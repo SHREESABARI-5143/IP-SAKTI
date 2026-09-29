@@ -1,0 +1,37 @@
+[
+  {
+    "chunk_id": "in-fssai-ayush-reg3",
+    "title": "Regulation 3 - Definition and Scope of Ayush Aahar",
+    "section_or_article": "Regulation 3",
+    "statute": "Food Safety and Standards (Ayush Aahar) Regulations, 2022",
+    "jurisdiction": "india",
+    "doc_type": "regulation",
+    "effective_date": "2022-05-09",
+    "url": "https://fssai.gov.in",
+    "text": "'Ayush Aahar' means food manufactured or prepared in accordance with the recipes or books/texts specified in the First Schedule of the Drugs and Cosmetics Act, 1940, and other authoritative books of Ayurveda, Siddha and Unani specified under the regulations, including health foods, dietary supplements and functional foods prepared from botanical ingredients. Ayush Aahar does not include drugs defined under Section 3(b) or Section 3(a) of the D&C Act, nor synthetic vitamins/minerals/amino acids.",
+    "tags": [
+      "fssai",
+      "ayush aahar",
+      "food supplement",
+      "dietary",
+      "functional food"
+    ]
+  },
+  {
+    "chunk_id": "in-fssai-ayush-reg5",
+    "title": "Regulation 5 - Prohibition of Therapeutic and Medicinal Claims",
+    "section_or_article": "Regulation 5",
+    "statute": "Food Safety and Standards (Ayush Aahar) Regulations, 2022",
+    "jurisdiction": "india",
+    "doc_type": "regulation",
+    "effective_date": "2022-05-09",
+    "url": "https://fssai.gov.in",
+    "text": "Ayush Aahar products shall NOT claim to prevent, treat, cure, mitigate, or diagnose any specific disease or pathological condition in human beings. Permissible claims are strictly restricted to health promotion, nutritional support, physiological balance (Dosha balance), immunity enhancement, and general wellness. Any product carrying therapeutic or curative claims shall be deemed an Ayurvedic Drug and must obtain a license from State AYUSH Licensing Authorities under D&C Act 1940 instead of FSSAI.",
+    "tags": [
+      "fssai reg 5",
+      "therapeutic claims prohibition",
+      "wellness claims",
+      "ayush aahar vs drug"
+    ]
+  }
+]

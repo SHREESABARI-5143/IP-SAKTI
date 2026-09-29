@@ -1,0 +1,21 @@
+{
+  "doc_id": "pct_treaty",
+  "title": "Patent Cooperation Treaty (PCT) & TKDL Prior Art Integration",
+  "jurisdiction": "international",
+  "doc_type": "treaty_guidelines",
+  "effective_date": "1978-01-24",
+  "sections": [
+    {
+      "section_id": "rule33_1",
+      "section_title": "PCT Rule 33.1 — Relevant Prior Art for International Search",
+      "content": "Relevant prior art for PCT international search consists of everything which has been made available to the public anywhere in the world by means of written disclosure (including TKDL databases) prior to the international filing date.",
+      "citation_key": "PCT Rules, Rule 33.1"
+    },
+    {
+      "section_id": "tkdl_international_access",
+      "section_title": "TKDL Access Agreements with International Patent Offices",
+      "content": "CSIR India has concluded TKDL Access Agreements with International Patent Offices including EPO (European Patent Office), USPTO (US Patent & Trademark Office), JPO (Japan Patent Office), UKIPO, and IP Australia. Patent examiners use TKDL to reject claims on traditional Indian formulations for lack of novelty.",
+      "citation_key": "WIPO / CSIR TKDL International Standard"
+    }
+  ]
+}

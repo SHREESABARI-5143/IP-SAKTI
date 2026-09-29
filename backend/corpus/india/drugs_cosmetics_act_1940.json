@@ -1,0 +1,46 @@
+{
+  "doc_id": "drugs_cosmetics_act_1940",
+  "title": "The Drugs and Cosmetics Act, 1940 & AYUSH Rules",
+  "jurisdiction": "india",
+  "doc_type": "statute_rules",
+  "effective_date": "1940-04-10",
+  "last_amended": "2020-12-15",
+  "sections": [
+    {
+      "section_id": "s3_a",
+      "section_title": "Section 3(a) — Definition of Ayurvedic, Siddha or Unani (ASU) Drug",
+      "content": "Ayurvedic, Siddha or Unani drug includes all medicines intended for internal or external use for or in the diagnosis, treatment, mitigation or prevention of disease or disorder in human beings or animals, manufactured exclusively in accordance with the formulae described in the authoritative books of ASU system of medicine specified in the First Schedule.",
+      "citation_key": "Drugs & Cosmetics Act 1940, Section 3(a)"
+    },
+    {
+      "section_id": "first_schedule",
+      "section_title": "First Schedule — Authoritative Texts of Ayurveda",
+      "content": "The First Schedule lists 54 authoritative classical texts of Ayurveda including Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya, Sharngadhara Samhita, Bhavaprakasha, Yoga Ratnakara, Bhaishajya Ratnavali, and Ayurvedic Formulary of India (AFI). Formulations adhering to these texts qualify as Classical / Generic drugs.",
+      "citation_key": "Drugs & Cosmetics Act 1940, First Schedule"
+    },
+    {
+      "section_id": "s3_h",
+      "section_title": "Section 3(h) — Patent or Proprietary Medicine (P&P)",
+      "content": "In relation to Ayurvedic, Siddha or Unani systems of medicine, Patent & Proprietary (P&P) medicine means a formulation containing ingredients mentioned in the books specified in the First Schedule, but which is not a formulation specified in any such book, manufactured under a proprietary brand name.",
+      "citation_key": "Drugs & Cosmetics Act 1940, Section 3(h)"
+    },
+    {
+      "section_id": "rule_158b",
+      "section_title": "Rule 158-B — Requirements for AYUSH Manufacturing Licence",
+      "content": "Rule 158-B specifies the clinical safety, efficacy, and proof of concept requirements for grant of licence to manufacture Patent or Proprietary (P&P) ASU drugs, New ASU drugs, and extracts. Classical formulations require proof of text reference; P&P requires published literature/pilot studies; New drugs require full clinical trial data.",
+      "citation_key": "Drugs & Cosmetics Rules 1945, Rule 158-B"
+    },
+    {
+      "section_id": "phytopharm_rules",
+      "section_title": "Phytopharmaceutical Drugs Regulation",
+      "content": "Phytopharmaceutical drugs are defined as purified, standardised fraction containing a minimum of four active/marker compounds derived from an Ayurvedic medicinal plant. They require a full allopathic-style regulatory pathway under CDSCO including safety, toxicology, and Phase I-III clinical trials.",
+      "citation_key": "Drugs & Cosmetics Rules 1945, Appendix I (Phytopharmaceuticals)"
+    },
+    {
+      "section_id": "ayush_aahar_reg",
+      "section_title": "FSSAI AYUSH Aahar Regulations, 2022",
+      "content": "AYUSH Aahar covers food products prepared in accordance with the recipes or ingredients or processes described in authoritative books of Ayurveda under FSSAI regulations. AYUSH Aahar products cannot make therapeutic claims or diagnose diseases, but can make health promotion claims.",
+      "citation_key": "FSSAI AYUSH Aahar Regulations 2022, Regulation 3"
+    }
+  ]
+}
