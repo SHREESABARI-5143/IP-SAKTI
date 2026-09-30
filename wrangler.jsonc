@@ -3,7 +3,6 @@
   "name": "ayuraa",
   "compatibility_date": "2024-09-30",
   "assets": {
-    "directory": "./frontend/out",
-    "binding": "ASSETS"
+    "directory": "./frontend/out"
   }
 }
