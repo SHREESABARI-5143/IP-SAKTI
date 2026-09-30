@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: AYURA Documentation & Live Demo
+    url: https://ayura.pages.dev
+    about: Explore the live AI Assistant, 6-Category Classifier, and Prior Art Search.
+  - name: Security Disclosures
+    url: https://github.com/SHREESABARI-5143/IP-SAKTI/blob/main/SECURITY.md
+    about: Confidentially report vulnerabilities or sensitive security findings.
