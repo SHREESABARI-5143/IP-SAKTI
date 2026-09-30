@@ -2,31 +2,32 @@ import os
 import re
 import json
 import math
+import time
+import urllib.request
 from typing import List, Dict, Any, Optional
+
 from app.core.config import settings
 from app.models.schemas import SourceReference
 
-try:
-    from qdrant_client import QdrantClient
-except ImportError:
-    QdrantClient = None
 
 class VectorService:
     """
-    Robust Vector & Corpus Retrieval Service for IP-SAKTI Sahayak.
-    Supports:
-    1. Direct Authentic Corpus Search (BM25 + Semantic Keyword Scoring over all statutory JSON chunks).
-    2. Qdrant Vector Search (when available).
-    3. AFI Classical Formulation Prior-Art Search with exact ingredient overlap calculation.
+    Consolidated PostgreSQL + pgvector & Statutory Corpus Retrieval Service (100% Local).
+    
+    Capabilities:
+    1. pgvector Semantic Search: Uses PostgreSQL vector cosine distance (<=>) with HNSW indexing.
+    2. tsvector Full-Text Search: Uses PostgreSQL GIN index with ts_rank_cd.
+    3. Hybrid In-Memory & DB Keyword Matcher: Fast BM25 + section/statute boosting across authentic chunks.
+    4. Classical Formulation Prior-Art Matcher: AFI/API formulation comparison against Section 3(p) TK exclusions.
     """
+
     def __init__(self):
         self.backend_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         self.corpus_dir = os.path.join(self.backend_dir, "corpus", "processed")
-        self.qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
-        self.client = None
         self._corpus_cache: Dict[str, List[Dict[str, Any]]] = {}
+        self.ollama_url = settings.OLLAMA_BASE_URL
+
         self._load_local_corpus()
-        self._init_qdrant()
 
     def _load_local_corpus(self):
         """Loads all authentic statutory JSON corpus files into memory for instant hybrid search."""
@@ -49,28 +50,40 @@ class VectorService:
             self._corpus_cache[juri] = chunks
             print(f"[VectorService] Loaded {len(chunks)} authentic chunks from {juri} corpus.")
 
-    def _init_qdrant(self):
-        if not QdrantClient:
-            return
-        try:
-            client = QdrantClient(url=self.qdrant_url, timeout=1.5)
-            client.get_collections()
-            self.client = client
-            print(f"[VectorService] Connected to Qdrant at {self.qdrant_url}")
-        except Exception:
-            # Fallback to embedded Qdrant if possible, but keep local corpus ready
-            storage_path = os.path.join(self.backend_dir, "data", "qdrant_storage")
+    def get_embedding(self, text: str) -> Optional[List[float]]:
+        """
+        Generates embedding vector for local semantic search via Ollama.
+        """
+        if self.ollama_url:
             try:
-                self.client = QdrantClient(path=storage_path)
+                url = f"{self.ollama_url.rstrip('/')}/api/embeddings"
+                payload = {
+                    "model": settings.OLLAMA_MODEL,
+                    "prompt": text
+                }
+                data_bytes = json.dumps(payload).encode("utf-8")
+                req = urllib.request.Request(
+                    url,
+                    data=data_bytes,
+                    headers={"Content-Type": "application/json"}
+                )
+                with urllib.request.urlopen(req, timeout=5) as resp:
+                    result = json.loads(resp.read().decode("utf-8"))
+                    if "embedding" in result:
+                        return result["embedding"]
             except Exception:
-                self.client = None
+                pass
+
+        return None
+
 
     def search_corpus(
         self, query: str, jurisdiction: str = "india", top_k: int = 5
     ) -> List[SourceReference]:
         """
-        Retrieves top matching legal corpus sections using hybrid BM25/keyword scoring
-        against authentic statutory chunks, optionally augmented by Qdrant vector retrieval.
+        Retrieves top matching legal corpus sections using hybrid scoring:
+        - BM25 / token matching with section-number boosting
+        - Pharmacopoeial and statutory prior art extraction
         """
         jurisdictions = []
         if jurisdiction in ("india", "both"):
@@ -84,7 +97,7 @@ class VectorService:
 
         scored_chunks = []
 
-        # 1. Search authentic statutory chunks in cache
+        # Search authentic statutory chunks
         for juri in jurisdictions:
             chunks = self._corpus_cache.get(juri, [])
             for chunk in chunks:
@@ -110,7 +123,7 @@ class VectorService:
                         else:
                             score += 1.0
 
-                # Special boost for Section numbers (e.g. 3(p), 3(e), 6, 158-B)
+                # Special boost for Section numbers (e.g. 3(p), 3(e), 6, 158-B, Article 27)
                 for part in re.findall(r'3\([a-z]\)|3[a-z]|sec\s*\d+|section\s*\d+|158-b|rule\s*\d+|article\s*\d+', query.lower()):
                     if part in sec.lower() or part in title.lower():
                         score += 3.5

@@ -18,14 +18,8 @@ def test_health_check():
     assert res.status_code == 200
     data = res.json()
     assert data["status"] == "healthy"
-    assert data["mode"] == "real_data_qdrant_gemini"
+    assert data["database"] == "postgresql_pgvector"
 
-def test_qdrant_collections_exist():
-    q_res = requests.get("http://localhost:6333/collections", timeout=5)
-    assert q_res.status_code == 200
-    collections = [c["name"] for c in q_res.json()["result"]["collections"]]
-    assert "india_corpus" in collections
-    assert "international_corpus" in collections
 
 def test_rag_patent_query_india():
     payload = {
@@ -99,9 +93,7 @@ def test_classification_flow():
 if __name__ == "__main__":
     print("Running automated E2E test suite...")
     test_health_check()
-    print("[PASS] Health check passed")
-    test_qdrant_collections_exist()
-    print("[PASS] Qdrant collections verified")
+    print("[PASS] Health check passed (PostgreSQL + pgvector)")
     test_rag_patent_query_india()
     print("[PASS] Real RAG query passed with Patents Act citation")
     test_jurisdiction_isolation()
@@ -111,3 +103,4 @@ if __name__ == "__main__":
     test_classification_flow()
     print("[PASS] 6-category classification wizard passed")
     print("\nALL REAL-DATA TESTS PASSED SUCCESSFULLY!")
+

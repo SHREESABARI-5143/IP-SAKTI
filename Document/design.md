@@ -1,3 +1,4 @@
+
 # IP-SAKTI Sahayak — Design System Specification (DESIGN.md)
 
 > **Standard:** Inspired by `getdesign.md`, `vibecurb.pages.dev`, `tasteskill.dev`, `sitepeel.dev`, and `duply.ai/library`.

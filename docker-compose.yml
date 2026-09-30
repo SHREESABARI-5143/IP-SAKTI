@@ -1,18 +1,6 @@
 version: '3.8'
 
 services:
-  qdrant:
-    image: qdrant/qdrant:latest
-    container_name: ipsakti-qdrant
-    restart: always
-    ports:
-      - "6333:6333"
-      - "6334:6334"
-    volumes:
-      - ./data/qdrant:/qdrant/storage
-    environment:
-      - QDRANT__SERVICE__GRPC_PORT=6334
-
   postgres:
     image: pgvector/pgvector:pg16
     container_name: ipsakti-postgres
@@ -26,11 +14,3 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
 
-  redis:
-    image: redis:7-alpine
-    container_name: ipsakti-redis
-    restart: always
-    ports:
-      - "6379:6379"
-    volumes:
-      - ./data/redis:/data

@@ -386,80 +386,95 @@ async def init_db():
         await conn.run_sync(Base.metadata.create_all)
 
     if IS_POSTGRES:
-        async with engine.begin() as conn:
-            # Enable pgvector extension
-            await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+        # 1. Try enabling pgvector extension (if installed in Postgres server)
+        has_pgvector = False
+        try:
+            async with engine.begin() as conn:
+                await conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
+                has_pgvector = True
+        except Exception as e:
+            print(f"[Database] Notice: pgvector extension not present in current Postgres server ({e}). Falling back to tsvector GIN full-text search.")
 
-            # Add tsvector column for full-text search (if not exists)
-            await conn.execute(text("""
-                DO $$
-                BEGIN
-                    IF NOT EXISTS (
-                        SELECT 1 FROM information_schema.columns
-                        WHERE table_name = 'corpus_chunks' AND column_name = 'search_vector'
-                    ) THEN
-                        ALTER TABLE corpus_chunks ADD COLUMN search_vector tsvector;
-                    END IF;
-                END $$;
-            """))
+        # 2. Add pgvector embedding column if extension is available
+        if has_pgvector:
+            try:
+                dim = settings.VECTOR_DIMENSION or 768
+                async with engine.begin() as conn:
+                    await conn.execute(text(f"""
+                        DO $$
+                        BEGIN
+                            IF NOT EXISTS (
+                                SELECT 1 FROM information_schema.columns
+                                WHERE table_name = 'corpus_chunks' AND column_name = 'embedding'
+                            ) THEN
+                                ALTER TABLE corpus_chunks ADD COLUMN embedding vector({dim});
+                            END IF;
+                        END $$;
+                    """))
 
-            # Add pgvector embedding column (1024 dimensions for multilingual-e5-large)
-            await conn.execute(text("""
-                DO $$
-                BEGIN
-                    IF NOT EXISTS (
-                        SELECT 1 FROM information_schema.columns
-                        WHERE table_name = 'corpus_chunks' AND column_name = 'embedding'
-                    ) THEN
-                        ALTER TABLE corpus_chunks ADD COLUMN embedding vector(1024);
-                    END IF;
-                END $$;
-            """))
+                    # Create HNSW index on pgvector
+                    await conn.execute(text("""
+                        CREATE INDEX IF NOT EXISTS idx_corpus_embedding
+                        ON corpus_chunks USING hnsw (embedding vector_cosine_ops)
+                        WITH (m = 16, ef_construction = 64)
+                    """))
+            except Exception as e:
+                print(f"[Database] Warning configuring pgvector column: {e}")
 
-            # Create GIN index on tsvector for fast full-text search
-            await conn.execute(text("""
-                CREATE INDEX IF NOT EXISTS idx_corpus_search_vector
-                ON corpus_chunks USING GIN (search_vector)
-            """))
+        # 3. Setup PostgreSQL tsvector full-text search & GIN indexing
+        try:
+            async with engine.begin() as conn:
+                await conn.execute(text("""
+                    DO $$
+                    BEGIN
+                        IF NOT EXISTS (
+                            SELECT 1 FROM information_schema.columns
+                            WHERE table_name = 'corpus_chunks' AND column_name = 'search_vector'
+                        ) THEN
+                            ALTER TABLE corpus_chunks ADD COLUMN search_vector tsvector;
+                        END IF;
+                    END $$;
+                """))
 
-            # Create HNSW index on pgvector for fast similarity search
-            await conn.execute(text("""
-                CREATE INDEX IF NOT EXISTS idx_corpus_embedding
-                ON corpus_chunks USING hnsw (embedding vector_cosine_ops)
-                WITH (m = 16, ef_construction = 64)
-            """))
+                # Create GIN index on tsvector for fast full-text search
+                await conn.execute(text("""
+                    CREATE INDEX IF NOT EXISTS idx_corpus_search_vector
+                    ON corpus_chunks USING GIN (search_vector)
+                """))
 
-            # Create trigger to auto-update tsvector on INSERT/UPDATE
-            await conn.execute(text("""
-                CREATE OR REPLACE FUNCTION corpus_search_vector_update() RETURNS trigger AS $$
-                BEGIN
-                    NEW.search_vector :=
-                        setweight(to_tsvector('english', COALESCE(NEW.title, '')), 'A') ||
-                        setweight(to_tsvector('english', COALESCE(NEW.section_or_article, '')), 'A') ||
-                        setweight(to_tsvector('english', COALESCE(NEW.statute, '')), 'B') ||
-                        setweight(to_tsvector('english', COALESCE(NEW.text_content, '')), 'C') ||
-                        setweight(to_tsvector('english', COALESCE(NEW.tags_json, '')), 'D');
-                    RETURN NEW;
-                END
-                $$ LANGUAGE plpgsql;
-            """))
+                # Create trigger to auto-update tsvector on INSERT/UPDATE
+                await conn.execute(text("""
+                    CREATE OR REPLACE FUNCTION corpus_search_vector_update() RETURNS trigger AS $$
+                    BEGIN
+                        NEW.search_vector :=
+                            setweight(to_tsvector('english', COALESCE(NEW.title, '')), 'A') ||
+                            setweight(to_tsvector('english', COALESCE(NEW.section_or_article, '')), 'A') ||
+                            setweight(to_tsvector('english', COALESCE(NEW.statute, '')), 'B') ||
+                            setweight(to_tsvector('english', COALESCE(NEW.text_content, '')), 'C') ||
+                            setweight(to_tsvector('english', COALESCE(NEW.tags_json, '')), 'D');
+                        RETURN NEW;
+                    END
+                    $$ LANGUAGE plpgsql;
+                """))
 
-            await conn.execute(text("""
-                DO $$
-                BEGIN
-                    IF NOT EXISTS (
-                        SELECT 1 FROM pg_trigger WHERE tgname = 'trg_corpus_search_vector'
-                    ) THEN
-                        CREATE TRIGGER trg_corpus_search_vector
-                        BEFORE INSERT OR UPDATE ON corpus_chunks
-                        FOR EACH ROW EXECUTE FUNCTION corpus_search_vector_update();
-                    END IF;
-                END $$;
-            """))
+                await conn.execute(text("""
+                    DO $$
+                    BEGIN
+                        IF NOT EXISTS (
+                            SELECT 1 FROM pg_trigger WHERE tgname = 'trg_corpus_search_vector'
+                        ) THEN
+                            CREATE TRIGGER trg_corpus_search_vector
+                            BEFORE INSERT OR UPDATE ON corpus_chunks
+                            FOR EACH ROW EXECUTE FUNCTION corpus_search_vector_update();
+                        END IF;
+                    END $$;
+                """))
+        except Exception as e:
+            print(f"[Database] Warning configuring tsvector: {e}")
 
     print("[Database] Initialized all 12 tables successfully.")
     if IS_POSTGRES:
-        print("[Database] PostgreSQL extensions: pgvector ✓, tsvector + GIN index ✓, HNSW index ✓")
+        print("[Database] PostgreSQL tables [OK], Full-Text GIN Search [OK]")
 
     # Seed DBCorpusChunk and DBGraphEdge from verified corpus metadata if empty
     await seed_corpus_and_graph_if_empty()

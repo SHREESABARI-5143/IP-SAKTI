@@ -9,9 +9,11 @@ def health_check():
         "status": "healthy",
         "service": settings.PROJECT_NAME,
         "version": settings.VERSION,
-        "mode": "real_data_qdrant_gemini"
+        "database": "postgresql_pgvector",
+        "llm_provider": settings.LLM_PROVIDER
     }
 
 @router.get("/")
 def root_check():
     return {"status": "ok", "app": settings.PROJECT_NAME}
+

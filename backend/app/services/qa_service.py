@@ -8,11 +8,10 @@ Implements a 3-agent orchestration architecture:
            REPEALED_BY, CROSS_REFERENCES) to validate temporal currency of
            retrieved provisions and enrich context.
   Agent 3: Synthesis & Citation — Generates a grounded, citation-tagged
-           response using the LLM with strict hallucination barriers.
+           response using 100% Local LLM with strict hallucination barriers.
 
-LLM Providers:
-  - Primary: Local Ollama (Qwen 2.5:3b-Instruct) — 100% offline & private.
-  - Fallback: Google Gemini API (if configured).
+LLM Provider:
+  - 100% Local Ollama (Qwen 2.5:3b-Instruct / Llama 3) — Private, Offline, Sovereign AI.
 """
 
 import os
@@ -27,10 +26,6 @@ from app.services.graph_service import graph_service
 from app.services.citation_service import citation_service
 from app.services.language_service import language_service
 
-try:
-    import google.generativeai as genai
-except ImportError:
-    genai = None
 
 
 # ─────────────────────────────────────────────────────────
@@ -120,27 +115,18 @@ LANG_GUIDES: Dict[str, str] = {
 
 class QAService:
     """
-    Graph-Hybrid RAG Pipeline implementing 3-agent orchestration.
+    Graph-Hybrid RAG Pipeline implementing 3-agent orchestration with 100% Local LLM.
     """
 
     def __init__(self):
-        self.provider = getattr(settings, "LLM_PROVIDER", "groq").lower()
-        self.groq_api_key = getattr(settings, "GROQ_API_KEY", "") or os.getenv("GROQ_API_KEY", "")
-        self.groq_model = getattr(settings, "GROQ_MODEL", "llama-3.3-70b-versatile")
+        self.provider = getattr(settings, "LLM_PROVIDER", "ollama").lower()
         self.ollama_url = getattr(
             settings, "OLLAMA_BASE_URL", "http://localhost:11434"
         )
         self.ollama_model = getattr(
             settings, "OLLAMA_MODEL", "qwen2.5:3b-instruct"
         )
-        self.gemini_api_key = (
-            getattr(settings, "GEMINI_API_KEY", "") or os.getenv("GEMINI_API_KEY", "")
-        )
-        if self.gemini_api_key and genai:
-            try:
-                genai.configure(api_key=self.gemini_api_key)
-            except Exception as e:
-                print(f"[QAService] Gemini configure warning: {e}")
+
 
     # ═══════════════════════════════════════════════════════
     # PUBLIC API
@@ -404,84 +390,15 @@ class QAService:
         )
 
     # ═══════════════════════════════════════════════════════
-    # LLM PROVIDER LAYER
+    # 100% LOCAL LLM PROVIDER LAYER
     # ═══════════════════════════════════════════════════════
 
     def _call_llm(self, prompt: str) -> Optional[str]:
-        """Routes to configured LLM provider with automatic fallback."""
-        if self.provider == "groq" or self.groq_api_key:
-            result = self._call_groq(prompt)
-            if result:
-                return result
-            print("[QAService] Groq unavailable, trying fallback providers...")
-
-        if self.provider == "ollama":
-            result = self._call_ollama(prompt)
-            if not result and self.gemini_api_key:
-                print(
-                    "[QAService] Local Ollama unavailable, "
-                    "falling back to Gemini..."
-                )
-                result = self._call_gemini(prompt)
-            return result
-        elif self.provider == "gemini":
-            result = self._call_gemini(prompt)
-            if not result:
-                print(
-                    "[QAService] Gemini unavailable, "
-                    "falling back to local Ollama..."
-                )
-                result = self._call_ollama(prompt)
-            return result
-        
-        # Final fallback to Groq/Gemini if configured
-        if self.gemini_api_key:
-            return self._call_gemini(prompt)
-        return None
-
-    def _call_groq(self, prompt: str) -> Optional[str]:
-        """Calls Serverless Groq API with Llama 3.3 (Zero-cold start, 100% Free)."""
-        if not self.groq_api_key:
-            return None
-        try:
-            url = "https://api.groq.com/openai/v1/chat/completions"
-            payload = {
-                "model": self.groq_model,
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": "You are IP-SAKTI Sahayak, the authoritative, source-cited AI legal assistant for Ayurveda IP law and regulatory guidance."
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                "temperature": 0.1,
-                "max_tokens": 2048,
-            }
-            data_bytes = json.dumps(payload).encode("utf-8")
-            req = urllib.request.Request(
-                url,
-                data=data_bytes,
-                headers={
-                    "Content-Type": "application/json",
-                    "Authorization": f"Bearer {self.groq_api_key}"
-                },
-            )
-            with urllib.request.urlopen(req, timeout=30) as resp:
-                result = json.loads(resp.read().decode("utf-8"))
-                choices = result.get("choices", [])
-                if choices and "message" in choices[0]:
-                    content = choices[0]["message"].get("content", "").strip()
-                    if content:
-                        return content
-        except Exception as e:
-            print(f"[QAService] Groq API call error ({self.groq_model}): {e}")
-        return None
+        """Routes to 100% local Ollama instance (e.g. Qwen 2.5:3b-instruct)."""
+        return self._call_ollama(prompt)
 
     def _call_ollama(self, prompt: str) -> Optional[str]:
-        """Calls local Ollama instance with Qwen 2.5:3b-instruct."""
+        """Calls local Ollama instance with Qwen 2.5:3b-instruct / Llama 3."""
         try:
             url = f"{self.ollama_url.rstrip('/')}/api/generate"
             payload = {
@@ -500,27 +417,15 @@ class QAService:
                 data=data_bytes,
                 headers={"Content-Type": "application/json"},
             )
-            with urllib.request.urlopen(req, timeout=60) as resp:
+            with urllib.request.urlopen(req, timeout=3) as resp:
                 result = json.loads(resp.read().decode("utf-8"))
                 response_text = result.get("response", "").strip()
                 if response_text:
                     return response_text
         except Exception as e:
-            print(f"[QAService] Ollama call error ({self.ollama_model}): {e}")
+            print(f"[QAService] Local Ollama offline ({self.ollama_model}), using deterministic statutory engine: {e}")
         return None
 
-    def _call_gemini(self, prompt: str) -> Optional[str]:
-        """Calls Google Gemini if configured."""
-        if not self.gemini_api_key or not genai:
-            return None
-        try:
-            model = genai.GenerativeModel("gemini-2.5-flash")
-            resp = model.generate_content(prompt)
-            if resp and resp.text:
-                return resp.text.strip()
-        except Exception as e:
-            print(f"[QAService] Gemini generation error: {e}")
-        return None
 
     # ═══════════════════════════════════════════════════════
     # DETERMINISTIC FALLBACK (NO LLM)
