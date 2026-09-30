@@ -1,0 +1,13 @@
+FROM public.ecr.aws/lambda/python:3.11
+
+# Copy requirements file
+COPY requirements.txt ${LAMBDA_TASK_ROOT}/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r ${LAMBDA_TASK_ROOT}/requirements.txt
+
+# Copy application source code
+COPY . ${LAMBDA_TASK_ROOT}/
+
+# AWS Lambda Handler (app/main.py -> handler = Mangum(app))
+CMD ["app.main.handler"]
