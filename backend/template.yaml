@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  IP-SAKTI Sahayak - Serverless FastAPI Backend for Ayurveda IP Law RAG
+  Runs on AWS Lambda Free Tier (1M requests/mo free forever) with Groq Llama 3.3.
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 512
+    Runtime: python3.11
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        LLM_PROVIDER: groq
+        GROQ_MODEL: llama-3.3-70b-versatile
+        GROQ_API_KEY: !Ref GroqApiKey
+        QDRANT_URL: !Ref QdrantUrl
+        QDRANT_API_KEY: !Ref QdrantApiKey
+        DATABASE_URL: sqlite+aiosqlite:////tmp/ipsakti.db
+
+Parameters:
+  GroqApiKey:
+    Type: String
+    NoEcho: true
+    Description: Groq Cloud API Key for Llama 3.3 Serverless Inference
+  QdrantUrl:
+    Type: String
+    Default: "https://your-cluster.cloud.qdrant.io:6333"
+    Description: Qdrant Cloud Cluster URL (Free Tier)
+  QdrantApiKey:
+    Type: String
+    NoEcho: true
+    Default: ""
+    Description: Qdrant Cloud API Key
+
+Resources:
+  AyuraBackendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: app.main.handler
+      Description: FastAPI ASGI backend adapter via Mangum
+      FunctionUrlConfig:
+        AuthType: NONE
+        Cors:
+          AllowOrigins:
+            - '*'
+          AllowMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+          AllowHeaders:
+            - '*'
+          MaxAge: 3600
+      Events:
+        HttpApi:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        RootHttpApi:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+
+Outputs:
+  FunctionUrlEndpoint:
+    Description: Direct HTTPS URL for the Lambda Function (Zero API Gateway Cost)
+    Value: !GetAtt AyuraBackendFunctionUrl.FunctionUrl
+  HttpApiEndpoint:
+    Description: API Gateway HTTP API Endpoint URL
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com"

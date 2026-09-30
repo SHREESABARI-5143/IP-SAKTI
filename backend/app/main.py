@@ -38,6 +38,13 @@ app.include_router(query.router)
 app.include_router(prior_art.router)
 app.include_router(pathway.router)
 
+# AWS Lambda Handler (Serverless API Gateway / Lambda Function URL adapter)
+try:
+    from mangum import Mangum
+    handler = Mangum(app, lifespan="off")
+except ImportError:
+    handler = None
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host=settings.HOST, port=settings.PORT, reload=True)

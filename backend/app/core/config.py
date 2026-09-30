@@ -9,9 +9,13 @@ class Settings(BaseSettings):
     PORT: int = int(os.getenv("PORT", "8000"))
     
     # AI / LLM Configuration
-    # LLM_PROVIDER can be 'ollama' (local Qwen 2.5:3b) or 'gemini'
-    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "ollama")
+    # LLM_PROVIDER can be 'groq' (Serverless Llama 3.3), 'gemini', or 'ollama'
+    LLM_PROVIDER: str = os.getenv("LLM_PROVIDER", "groq")
     
+    # Serverless Groq LLM Configuration (Llama 3.3 70B - High speed, 100% Free tier)
+    GROQ_API_KEY: Optional[str] = os.getenv("GROQ_API_KEY", "")
+    GROQ_MODEL: str = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+
     # Local Ollama LLM Configuration
     OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "qwen2.5:3b-instruct")

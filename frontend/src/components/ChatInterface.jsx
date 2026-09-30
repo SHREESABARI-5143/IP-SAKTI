@@ -10,6 +10,7 @@ import {
   ShieldAlert,
   Shield,
   Leaf,
+  Globe,
   MessageSquare,
 } from "lucide-react";
 import { SourcesPanel } from "./SourcesPanel";

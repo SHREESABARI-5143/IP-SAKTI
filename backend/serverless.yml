@@ -1,0 +1,48 @@
+service: ayura-backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  memorySize: 512
+  timeout: 60
+  environment:
+    LLM_PROVIDER: groq
+    GROQ_MODEL: llama-3.3-70b-versatile
+    GROQ_API_KEY: ${env:GROQ_API_KEY}
+    QDRANT_URL: ${env:QDRANT_URL}
+    QDRANT_API_KEY: ${env:QDRANT_API_KEY}
+    DATABASE_URL: "sqlite+aiosqlite:////tmp/ipsakti.db"
+
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!.venv/**'
+    - '!venv/**'
+    - '!__pycache__/**'
+    - '!*.db'
+    - '!Dockerfile'
+
+functions:
+  api:
+    handler: app.main.handler
+    url:
+      cors: true
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: '*'
+      - httpApi:
+          path: /
+          method: '*'
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    zip: true
+    slim: true

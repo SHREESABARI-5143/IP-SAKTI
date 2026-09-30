@@ -124,7 +124,9 @@ class QAService:
     """
 
     def __init__(self):
-        self.provider = getattr(settings, "LLM_PROVIDER", "ollama").lower()
+        self.provider = getattr(settings, "LLM_PROVIDER", "groq").lower()
+        self.groq_api_key = getattr(settings, "GROQ_API_KEY", "") or os.getenv("GROQ_API_KEY", "")
+        self.groq_model = getattr(settings, "GROQ_MODEL", "llama-3.3-70b-versatile")
         self.ollama_url = getattr(
             settings, "OLLAMA_BASE_URL", "http://localhost:11434"
         )
@@ -407,6 +409,12 @@ class QAService:
 
     def _call_llm(self, prompt: str) -> Optional[str]:
         """Routes to configured LLM provider with automatic fallback."""
+        if self.provider == "groq" or self.groq_api_key:
+            result = self._call_groq(prompt)
+            if result:
+                return result
+            print("[QAService] Groq unavailable, trying fallback providers...")
+
         if self.provider == "ollama":
             result = self._call_ollama(prompt)
             if not result and self.gemini_api_key:
@@ -425,6 +433,51 @@ class QAService:
                 )
                 result = self._call_ollama(prompt)
             return result
+        
+        # Final fallback to Groq/Gemini if configured
+        if self.gemini_api_key:
+            return self._call_gemini(prompt)
+        return None
+
+    def _call_groq(self, prompt: str) -> Optional[str]:
+        """Calls Serverless Groq API with Llama 3.3 (Zero-cold start, 100% Free)."""
+        if not self.groq_api_key:
+            return None
+        try:
+            url = "https://api.groq.com/openai/v1/chat/completions"
+            payload = {
+                "model": self.groq_model,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are IP-SAKTI Sahayak, the authoritative, source-cited AI legal assistant for Ayurveda IP law and regulatory guidance."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                "temperature": 0.1,
+                "max_tokens": 2048,
+            }
+            data_bytes = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                url,
+                data=data_bytes,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {self.groq_api_key}"
+                },
+            )
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                result = json.loads(resp.read().decode("utf-8"))
+                choices = result.get("choices", [])
+                if choices and "message" in choices[0]:
+                    content = choices[0]["message"].get("content", "").strip()
+                    if content:
+                        return content
+        except Exception as e:
+            print(f"[QAService] Groq API call error ({self.groq_model}): {e}")
         return None
 
     def _call_ollama(self, prompt: str) -> Optional[str]:

@@ -1,0 +1,5 @@
+# Cloudflare Pages SPA Routing Rules
+/chat       /chat.html       200
+/classify   /classify.html   200
+/search     /search.html     200
+/*          /index.html      200
