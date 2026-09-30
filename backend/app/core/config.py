@@ -5,8 +5,8 @@ from typing import Optional
 class Settings(BaseSettings):
     PROJECT_NAME: str = "IP-SAKTI Sahayak Backend API"
     VERSION: str = "2.0.0"
-    HOST: str = "0.0.0.0"
-    PORT: int = 8000
+    HOST: str = os.getenv("HOST", "0.0.0.0")
+    PORT: int = int(os.getenv("PORT", "8000"))
     
     # AI / LLM Configuration
     # LLM_PROVIDER can be 'ollama' (local Qwen 2.5:3b) or 'gemini'
