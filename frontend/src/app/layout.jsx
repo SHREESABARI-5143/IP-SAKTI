@@ -19,9 +19,17 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: "IP-SAKTI Sahayak — Ministry of Ayush IP & Regulatory AI Intelligence",
+  title: "AYURA — IP-SAKTI Sahayak | Ministry of Ayush IP & Regulatory AI Intelligence",
   description:
     "Source-cited, jurisdiction-aware AI assistant, classical prior-art search, and statutory product classification engine for the Ayurvedic medicine sector.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/ayura_logo.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/ayura_logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {

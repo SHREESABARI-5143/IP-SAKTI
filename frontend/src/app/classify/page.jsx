@@ -28,7 +28,7 @@ export default function ClassifyPage() {
       
       <div className="flex-1 flex flex-row w-full relative z-10">
         <Sidebar />
-        <main className="flex-1 min-w-0 py-6 px-4 transition-all duration-300">
+        <main className="flex-1 min-w-0 py-8 px-4 sm:px-6 lg:px-8 transition-all duration-300">
           <ClassificationWizard language={language} />
         </main>
       </div>

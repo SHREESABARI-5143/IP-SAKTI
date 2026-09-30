@@ -4,7 +4,7 @@
  */
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Languages,
   Cpu,
@@ -17,8 +17,11 @@ import {
   Loader2,
 } from "lucide-react";
 import { useTranslator, INDIAN_LANGUAGES } from "../hooks/useTranslator";
+import { useApp } from "@/context/AppContext";
+import { t } from "@/lib/i18n";
 
 export default function OfflineTranslator() {
+  const { language } = useApp();
   const {
     inputText,
     outputText,
@@ -35,6 +38,22 @@ export default function OfflineTranslator() {
     isTranslating,
     isLoading,
   } = useTranslator();
+
+  // Sync translator target language with AppContext language if supported
+  useEffect(() => {
+    if (!language) return;
+    const langMap = {
+      hi: "hi",
+      ta: "ta",
+      te: "te",
+      bn: "bn",
+      mr: "mar",
+    };
+    const mapped = langMap[language];
+    if (mapped && mapped !== targetLang) {
+      handleLanguageChange(mapped);
+    }
+  }, [language, handleLanguageChange, targetLang]);
 
   const [copied, setCopied] = useState(false);
 
@@ -58,13 +77,13 @@ export default function OfflineTranslator() {
           </div>
           <div>
             <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
-              Offline Neural Translator
+              {t(language, "offlineTranslatorTitle")}
               <span className="text-[11px] font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-full border border-emerald-200">
-                100% Local (NLLB-200)
+                {t(language, "offlineTranslatorBadge")}
               </span>
             </h2>
             <p className="text-xs text-slate-500">
-              Zero external cloud calls • Runs in background Web Worker • WebGPU/WASM
+              {t(language, "offlineTranslatorSubtitle")}
             </p>
           </div>
         </div>
@@ -127,12 +146,12 @@ export default function OfflineTranslator() {
         <div className="flex flex-col bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden focus-within:border-emerald-500 transition-colors">
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-slate-100 bg-slate-50/60">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              English (Source)
+              {t(language, "sourceLangLabel")}
             </span>
             {inputText && (
               <button
                 onClick={handleClear}
-                className="text-slate-400 hover:text-red-500 transition-colors p-1"
+                className="text-slate-400 hover:text-red-500 transition-colors p-1 cursor-pointer"
                 title="Clear input"
               >
                 <Trash2 className="w-3.5 h-3.5" />
@@ -142,11 +161,11 @@ export default function OfflineTranslator() {
           <textarea
             value={inputText}
             onChange={(e) => handleInputChange(e.target.value)}
-            placeholder="Type English legal or patent text here to translate in real-time..."
+            placeholder={t(language, "inputPlaceholderTranslator")}
             className="w-full h-64 p-4 text-slate-800 placeholder-slate-400 resize-none focus:outline-none text-sm leading-relaxed"
           />
           <div className="flex items-center justify-between px-4 py-2 border-t border-slate-100 text-[11px] text-slate-400">
-            <span>{inputText.length} characters</span>
+            <span>{inputText.length} {t(language, "charsLabel")}</span>
             <span>300ms Debounced</span>
           </div>
         </div>
@@ -156,11 +175,11 @@ export default function OfflineTranslator() {
           <div className="flex items-center justify-between px-4 py-2 border-b border-slate-100 bg-slate-50/60">
             {/* Target Language Dropdown */}
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-slate-500 uppercase">Target:</span>
+              <span className="text-xs font-bold text-slate-500 uppercase">{t(language, "targetLangLabel")}</span>
               <select
                 value={targetLang}
                 onChange={(e) => handleLanguageChange(e.target.value)}
-                className="text-xs font-bold bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                className="text-xs font-bold bg-white border border-slate-200 rounded-lg px-2.5 py-1 text-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer"
               >
                 {INDIAN_LANGUAGES.map((lang) => (
                   <option key={lang.code} value={lang.code}>
@@ -174,7 +193,7 @@ export default function OfflineTranslator() {
             <button
               onClick={copyToClipboard}
               disabled={!outputText}
-              className={`flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg transition-colors ${
+              className={`flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg transition-colors cursor-pointer ${
                 copied
                   ? "bg-emerald-100 text-emerald-800"
                   : "hover:bg-slate-100 text-slate-600 disabled:opacity-40"
@@ -184,12 +203,12 @@ export default function OfflineTranslator() {
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  <span className="text-[11px] font-medium">Copied</span>
+                  <span className="text-[11px] font-medium">{t(language, "copiedLabel")}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5" />
-                  <span className="text-[11px]">Copy</span>
+                  <span className="text-[11px]">{t(language, "copyLabel")}</span>
                 </>
               )}
             </button>
@@ -201,7 +220,7 @@ export default function OfflineTranslator() {
               readOnly
               placeholder={
                 isLoading
-                  ? "Initializing local model..."
+                  ? t(language, "outputPlaceholderLoading")
                   : `Real-time translation in ${currentLangObj.name} (${currentLangObj.native}) will appear here...`
               }
               className="w-full h-64 p-4 text-slate-800 placeholder-slate-400 bg-slate-50/30 resize-none focus:outline-none text-sm leading-relaxed"
@@ -209,7 +228,7 @@ export default function OfflineTranslator() {
             {isTranslating && (
               <div className="absolute bottom-3 right-3 flex items-center gap-1.5 px-2 py-1 bg-white/95 border border-slate-200 rounded-md text-[10px] text-slate-600 shadow-xs">
                 <Loader2 className="w-3 h-3 animate-spin text-emerald-600" />
-                <span>Translating...</span>
+                <span>{t(language, "translatingLabel")}</span>
               </div>
             )}
           </div>
