@@ -6,6 +6,10 @@ compatibility_flags = [ "python_workers" ]
 [ai]
 binding = "AI"
 
+[triggers]
+# Periodic Vector Knowledge Graph Self-Ingestion Cycle (Daily at 02:00 UTC)
+crons = [ "0 2 * * *" ]
+
 [vars]
 ALLOWED_ORIGINS = "https://ayura.shreesabari5143.workers.dev,http://localhost:5173,http://localhost:3000"
 AI_MODEL = "@cf/qwen/qwen2.5-7b-instruct"

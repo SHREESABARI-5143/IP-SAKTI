@@ -1,6 +1,7 @@
 import os
 import psycopg2
-from fastapi import FastAPI, HTTPException, Request
+from typing import Optional, List, Dict, Any
+from fastapi import FastAPI, HTTPException, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -11,12 +12,21 @@ try:
 except ImportError:
     HAS_WORKERS_RUNTIME = False
 
+# Import self-ingest service for dynamic vector graph synchronization
+try:
+    from app.services.edge_ingest import execute_vector_graph_self_ingest
+except ImportError:
+    try:
+        from app.services.edge_ingest import execute_vector_graph_self_ingest
+    except ImportError:
+        execute_vector_graph_self_ingest = None
+
 app = FastAPI(
     title="IP-SAKTI — Traditional Knowledge & Ayurvedic IP Protection Engine",
     description="Legal Intelligence system for Ministry of Ayush & IP-SAKTI running on Cloudflare Python Workers AI"
 )
 
-# Extract origins dynamically from environment or default to wildcard fallback
+# Dynamic CORS origins configuration
 raw_origins = os.environ.get("ALLOWED_ORIGINS", "*")
 allowed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()] if raw_origins != "*" else ["*"]
 
@@ -32,6 +42,9 @@ class LegalQueryRequest(BaseModel):
     query: str = Field(..., description="Ayurvedic intellectual property query parameters")
     jurisdiction: str = Field(default_factory=lambda: os.environ.get("DEFAULT_JURISDICTION", "India"))
 
+class IngestSyncRequest(BaseModel):
+    sources: Optional[List[Dict[str, Any]]] = Field(default=None, description="Optional dynamic list of statutory endpoints or documents to sync")
+
 @app.get("/")
 def health_status():
     return {
@@ -39,14 +52,36 @@ def health_status():
         "service": "IP-SAKTI Edge Legal Engine",
         "runtime": "Cloudflare Serverless Python Edge Node",
         "llm_engine": os.environ.get("AI_MODEL", "@cf/qwen/qwen2.5-7b-instruct"),
-        "isolation_protocol": "Active v2-edge deployment"
+        "isolation_protocol": "Active v2-edge deployment",
+        "vector_graph_sync": "cron_periodic_cycle_enabled"
     }
+
+@app.post("/api/ingest/cycle")
+def trigger_ingest_cycle(payload: Optional[IngestSyncRequest] = Body(None)):
+    """
+    Periodic self-ingestion endpoint triggered by Cloudflare Cron or remote triggers.
+    Dynamically fetches live statutory endpoints, extracts legal graph edges, and syncs to PostgreSQL.
+    Zero local static files or JSON files required.
+    """
+    db_url = os.environ.get("DATABASE_URL")
+    if not db_url:
+        raise HTTPException(status_code=500, detail="DATABASE_URL is not configured.")
+
+    if execute_vector_graph_self_ingest is None:
+        raise HTTPException(status_code=500, detail="Ingest service module unavailable.")
+
+    try:
+        custom_sources = payload.sources if payload else None
+        result = execute_vector_graph_self_ingest(db_url, custom_sources)
+        return {"status": "success", "result": result}
+    except Exception as err:
+        raise HTTPException(status_code=500, detail=f"Dynamic self-ingestion cycle failed: {str(err)}")
 
 @app.post("/api/chat")
 async def process_edge_rag(payload: LegalQueryRequest, request: Request):
     """
-    RAG Pipeline executing entirely within the Cloudflare Worker isolate.
-    Retrieves context from Serverless PostgreSQL (Neon DB) and executes Workers AI inference.
+    RAG Pipeline executing entirely within Cloudflare isolate.
+    Retrieves verified corpus chunks and relational graph edges with exact canonical citation URLs.
     """
     db_url = os.environ.get("DATABASE_URL")
     model_name = os.environ.get("AI_MODEL", "@cf/qwen/qwen2.5-7b-instruct")
@@ -55,41 +90,67 @@ async def process_edge_rag(payload: LegalQueryRequest, request: Request):
         "I do not have enough verified material to provide an authoritative statutory citation."
     )
 
-    # Resolve environment bindings from request scope/state
     env = getattr(request.state, "env", None) or getattr(request.scope, "env", None)
 
-    retrieved_context = ""
+    retrieved_context_items = []
+    graph_context_items = []
 
     if db_url:
         try:
             conn = psycopg2.connect(db_url)
             cursor = conn.cursor()
-            cursor.execute(
-                "SELECT regime, section_marker, content FROM legal_corpus WHERE regime ILIKE %s LIMIT 3;",
-                (f"%{payload.jurisdiction}%",)
-            )
-            records = cursor.fetchall()
+            
+            # 1. Fetch relevant statutory chunks from database
+            cursor.execute("""
+                SELECT statute, section_or_article, text_content, url, chunk_id
+                FROM corpus_chunks
+                WHERE jurisdiction ILIKE %s OR statute ILIKE %s
+                ORDER BY indexed_at DESC
+                LIMIT 4;
+            """, (f"%{payload.jurisdiction}%", f"%{payload.jurisdiction}%"))
+            chunks = cursor.fetchall()
+
+            for c in chunks:
+                statute, section, text_content, url, chunk_id = c
+                retrieved_context_items.append(
+                    f"[{statute}, {section}]({url}): {text_content}"
+                )
+
+                # 2. Fetch connected Knowledge Graph relationships for cited chunks
+                cursor.execute("""
+                    SELECT edge_type, label, target_chunk_id
+                    FROM graph_edges
+                    WHERE source_chunk_id = %s
+                    LIMIT 2;
+                """, (chunk_id,))
+                edges = cursor.fetchall()
+                for edge in edges:
+                    graph_context_items.append(
+                        f"-> Knowledge Graph Relationship ({edge[0]}): {edge[1]}"
+                    )
+
             cursor.close()
             conn.close()
-            
-            if records:
-                retrieved_context = "\n".join([f"[{r[0]}, {r[1]}]: {r[2]}" for r in records])
         except Exception:
-            retrieved_context = ""
+            retrieved_context_items = []
+            graph_context_items = []
 
-    # Check if authoritative statutory context is available
-    if not retrieved_context.strip():
-        context_block = f"No verified statutory records found for query scope. Statutory Rule: {fallback_notice}"
+    # Format the verified statutory and graph context
+    if retrieved_context_items:
+        context_data = "\n\n".join(retrieved_context_items)
+        if graph_context_items:
+            context_data += "\n\nRelational Legal Topology:\n" + "\n".join(graph_context_items)
     else:
-        context_block = retrieved_context
+        context_data = f"No verified statutory records found for query scope. Statutory Rule: {fallback_notice}"
 
     system_prompt = (
         "You are IP-SAKTI Sahayak, an expert legal intelligence system for Ayurvedic Intellectual Property protection and the Ministry of Ayush.\n"
         "Instructions:\n"
-        "1. GROUNDING: Base your answer exclusively on the verified legal contexts listed below. Do not guess or formulate sections.\n"
-        "2. CITATIONS: You must append clear, inline bracketed references like [Source: Patents Act, Section 3(p)].\n"
+        "1. GROUNDING: Base your answer strictly on the verified statutory contexts below. Do not guess or formulate sections.\n"
+        "2. WORKING CITATIONS: For every legal statutory claim, include the direct verified link in markdown citation format: "
+        "[[Source: Statute Name, Section]](exact_url).\n"
         f"3. FALLBACK: If the verified context does not contain sufficient statutory proof to answer the question, explicitly state: '{fallback_notice}'\n\n"
-        f"Verified Context Data:\n{context_block}"
+        f"Verified Statutory Context:\n{context_data}"
     )
 
     try:
@@ -118,7 +179,7 @@ async def process_edge_rag(payload: LegalQueryRequest, request: Request):
             "product": "IP-SAKTI",
             "environment": "Cloudflare Serverless Python Edge Node v2",
             "jurisdiction": payload.jurisdiction,
-            "citations_validated": bool(retrieved_context.strip())
+            "citations_validated": bool(retrieved_context_items)
         }
     except Exception as ai_err:
         raise HTTPException(
@@ -130,5 +191,4 @@ async def process_edge_rag(payload: LegalQueryRequest, request: Request):
 if HAS_WORKERS_RUNTIME:
     entrypoint = workers.asgi.entrypoint(app)
 else:
-    # Fallback entrypoint when running in local IDE / standard ASGI runners
     entrypoint = app

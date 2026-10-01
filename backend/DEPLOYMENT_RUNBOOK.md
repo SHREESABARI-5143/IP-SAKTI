@@ -1,13 +1,17 @@
 # IP-SAKTI Cloudflare Deployment Runbook
 
-Complete isolated deployment guide for launching the serverless Python edge backend on Cloudflare Workers AI without altering legacy containerized scripts.
+Complete isolated deployment guide for launching the serverless Python edge backend on Cloudflare Workers AI with automated periodic vector graph self-ingestion and zero hardcoded static files.
 
 ---
 
-### 📋 Prerequisites & Environment Configuration
-1. Cloudflare account with Workers & Workers AI enabled.
-2. Serverless PostgreSQL connection string (Neon DB / Supabase pooler).
-3. Node.js (>= 18.x) & npm.
+### 📋 Prerequisites & Dynamic Environment Variables
+1. **Cloudflare Account**: Workers AI and Python Workers enabled.
+2. **PostgreSQL / Neon DB**: Serverless database for live vector and graph storage.
+3. **Dynamic Variables** (configured in `wrangler.edge.toml` or as Secrets):
+   - `DATABASE_URL`: Serverless PostgreSQL pooling URI (Encrypted Secret).
+   - `DYNAMIC_REGISTRY_FEEDS`: Optional JSON string of dynamic open statutory registry feeds.
+   - `ALLOWED_ORIGINS`: Comma-delimited CORS list.
+   - `AI_MODEL`: Workers AI model identifier (`@cf/qwen/qwen2.5-7b-instruct`).
 
 ---
 
@@ -18,35 +22,66 @@ Complete isolated deployment guide for launching the serverless Python edge back
 npx wrangler login
 ```
 
-#### 2. Configure Dynamic Environment Variables & Secrets
-Inject your serverless database pooling URI into Cloudflare's encrypted vault for the isolated configuration:
+#### 2. Provision Encrypted Database Secret
 ```bash
 npx wrangler secret put DATABASE_URL --config wrangler.edge.toml
 ```
 
-Optional dynamic variables can be passed or updated directly in `wrangler.edge.toml` under `[vars]`:
-- `ALLOWED_ORIGINS`: Comma-delimited list of allowed origins.
-- `AI_MODEL`: Target model matrix (e.g., `@cf/qwen/qwen2.5-7b-instruct`).
-- `DEFAULT_JURISDICTION`: Default jurisdiction scope (e.g., `India`).
-- `FALLBACK_CITATION_NOTICE`: Citation threshold fallback text.
-
 #### 3. Deploy Isolated Edge Backend
-Deploy the edge bundle targeting the isolated config file:
 ```bash
 npx wrangler deploy --config wrangler.edge.toml
 ```
 
 ---
 
+### 🔄 Dynamic Periodic Vector Graph Self-Ingestion
+
+Cloudflare Workers will automatically trigger the periodic self-ingestion cycle based on the configured cron trigger:
+```toml
+[triggers]
+crons = [ "0 2 * * *" ] # Daily at 02:00 UTC
+```
+
+You can also trigger an on-demand self-ingestion cycle dynamically via HTTP POST without storing any files locally:
+```bash
+curl -X POST https://<your-worker-subdomain>.workers.dev/api/ingest/cycle \
+  -H "Content-Type: application/json" \
+  -d '{
+    "sources": [
+      {
+        "statute": "The Patents Act, 1970",
+        "section": "Section 3(p)",
+        "title": "Traditional Knowledge Patent Exclusions",
+        "jurisdiction": "India",
+        "doc_type": "statute",
+        "url": "https://www.indiacode.nic.in/show-data?actid=AC_CEN_3_44_00007_197039_1517807323983&sectionId=15154&sectionno=3&orderno=3",
+        "content": "An invention which in effect is traditional knowledge or which is an aggregation or duplication of known properties of traditionally known component or components is not patentable."
+      },
+      {
+        "statute": "Biological Diversity Act, 2002",
+        "section": "Section 6",
+        "title": "Mandatory NBA Approval for IP Filing",
+        "jurisdiction": "India",
+        "doc_type": "statute",
+        "url": "http://nbaindia.org/content/26/59/1/rules.html",
+        "content": "No person shall apply for any intellectual property right, by whatever name called, in or outside India for any invention based on any research or information on a biological resource obtained from India without obtaining the previous approval of the National Biodiversity Authority."
+      }
+    ]
+  }'
+```
+
+---
+
 ### 🔍 Verification & Health Check
-Verify active edge deployment health via curl or browser:
+Verify active edge deployment health:
 ```bash
 curl -X GET https://<your-worker-subdomain>.workers.dev/
 ```
 
-Test edge RAG chat endpoint:
+Query edge RAG chat endpoint:
 ```bash
 curl -X POST https://<your-worker-subdomain>.workers.dev/api/chat \
   -H "Content-Type: application/json" \
-  -d '{"query": "Is traditional neem formulation patentable under Indian law?"}'
+  -d '{"query": "Is traditional neem formulation patentable under Indian law?", "jurisdiction": "India"}'
+```
 ```
