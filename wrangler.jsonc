@@ -1,9 +1,22 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "ayura",
-  "compatibility_date": "2024-09-30",
-  "assets": {
-    "directory": "./frontend/out",
-    "not_found_handling": "single-page-application"
-  }
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ayura",
+	"compatibility_date": "2024-09-30",
+	"assets": {
+		"directory": "./frontend/out",
+		"not_found_handling": "single-page-application"
+	},
+	"d1_databases": [
+		{
+			"binding": "ip_sakti_db",
+			"database_name": "ip-sakti-db",
+			"database_id": "2977e86c-96a6-4a7a-babe-8d61c744952b"
+		}
+	],
+	"vectorize": [
+		{
+			"binding": "VECTORIZE",
+			"index_name": "ip-sakti-legal-embeddings"
+		}
+	]
 }
