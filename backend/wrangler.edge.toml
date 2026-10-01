@@ -1,0 +1,13 @@
+name = "ip-sakti-backend-edge"
+main = "main_edge.py"
+compatibility_date = "2024-10-01"
+compatibility_flags = [ "python_workers" ]
+
+[ai]
+binding = "AI"
+
+[vars]
+ALLOWED_ORIGINS = "https://ayura.shreesabari5143.workers.dev,http://localhost:5173,http://localhost:3000"
+AI_MODEL = "@cf/qwen/qwen2.5-7b-instruct"
+DEFAULT_JURISDICTION = "India"
+FALLBACK_CITATION_NOTICE = "I do not have enough verified material to provide an authoritative statutory citation."

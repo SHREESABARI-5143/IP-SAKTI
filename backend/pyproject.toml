@@ -1,0 +1,9 @@
+[project]
+name = "ip-sakti-backend-edge"
+version = "0.2.0"
+description = "Cloudflare Workers Python Edge Backend for AYURA IP-SAKTI Sahayak"
+dependencies = [
+    "fastapi",
+    "pydantic",
+    "psycopg2-binary"
+]
