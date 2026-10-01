@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || process.env.NEXT_PUBLIC_API_URL || "https://ip-sakti-backend-edge.shreesabari5143.workers.dev";
 
 /**
  * Sends an IP legal or regulatory query to the Ayush RAG backend.
