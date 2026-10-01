@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+tests/
+scripts/
+.env
+.wrangler/
+schema_d1.sql

@@ -1,5 +1,4 @@
 import os
-import psycopg2
 from typing import Optional, List, Dict, Any
 from fastapi import FastAPI, HTTPException, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
@@ -216,6 +215,7 @@ async def process_edge_rag(payload: LegalQueryRequest, request: Request):
     # --- Strategy C: PostgreSQL Fallback ---
     if not retrieved_context_items and db_url:
         try:
+            import psycopg2  # type: ignore[import-not-found]
             conn = psycopg2.connect(db_url)
             cursor = conn.cursor()
             cursor.execute("""

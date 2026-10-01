@@ -3,7 +3,6 @@ import re
 import json
 import urllib.request
 import urllib.error
-import psycopg2
 from typing import List, Dict, Any, Optional
 
 class DynamicStatutoryIngestEngine:
@@ -85,7 +84,11 @@ class DynamicStatutoryIngestEngine:
             except Exception:
                 sources_to_sync = []
 
-        conn = psycopg2.connect(self.db_url)
+        try:
+            import psycopg2  # type: ignore[import-not-found]
+            conn = psycopg2.connect(self.db_url)
+        except ImportError:
+            return {"status": "skipped", "message": "psycopg2 is not installed in this environment"}
         cursor = conn.cursor()
 
         # Ensure database tables exist dynamically

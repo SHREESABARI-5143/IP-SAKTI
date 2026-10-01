@@ -2,29 +2,27 @@ name = "ip-sakti-backend-edge"
 main = "main_edge.py"
 compatibility_date = "2024-10-01"
 compatibility_flags = [ "python_workers" ]
-requirements = "requirements.edge.txt"
 
 # 1. Cloudflare Workers AI Binding
 [ai]
 binding = "AI"
 
-# 2. Cloudflare Vectorize Binding (Raw Numerical Embeddings Index)
+# 2. Cloudflare Vectorize Binding
 [[vectorize]]
-binding = "VECTORIZE_INDEX"
+binding = "VECTORIZE"
 index_name = "ip-sakti-legal-embeddings"
 
-# 3. Cloudflare D1 Database Binding (Structured Text, Citations & Logs)
+# 3. Cloudflare D1 Database Binding
 [[d1_databases]]
 binding = "DB"
 database_name = "ip-sakti-db"
 database_id = "2977e86c-96a6-4a7a-babe-8d61c744952b"
 
 [triggers]
-# Periodic Vector Knowledge Graph Self-Ingestion Cycle (Daily at 02:00 UTC)
 crons = [ "0 2 * * *" ]
 
 [vars]
 ALLOWED_ORIGINS = "https://ayura.shreesabari5143.workers.dev,https://ayura-frontend.pages.dev,http://localhost:5173,http://localhost:3000"
-AI_MODEL = "@cf/qwen/qwen2.5-7b-instruct"
+AI_MODEL = "@cf/meta/llama-3.2-3b-instruct"
 DEFAULT_JURISDICTION = "India"
 FALLBACK_CITATION_NOTICE = "I do not have enough verified material to provide an authoritative statutory citation."
