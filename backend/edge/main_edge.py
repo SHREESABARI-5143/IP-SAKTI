@@ -1,4 +1,6 @@
 import json
+import re
+import os
 
 try:
     from js import Response, Headers  # type: ignore[import-not-found]
@@ -92,13 +94,31 @@ PATHWAYS_DATA = {
 async def handle_health(env, origin: str) -> Response:
     has_ai = bool(getattr(env, "AI", None))
     has_vectorize = bool(getattr(env, "VECTORIZE", None) or getattr(env, "VECTORIZE_INDEX", None))
-    has_db = bool(getattr(env, "DB", None) or getattr(env, "ip_sakti_db", None))
+    db = getattr(env, "DB", None) or getattr(env, "ip_sakti_db", None)
+    has_db = bool(db)
+    
+    d1_stats = {"chunks_count": 0, "status": "unknown"}
+    if db:
+        try:
+            stmt = db.prepare("SELECT count(*) as total FROM corpus_chunks")
+            res = await stmt.first()
+            d1_stats["chunks_count"] = getattr(res, "total", None) or (res.get("total") if isinstance(res, dict) else str(res))
+            d1_stats["status"] = "connected_async"
+        except Exception as e1:
+            try:
+                stmt = db.prepare("SELECT count(*) as total FROM corpus_chunks")
+                res = stmt.first()
+                d1_stats["chunks_count"] = getattr(res, "total", None) or (res.get("total") if isinstance(res, dict) else str(res))
+                d1_stats["status"] = "connected_sync"
+            except Exception as e2:
+                d1_stats["error"] = f"async: {str(e1)} | sync: {str(e2)}"
 
     return json_response({
         "status": "active",
         "service": "IP-SAKTI Edge Legal Engine",
         "runtime": "Cloudflare Serverless Python Edge Node",
         "llm_engine": LLM_MODEL,
+        "d1_database": d1_stats,
         "architecture": {
             "workers_ai": has_ai,
             "cloudflare_d1": has_db,
@@ -241,6 +261,24 @@ async def handle_chat_or_query(request, env, origin: str) -> Response:
     source_refs = []
     matched_ids = []
 
+    def extract_val(row, key, default=""):
+        if isinstance(row, dict):
+            return row.get(key, default)
+        try:
+            if hasattr(row, "to_py"):
+                p = row.to_py()
+                if isinstance(p, dict):
+                    return p.get(key, default)
+        except Exception:
+            pass
+        val = getattr(row, key, None)
+        if val is not None:
+            return val
+        try:
+            return row[key]
+        except Exception:
+            return default
+
     # 1. Semantic Search with Vectorize
     if ai and vec:
         try:
@@ -256,12 +294,12 @@ async def handle_chat_or_query(request, env, origin: str) -> Response:
                 emb = list(emb_res.data[0])
 
             if emb:
-                v_res = await vec.query(emb, topK=3, returnMetadata="all")
+                v_res = await vec.query(emb, topK=4, returnMetadata="all")
                 matches = getattr(v_res, "matches", []) or (v_res.get("matches", []) if isinstance(v_res, dict) else [])
                 for m in matches:
                     cid = getattr(m, "id", None) or (m.get("id") if isinstance(m, dict) else None)
                     if cid:
-                        matched_ids.append(cid)
+                        matched_ids.append(str(cid))
         except Exception:
             pass
 
@@ -273,48 +311,110 @@ async def handle_chat_or_query(request, env, origin: str) -> Response:
                 f"SELECT chunk_id, statute, section_or_article, title, url, text_content FROM corpus_chunks WHERE chunk_id IN ({placeholders})"
             )
             res = await stmt.bind(*matched_ids).all()
-            chunks = getattr(res, "results", []) or (res.get("results", []) if isinstance(res, dict) else [])
+            raw_res = getattr(res, "results", None)
+            if raw_res is not None:
+                try:
+                    chunks = raw_res.to_py()
+                except Exception:
+                    chunks = list(raw_res)
+            else:
+                chunks = []
             for c in chunks:
-                statute = c.get("statute", "")
-                section = c.get("section_or_article", "")
-                text = c.get("text_content", "")
-                url = c.get("url", "")
-                retrieved_items.append(f"[{statute}, {section}]({url}): {text}")
-                source_refs.append({
-                    "doc_id": c.get("chunk_id"),
-                    "doc_title": statute,
-                    "section_id": section,
-                    "section_title": c.get("title") or section,
-                    "jurisdiction": jurisdiction,
-                    "citation_key": f"{statute} {section}",
-                    "excerpt": text,
-                    "relevance_score": 0.95
-                })
+                cid = extract_val(c, "chunk_id")
+                statute = extract_val(c, "statute")
+                section = extract_val(c, "section_or_article")
+                title = extract_val(c, "title") or section
+                text = extract_val(c, "text_content")
+                url = extract_val(c, "url", "https://main.ayush.gov.in")
+                if text:
+                    retrieved_items.append(f"[{statute}, {section}]({url}): {text}")
+                    source_refs.append({
+                        "doc_id": cid,
+                        "doc_title": statute,
+                        "section_id": section,
+                        "section_title": title,
+                        "jurisdiction": jurisdiction,
+                        "citation_key": f"{statute} {section}",
+                        "excerpt": text[:400],
+                        "relevance_score": 0.96
+                    })
         except Exception:
             pass
 
-    # 3. Fallback direct D1 search if no Vectorize matches
+    # 3. Direct D1 Corpus Search (Keyword & SQL matching on all 57 live records)
     if not retrieved_items and db:
         try:
-            stmt = db.prepare("SELECT chunk_id, statute, section_or_article, title, url, text_content FROM corpus_chunks LIMIT 3")
-            res = await stmt.all()
-            chunks = getattr(res, "results", []) or (res.get("results", []) if isinstance(res, dict) else [])
-            for c in chunks:
-                statute = c.get("statute", "")
-                section = c.get("section_or_article", "")
-                text = c.get("text_content", "")
-                url = c.get("url", "")
-                retrieved_items.append(f"[{statute}, {section}]({url}): {text}")
-                source_refs.append({
-                    "doc_id": c.get("chunk_id"),
-                    "doc_title": statute,
-                    "section_id": section,
-                    "section_title": c.get("title") or section,
-                    "jurisdiction": jurisdiction,
-                    "citation_key": f"{statute} {section}",
-                    "excerpt": text,
-                    "relevance_score": 0.88
-                })
+            # Extract meaningful search terms
+            words = [w.strip() for w in re.split(r'[^a-zA-Z0-9_\(\)]+', query) if len(w.strip()) >= 3]
+            scored_candidates = []
+
+            # Try targeted SQL LIKE search first for highest precision
+            for word in words[:3]:
+                try:
+                    stmt = db.prepare(
+                        "SELECT chunk_id, statute, section_or_article, title, url, text_content "
+                        "FROM corpus_chunks WHERE text_content LIKE ? OR title LIKE ? OR section_or_article LIKE ? LIMIT 4"
+                    )
+                    pattern = f"%{word}%"
+                    res = await stmt.bind(pattern, pattern, pattern).all()
+                    raw = getattr(res, "results", None)
+                    if raw is not None:
+                        try:
+                            rows = raw.to_py()
+                        except Exception:
+                            rows = [r.to_py() if hasattr(r, "to_py") else dict(r) for r in raw]
+                        for r in rows:
+                            cid = extract_val(r, "chunk_id")
+                            if cid and cid not in [c[1] for c in scored_candidates]:
+                                scored_candidates.append((
+                                    2,
+                                    cid,
+                                    extract_val(r, "statute"),
+                                    extract_val(r, "section_or_article"),
+                                    extract_val(r, "title"),
+                                    extract_val(r, "url", "https://main.ayush.gov.in"),
+                                    extract_val(r, "text_content")
+                                ))
+                except Exception:
+                    pass
+
+            # If no targeted matches found, get representative statutes
+            if not scored_candidates:
+                try:
+                    stmt = db.prepare("SELECT chunk_id, statute, section_or_article, title, url, text_content FROM corpus_chunks LIMIT 4")
+                    res = await stmt.all()
+                    raw = getattr(res, "results", None)
+                    if raw is not None:
+                        try:
+                            rows = raw.to_py()
+                        except Exception:
+                            rows = [r.to_py() if hasattr(r, "to_py") else dict(r) for r in raw]
+                        for r in rows:
+                            scored_candidates.append((
+                                1,
+                                extract_val(r, "chunk_id"),
+                                extract_val(r, "statute"),
+                                extract_val(r, "section_or_article"),
+                                extract_val(r, "title"),
+                                extract_val(r, "url", "https://main.ayush.gov.in"),
+                                extract_val(r, "text_content")
+                            ))
+                except Exception:
+                    pass
+
+            for score, cid, statute, section, title, url, text in scored_candidates[:4]:
+                if text:
+                    retrieved_items.append(f"[{statute}, {section}]({url}): {text}")
+                    source_refs.append({
+                        "doc_id": cid,
+                        "doc_title": statute,
+                        "section_id": section,
+                        "section_title": title,
+                        "jurisdiction": jurisdiction,
+                        "citation_key": f"{statute} {section}",
+                        "excerpt": text[:400],
+                        "relevance_score": round(min(0.96, 0.80 + score * 0.05), 2)
+                    })
         except Exception:
             pass
 
